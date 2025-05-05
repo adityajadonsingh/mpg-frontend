@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -19,7 +19,13 @@ export default function HeroClient({ banners }) {
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
             <div className="wrap relative">
-              <img src={banner.image} alt={banner.title} loading="lazy" />
+              <Image
+                width={800}
+                height={500}
+                src={banner.image}
+                alt={banner.title}
+                loading="lazy"
+              />
               <div className="content-box">
                 <h2>{banner.title}</h2>
                 <p>{banner.subtitle}</p>

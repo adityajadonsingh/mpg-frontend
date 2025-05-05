@@ -19,12 +19,37 @@
     }
   }
 }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Optional */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ea7536; /* Scrollbar color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f36c23; /* On hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f36c23 transparent;
+}
 
 * {
   transition: 0.2s ease-in-out;
-}
-body {
-  font-family: "Montserrat", sans-serif;
 }
 
 .header {

@@ -1,7 +1,7 @@
 // components/Header.jsx
 
 "use client";
-
+import Image from 'next/image';
 import Link from "next/link";
 import { useCategories } from "@/context/CategoryContext";
 
@@ -13,7 +13,9 @@ export default function Header() {
         <div className="wrapper flex justify-between items-center">
           <div className="logo">
             <Link href="/" className="text-xl font-bold">
-              <img
+              <Image
+              width={800}
+              height={500}
                 src="https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
                 alt=""
               />

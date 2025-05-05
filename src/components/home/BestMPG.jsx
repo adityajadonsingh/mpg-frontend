@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import Image from "next/image";
 const categories = [
   "Sandstone Paving",
   "Limestone Paving",
@@ -60,12 +60,11 @@ export default function BestMPG() {
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 product-grid animate-slide-in transition-all duration-500"
           >
             {productData[activeCategory].map((product, index) => (
-              <div
-                key={index}
-                className="text-center"
-              >
+              <div key={index} className="text-center">
                 <div className="img-box overflow-hidden">
-                  <img
+                  <Image
+                    fill
+                    style={{ objectFit: "cover" }}
                     src={product.image}
                     alt={product.name}
                     className="w-full object-cover mb-2 transform transition-all duration-300 hover:scale-105"

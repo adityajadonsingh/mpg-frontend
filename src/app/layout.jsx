@@ -1,8 +1,15 @@
 import "./globals.css";
+import { Montserrat } from 'next/font/google';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CategoryProvider } from "@/context/CategoryContext";
 import { getAllCategories } from "@/lib/api/categories";
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  display: 'swap', // Optional: improves performance
+});
 
 export const metadata = {
   title: "MPG Stone",
@@ -13,19 +20,8 @@ export default async function RootLayout({ children }) {
   const categories = await getAllCategories();
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="flex flex-col min-h-screen">
+      
+      <body className={`${montserrat.className} flex flex-col min-h-screen`}>
         <CategoryProvider categories={categories}>
           <Header />
           <main>{children}</main>
