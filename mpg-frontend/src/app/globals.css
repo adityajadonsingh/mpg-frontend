@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@layer utilities {
+  .animate-slide-in {
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+* {
+  transition: 0.2s ease-in-out;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.header {
+  padding: 22px 0;
+  background-color: #fff;
+}
+.header .logo {
+  width: 160px;
+}
+.header .logo img {
+  width: 100%;
+  height: auto;
+}
+.wrapper {
+  padding: 0 20px;
+}
+.header .search-bar .search-input {
+  border: 1px solid #cecece;
+  padding: 5px 10px;
+  border-radius: 3px;
+  width: 350px;
+}
+.header .search-bar .search-icn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5a5c5d;
+}
+.header .nav {
+  display: flex;
+  column-gap: 20px;
+  height: 100%;
+  align-items: center;
+}
+.header .nav .nav-item {
+  color: #757575;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.header .nav .nav-item:hover {
+  color: #000;
+}
+.header .contact-icns .icn {
+  background-color: #5a5c5d;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #fff;
+}
+.home-banner {
+  height: 65vh;
+  width: 100%;
+}
+.home-banner .wrap {
+  width: 100%;
+  height: 100%;
+}
+.home-banner .wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-banner .swiper {
+  height: 100%;
+}
+.home-banner .wrap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000057;
+}
+.home-banner .content-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(800px, 90%);
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+}
+.home-banner .content-box h2 {
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.home-banner .content-box p {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.home-banner .content-box button {
+  background-color: #dc5100;
+  padding: 10px 30px;
+  font-size: 20px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.home-banner .content-box button:hover {
+  background-color: #ed5b06;
+}
+.home-category {
+  padding: 50px 0 30px;
+}
+.home-category .wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.home-category .wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.home-category .wrap:hover img {
+  width: 100%;
+  height: 100%;
+}
+.home-category .wrap .text-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000030;
+  padding: 10px 10px;
+  text-align: center;
+  line-height: 1.2;
+}
+.home-category .wrap .text-box:hover {
+  background-color: transparent;
+}
+.home-category .wrap .text-box h2 {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+}
+.home-category .swiper-button-prev, .home-category .swiper-button-next {
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+.home-category .swiper-button-prev::after, .home-category .swiper-button-next::after {
+  font-size: 20px;
+  font-weight: 600;
+  color: #999999;
+}
+.home-category .swiper{
+  padding-bottom: 30px;
+}
+.home-category .swiper .swiper-pagination{
+  bottom: 0;
+}
+h2.heading{
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+}
+.best-home{
+  padding: 50px 0;
+  background-color: #F9F9F9;
+}
+.best-home .tab-buttons{
+  font-size: 18px;
+  padding: 20px 0;
+}
+.best-home .tab-buttons .tab-btn{
+  color: #727174;
+  cursor: pointer;
+  border-bottom: 3px solid #dc510000;
+  text-transform: capitalize;
+}
+.best-home .tab-buttons .tab-btn:hover{
+  color: #000;
+}
+.best-home .tab-buttons .tab-btn.active{
+  color: #000;
+  border-bottom: 3px solid #DC5100;
+}
+.best-home .product-grid .img-box{
+  height: 350px;
+  position: relative;
+}
+.best-home .product-grid .img-box img{
+  height: 100%;
+}
+.best-home .product-grid .img-box .cta{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+}
