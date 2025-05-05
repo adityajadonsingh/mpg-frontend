@@ -46,15 +46,22 @@ html {
 * {
   scrollbar-width: thin;
   scrollbar-color: #f36c23 transparent;
+  transition: 0.2s ease-in-out;
 }
 
-* {
-  transition: 0.2s ease-in-out;
+main{
+  margin-top: 90px;
 }
 
 .header {
   padding: 22px 0;
   background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  z-index: 9999;
 }
 .header .logo {
   width: 160px;
@@ -260,4 +267,14 @@ h2.heading{
   left: 0;
   width: 100%;
   padding: 15px;
+}
+.messageBox{
+  padding: 50px 0;
+}
+.messageBox .box{
+  background-color: #F5F5F5;
+  padding: 30px 20px;
+  border-radius: 40px;
+  width: 80%;
+  margin: 0 auto;
 }
