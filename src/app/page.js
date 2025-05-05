@@ -1,11 +1,13 @@
 import BestMPG from "@/components/home/BestMPG";
-import Hero from "@/components/home/Hero";
+import HeroClient from "@/components/home/HeroClient";
 import HomeCategories from "@/components/home/HomeCategories";
+import { getAllBanners } from "@/lib/api/homeBanner";
 
 export default async function Home() {
+  const banners = await getAllBanners();
   return (
     <>
-      <Hero />
+      <HeroClient banners={banners} />
       <HomeCategories />
       <BestMPG/>
     </>
