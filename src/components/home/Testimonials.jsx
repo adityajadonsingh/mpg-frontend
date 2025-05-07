@@ -6,71 +6,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const testimonials = [
-  {
-    name: "Jhon Fox",
-    verified: true,
-    profile_image: "/media/user.png",
-    rating: 5,
-    title: "Exceptional Quality and Services",
-    testimonial:
-      "We recently renovated our kitchen with MPGStone countertops, and we couldn't be happier. The quality of the stone is exceptional, and the installation was seamless. The team was professional and courteous.",
-  },
-  {
-    name: "Joe Fox",
-    verified: true,
-    profile_image: "/media/user.png",
-    rating: 5,
-    title: "Top-notch Experience!",
-    testimonial:
-      "MPGStone exceeded our expectations. The countertops look amazing and the team ensured everything was perfect. Highly recommended!",
-  },
-  {
-    name: "Alexendar",
-    verified: true,
-    profile_image: "/media/user.png",
-    rating: 5,
-    title: "Exceptional Quality and Services",
-    testimonial:
-      "We recently renovated our kitchen with MPGStone countertops, and we couldn't be happier. The quality of the stone is exceptional, and the installation was seamless. The team did an outstanding job.",
-  },
-  {
-    name: "Emily Watson",
-    verified: true,
-    profile_image: "/media/user.png",
-    rating: 5,
-    title: "Beautiful and Durable",
-    testimonial:
-      "I love how our new countertops turned out. The finish is sleek and the color matches perfectly with our kitchen decor. Excellent work by the MPGStone crew!",
-  },
-  {
-    name: "Michael Chen",
-    verified: true,
-    profile_image: "/media/user.png",
-    rating: 5,
-    title: "Reliable and Efficient",
-    testimonial:
-      "MPGStone delivered on time and the installation process was smooth. They answered all our questions and made the renovation stress-free.",
-  },
-  {
-    name: "Samantha Lee",
-    verified: true,
-    profile_image: "/media/user.png",
-    rating: 5,
-    title: "Exceeded Expectations",
-    testimonial:
-      "From consultation to installation, the experience was flawless. The countertops are stunning and the craftsmanship is top-notch.",
-  },
-];
 
-export default function Testimonials() {
+
+export default function Testimonials({testimonials}) {
   return (
     <section className="testimonials">
       <div className="wrapper mx-auto">
         <h2 className="heading mb-6 capitalize">Loved by Businesses and
         Individuals across the globe</h2>
         <Swiper
-        
           modules={[Pagination]}
           pagination={{ clickable: true }}
           spaceBetween={20}
