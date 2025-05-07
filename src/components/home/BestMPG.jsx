@@ -37,7 +37,7 @@ export default function BestMPG() {
   return (
     <>
       <section className="best-home">
-        <div className="wrapper">
+        <div className="wrapper overflow-hidden">
           <h2 className="heading uppercase">Best Of MPG Stone</h2>
           {/* Tabs */}
           <div className="flex justify-center space-x-6 tab-buttons">

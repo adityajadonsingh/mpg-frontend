@@ -269,7 +269,7 @@ h2.heading{
   padding: 15px;
 }
 .messageBox{
-  padding: 50px 0;
+  padding: 80px 0 50px;
 }
 .messageBox .box{
   background-color: #F5F5F5;
@@ -277,4 +277,48 @@ h2.heading{
   border-radius: 40px;
   width: 80%;
   margin: 0 auto;
+}
+.messageBox .img-box{
+  height: 185px;
+}
+.messageBox .img-box img{
+  bottom: 35% !important;
+  top: unset !important;
+}
+.messageBox .content h3{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.messageBox .content p{
+  color: #1B1B1B;
+}
+.testimonials{
+  padding: 50px 0 20px;
+  background-color: #F9F9F9;
+}
+.testimonials .swiper-wrapper, .home-blog .swiper-wrapper{
+  padding: 10px 0 50px;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background-color: #dc5100;
+}
+
+.home-blog{
+  padding: 50px 0;
+}
+.home-blog .img-box{
+  height: 260px;
+}
+.home-blog .swiper-button-next, .home-blog .swiper-button-prev{
+  width: 40px;
+  height: 40px;
+  background: #e5e5e5;
+  border-radius: 100%;
+  top: 45%;
+}
+.home-blog .swiper-button-next::after, .home-blog .swiper-button-prev::after{
+  font-size: 20px;
+  color: #dc5100;
+  font-weight: 600;
 }
