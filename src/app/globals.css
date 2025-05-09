@@ -322,3 +322,6 @@ h2.heading{
   color: #dc5100;
   font-weight: 600;
 }
+.contact-home .heading{
+  text-align: start;
+}

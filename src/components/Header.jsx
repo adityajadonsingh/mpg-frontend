@@ -35,12 +35,12 @@ export default function Header() {
                   <ul className="absolute left-0 top-full hidden group-hover:block bg-white shadow-md rounded z-50 min-w-[150px]">
                     {categories.map((cat) => (
                       <li key={cat.slug}>
-                        <Link
+                        <a
                           href={`/${cat.slug}`}
                           className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap"
                         >
                           {cat.category_name}
-                        </Link>
+                        </a>
                       </li>
                     ))}
                   </ul>
