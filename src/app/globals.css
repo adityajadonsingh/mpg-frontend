@@ -52,7 +52,9 @@ html {
 main {
   margin-top: 84px;
 }
-
+.popup-z{
+  z-index: 99999;
+}
 .header {
   padding: 22px 0;
   background-color: #fff;
