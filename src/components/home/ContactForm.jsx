@@ -1,8 +1,4 @@
 "use client";
-
-require('dotenv').config();
-
-
 import { useState } from "react";
 
 export default function ContactForm() {
@@ -55,15 +51,12 @@ export default function ContactForm() {
       });
 
       const emailResult = await emailRes.json();
-      console.log("Email Response:", emailResult);
 
       alert("Message sent successfully!");
     } catch (err) {
       alert(err.message || "Submission failed");
     }
   };
-  console.log("EMAIL_USER:", process.env.EMAIL_USER);
-  console.log("EMAIL_PASS:", process.env.EMAIL_PASS);
   
   return (
     <section className="contact-home pb-10">

@@ -13,7 +13,7 @@ export default async function Home() {
   const banners = await getAllBanners();
   const blogs = await getAllBlogs();
   const testimonials = await getAllTestimonials();
-  console.log(testimonials.testimonials)
+
   return (
     <>
       <HeroClient banners={banners} />

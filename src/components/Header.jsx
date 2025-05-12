@@ -1,23 +1,39 @@
-// components/Header.jsx
-
 "use client";
 import Image from 'next/image';
 import Link from "next/link";
 import { useCategories } from "@/context/CategoryContext";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const categories = useCategories();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup on unmount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="header">
+    <header className={`header transition-all duration-300 ${scrolled ? "shadow-md bg-white" : ""}`}>
       <div className="container mx-auto">
         <div className="wrapper flex justify-between items-center">
           <div className="logo">
             <Link href="/" className="text-xl font-bold">
               <Image
-              width={800}
-              height={500}
+                width={800}
+                height={500}
                 src="https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
-                alt=""
+                alt="Logo"
               />
             </Link>
           </div>
@@ -30,8 +46,6 @@ export default function Header() {
               <ul className="nav">
                 <li className="nav-item relative group">
                   <span className="cursor-pointer">Categories<i className="bi bi-caret-down-fill ml-2"></i></span>
-
-                  {/* Dropdown Menu */}
                   <ul className="absolute left-0 top-full hidden group-hover:block bg-white shadow-md rounded z-50 min-w-[150px]">
                     {categories.map((cat) => (
                       <li key={cat.slug}>
@@ -45,12 +59,11 @@ export default function Header() {
                     ))}
                   </ul>
                 </li>
-
                 <li className="nav-item">
                   <Link href="/">Products</Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/about">About Us</Link>
+                  <Link href="/about-us">About Us</Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/products">Contact Us</Link>

@@ -16,9 +16,7 @@ export async function POST(request) {
       },
       tls: {
         rejectUnauthorized: false, // Allow self-signed certificates, if needed
-      },
-      debug: true, // Enable debug mode
-      logger: true, // Log output to the console
+      }
     });
 
     await transporter.sendMail({
