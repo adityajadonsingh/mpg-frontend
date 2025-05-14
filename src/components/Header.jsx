@@ -50,7 +50,7 @@ export default function Header() {
                     {categories.map((cat) => (
                       <li key={cat.slug}>
                         <a
-                          href={`/${cat.slug}`}
+                          href={`/product-category/${cat.slug}`}
                           className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap"
                         >
                           {cat.category_name}
@@ -60,7 +60,7 @@ export default function Header() {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <Link href="/">Products</Link>
+                  <Link href="/all-products">Products</Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/about-us">About Us</Link>

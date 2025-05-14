@@ -25,6 +25,19 @@ export default function ContactForm() {
     if (!formData.consent) {
       setPopupMessage("Please agree to the terms before submitting.");
       return;
+    } else if (
+      formData.name === "" ||
+      formData.email === "" ||
+      formData.phone_number === "" ||
+      formData.message === ""
+    ) {
+      setPopupMessage("Please fill all details !");
+      return;
+    } else if (!/^[+\d][\d\s-]*$/.test(formData.phone_number)) {
+      setPopupMessage(
+        "Phone number must contain only digits, spaces, hyphens, or start with '+'!"
+      );
+      return;
     }
 
     // Remove `consent` from data before sending
@@ -41,13 +54,6 @@ export default function ContactForm() {
           body: JSON.stringify(dataToSend),
         }
       );
-      setFormData({
-        name: "",
-        email: "",
-        phone_number: "",
-        message: "",
-        consent: false,
-      });
 
       if (!postRes.ok) throw new Error("External API failed");
 
@@ -60,6 +66,13 @@ export default function ContactForm() {
       });
 
       const emailResult = await emailRes.json();
+      setFormData({
+        name: "",
+        email: "",
+        phone_number: "",
+        message: "",
+        consent: false,
+      });
     } catch (err) {
       setPopupMessage("Submission failed");
     }
@@ -115,7 +128,9 @@ export default function ContactForm() {
                   placeholder="PHONE"
                   value={formData.phone_number}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded p-3 bg-gray-100"
+                  className="w-full border border-gray-300 rounded p-3 bg-gray-100
+                  required
+                  "
                 />
                 <textarea
                   name="message"

@@ -100,7 +100,7 @@ export default function Footer({ socialLinks }) {
                 {categories.map((category, idx) => {
                   return (
                     <li className="link" key={`cat-key-${idx}`}>
-                      <a href={`/${category.slug}`}>{category.category_name}</a>
+                      <a href={`/product-category/${category.slug}`}>{category.category_name}</a>
                     </li>
                   );
                 })}
