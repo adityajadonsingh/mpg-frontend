@@ -34,19 +34,20 @@ export default function ProductGrid({ categorySlug, products }) {
         </div>
         {filteredProducts.length !== 0 ? (
           <div className="grid grid-cols-4 products-grid gap-5 mb-10">
+           
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
-                
                 <a
                   className="block w-full h-full"
                   href={`/product-category/${categorySlug}/${product.slug}`}
                 >
                   <div className="card-wrap w-full h-full relative">
                     <div className="read-more">
-                  <i className="bi bi-bag mr-2"></i>
-                  <span>Know More</span>
-                </div>
-                    <Image
+                      <i className="bi bi-bag mr-2"></i>
+                      <span>Know More</span>
+                    </div>
+                    <div className="img-box relative">
+                        <Image
                       src={product.image}
                       alt={product.name}
                       fill
@@ -55,6 +56,7 @@ export default function ProductGrid({ categorySlug, products }) {
                       placeholder="blur"
                       blurDataURL="/media/placeholder.jpg"
                     />
+                    </div>
                     <span className="z-20 absolute prod-name">
                       {product.name}
                     </span>
