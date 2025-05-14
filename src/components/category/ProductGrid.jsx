@@ -34,7 +34,7 @@ export default function ProductGrid({ categorySlug, products }) {
         </div>
         {filteredProducts.length !== 0 ? (
           <div className="grid grid-cols-4 products-grid gap-5 mb-10">
-           
+            
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
                 <a
@@ -46,17 +46,15 @@ export default function ProductGrid({ categorySlug, products }) {
                       <i className="bi bi-bag mr-2"></i>
                       <span>Know More</span>
                     </div>
-                    <div className="img-box relative">
-                        <Image
-                      src={product.image}
+                    <Image
                       alt={product.name}
+                      src={product.image}
                       fill
                       style={{ objectFit: "cover" }}
-                      className="z-10 h-full w-full"
+                      className="z-10 h-full w-full bg-[#ebedf0]"
                       placeholder="blur"
                       blurDataURL="/media/placeholder.jpg"
                     />
-                    </div>
                     <span className="z-20 absolute prod-name">
                       {product.name}
                     </span>

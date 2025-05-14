@@ -535,14 +535,8 @@ h2.heading {
 .product-grid .card{
   overflow: hidden;
   border-radius: 5px;
-  .img-box{
-      height: 400px;
-      img{
-          height: 400px;
-      }
-  }
+  height: 400px;
 }
-
 .product-grid .prod-name{
 bottom: 0;
   left: 0;
