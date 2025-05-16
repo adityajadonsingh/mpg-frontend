@@ -119,8 +119,9 @@ main {
   color: #fff;
 }
 .home-banner {
-  height: 65vh;
+  min-height: 65vh;
   width: 100%;
+  padding: 20px 0;
 }
 .home-banner .wrap {
   width: 100%;
