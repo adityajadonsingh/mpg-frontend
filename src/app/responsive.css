@@ -1,0 +1,134 @@
+@media screen and (max-width: 1500px) {
+  .footer .link-box .link a,
+  .footer p {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1300px) {
+  .custom-footer-grid {
+    grid-template-columns: 1fr 0.6fr 0.7fr 0.8fr 1fr;
+  }
+}
+@media (max-width: 1124px) {
+  .custom-footer-grid {
+    grid-template-columns: 1.5fr 0.9fr 1fr 1.2fr;
+  }
+}
+@media screen and (max-width: 1176px) {
+  .header .logo {
+    width: 130px;
+  }
+  .header .search-bar .search-input {
+    width: 220px;
+  }
+  .header .nav .nav-item {
+    font-size: 15px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .home-banner {
+    height: 50vh;
+  }
+  .home-banner .content-box h2 {
+    font-size: 35px;
+  }
+  .home-banner .content-box p {
+    font-size: 16px;
+  }
+  .home-banner .content-box button {
+    padding: 8px 23px;
+    font-size: 16px;
+  }
+  main {
+    margin-top: 78px;
+  }
+  .toggle-menu-bg {
+    display: block;
+  }
+  .custom-footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+  .nav-things {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .header .search-bar .search-input {
+    width: 350px;
+  }
+  .toggle-menus {
+    display: block;
+    z-index: 9999999;
+  }
+  .best-home .tab-buttons {
+  font-size: 16px;
+}
+
+.messageBox .box{
+    width: 100%;
+}
+}
+@media screen and (max-width: 800px) {
+    .best-home .tab-buttons {
+  padding: 20px 0 15px;
+  margin-bottom: 10px;
+  justify-content: start;
+}
+    .best-home .tab-buttons .tab-btn.active {
+  background-color: #de6520;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+}
+@media screen and (max-width: 768px) {
+.messageBox .img-box img{
+    bottom: 0 !important;
+}
+.messageBox {
+  padding: 40px 0;
+}
+}
+@media screen and (max-width: 620px) {
+    .messageBox .img-box {
+  height: 145px;
+}
+  .home-banner .content-box h2 {
+    font-size: 30px;
+    line-height: 0.5;
+  }
+  .home-category .swiper-button-prev,
+  .home-category .swiper-button-next {
+    display: none;
+  }
+  .home-category .wrap .text-box h2 {
+    font-size: 18px;
+  }
+  .home-category .wrap {
+    height: 190px;
+  }
+  .custom-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer .foot-mid {
+    padding: 10px 0px;
+    a {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+  .footer .foot-mid .social-icns li {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .footer .link-box .link a,
+  .footer p {
+    font-size: 16px;
+  }
+  .custom-footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,7 +1,7 @@
 
 import Breadcrum from "@/components/Breadcrum";
 import PageBanner from "@/components/PageBanner";
-import CategoriesGrid from "./CategoiresGrid";
+import CategoriesGrid from "@/components/category/CategoiresGrid";
 
 const slugPath = [
     {

@@ -4,11 +4,15 @@ import { useCategories } from "@/context/CategoryContext";
 import CategoryBanner from "@/components/category/CategoryBanner";
 import Breadcrum from "@/components/Breadcrum";
 import ProductGrid from "./ProductGrid";
+import Link from "next/link";
 
 export default function CategoryClientPage({
   categorySlug,
-  products,
+  paginatedProducts,
+  allProducts,
   breadcrum,
+  currentPage,
+  totalPages,
 }) {
   const categories = useCategories();
 
@@ -24,13 +28,36 @@ export default function CategoryClientPage({
         short_des={categoryDetails.short_description}
       />
       <Breadcrum path_arr={breadcrum} />
-      <ProductGrid categorySlug={categorySlug} products={products}/>
 
-      {/* <ul>
-        {products.map((product) => (
-          <li key={product.id}>{product.name}</li>
-        ))}
-      </ul> */}
+      {/* Search and Product Grid */}
+      <ProductGrid
+        categorySlug={categorySlug}
+        paginatedProducts={paginatedProducts}
+        allProducts={allProducts}
+      />
+
+      {/* Pagination - hide when searching (handled in ProductGrid) */}
+      {totalPages > 1 && (
+        <div className="pagination text-center my-6 space-x-2">
+          {Array.from({ length: totalPages }, (_, idx) => (
+            <Link
+              key={idx}
+              href={
+                idx === 0
+                  ? `/product-category/${categorySlug}`
+                  : `/product-category/${categorySlug}/page/${idx + 1}`
+              }
+              className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${
+                currentPage === idx + 1
+                  ? "bg-[#DC5100] text-white"
+                  : "bg-[#E9E9ED] text-[#8a8a8c]"
+              }`}
+            >
+              {idx + 1}
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   );
 }

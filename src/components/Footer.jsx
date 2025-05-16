@@ -55,7 +55,7 @@ export default function Footer({ socialLinks }) {
       )}
       <footer className="footer">
         <div className="wrapper">
-          <div className="grid gap-x-4 grid-cols-[1fr_0.6fr_0.6fr_1fr_1fr]">
+          <div className="grid gap-x-4 gap-y-6 grid-cols-[1fr_0.6fr_0.6fr_1fr_1fr] custom-footer-grid">
             <div className="foot-logo">
               <div className="logo-box">
                 <Link href="/">
@@ -166,7 +166,7 @@ export default function Footer({ socialLinks }) {
             </div>
           </div>
           <div className="foot-mid">
-            <div className="flex justify-between items-center">
+            <div className="flex md:justify-between items-center flex-wrap justify-center gap-y-2">
               <ul className="links flex gap-x-4">
                 <li>
                   <Link href="/terms-and-conditions">Terms & Conditions</Link>
@@ -191,8 +191,8 @@ export default function Footer({ socialLinks }) {
               </ul>
             </div>
           </div>
-          <div className="flex justify-center mt-5">
-            <span className="block">
+          <div className="flex justify-center mt-5 ">
+            <span className="block text-center">
               @2025 all rights reserved by{" "}
               <Link className="font-semibold" href="/">
                 mpgstone.co.uk

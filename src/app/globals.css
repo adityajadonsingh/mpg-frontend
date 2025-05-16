@@ -101,8 +101,8 @@ main {
 .header .nav .nav-item {
   color: #757575;
   font-weight: 600;
-  font-size: 16px;
-  text-transform: uppercase;
+  font-size: 17px;
+  text-transform: capitalize;
 }
 .header .nav .nav-item:hover {
   color: #000;
@@ -214,18 +214,18 @@ main {
 .home-category .wrap .text-box h2 {
   font-size: 22px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #fff;
 }
 .home-category .swiper-button-prev,
-.home-category .swiper-button-next {
+.home-category .swiper-button-next, .best-home .swiper-button-next, .best-home .swiper-button-prev {
   background-color: #fff;
   width: 35px;
   height: 35px;
   border-radius: 100%;
 }
 .home-category .swiper-button-prev::after,
-.home-category .swiper-button-next::after {
+.home-category .swiper-button-next::after, .best-home .swiper-button-next::after, .best-home .swiper-button-prev::after {
   font-size: 20px;
   font-weight: 600;
   color: #999999;
@@ -248,12 +248,17 @@ h2.heading {
 .best-home .tab-buttons {
   font-size: 18px;
   padding: 20px 0;
+  overflow-x: scroll;
 }
 .best-home .tab-buttons .tab-btn {
   color: #727174;
   cursor: pointer;
   border-bottom: 3px solid #dc510000;
   text-transform: capitalize;
+  white-space: nowrap;
+}
+.best-home .best-card{
+  width: 250px;
 }
 .best-home .tab-buttons .tab-btn:hover {
   color: #000;
@@ -564,4 +569,35 @@ position: absolute;
 }
 .product-grid .card:hover .read-more{
   transform: translateX(0);
+}
+
+.product-top {
+  margin: 50px 0 20px;
+}
+
+.product-top .img-box{
+  height: 400px;
+}
+.product-top .product-content h1{
+  margin: 20px 0;
+  font-size: 30px;
+  font-weight: 600;
+}
+.product-top .product-content p{
+  color: #707070;
+  margin-bottom: 20px;
+}
+.product-top .enquire-btn{
+  background-color: #DC5100;
+  border-color: #DC5100;  
+  color: #fff;
+}
+.product-top .enquire-btn:hover{
+  background-color: #f45c04;
+  border-color: #f45c04;  
+  color: #fff;
+}
+.product-top .breadcrum{
+  background-color: #fff;
+  padding: 0;
 }

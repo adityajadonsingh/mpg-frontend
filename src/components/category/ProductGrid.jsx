@@ -1,20 +1,25 @@
+// components/category/ProductGrid.jsx
+
 "use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function ProductGrid({ categorySlug, products }) {
+export default function ProductGrid({ categorySlug, paginatedProducts, allProducts }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState(paginatedProducts);
 
   useEffect(() => {
-    // Filter products based on the search term (case-insensitive)
-    const results = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(results);
-  }, [searchTerm, products]);
-  console.log(filteredProducts);
+    if (searchTerm === "") {
+      setFilteredProducts(paginatedProducts);
+    } else {
+      const filtered = allProducts.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchTerm, allProducts, paginatedProducts]);
+
   return (
     <section className="product-grid">
       <div className="wrapper">
@@ -32,9 +37,9 @@ export default function ProductGrid({ categorySlug, products }) {
             </div>
           </div>
         </div>
+
         {filteredProducts.length !== 0 ? (
           <div className="grid grid-cols-4 products-grid gap-5 mb-10">
-            
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
                 <a

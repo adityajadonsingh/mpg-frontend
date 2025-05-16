@@ -1,14 +1,13 @@
+import ProductClientPage from "@/components/product/ProductClientPage";
+import { getAllProducts } from "@/lib/api/products";
+import { notFound } from "next/navigation";
+
 // app/[category]/[product]/page.js
-export default function ProductDetail({ params }) {
-    const { category, product } = params;
+export default async function ProductDetail({ params }) {
+  const { category, product } = await params;
+  const productDetails = await getAllProducts(product, null);
   
-    // You can fetch product detail from API using product slug
-    return (
-      <div>
-        <h2 className="text-2xl font-bold capitalize">{product.replaceAll("-", " ")}</h2>
-        <p>Category: {category}</p>
-        {/* Product description, images, etc. */}
-      </div>
-    );
-  }
-  
+  if (!productDetails || productDetails.length === 0) return notFound();
+  // You can fetch product detail from API using product slug
+  return <ProductClientPage product = {productDetails[0]}/>;
+}

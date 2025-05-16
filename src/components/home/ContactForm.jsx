@@ -89,8 +89,8 @@ export default function ContactForm() {
       )}
       <section className="contact-home pb-10">
         <div className="wrapper">
-          <div className="grid grid-cols-2">
-            <div className="content my-auto px-8">
+          <div className="grid sm:grid-cols-2 grid-cols-1">
+            <div className="content my-auto lg:px-8 pr-4 sm:pb-0 pb-8 ">
               <h2 className="heading mb-4">
                 Contact us to discuss your Project today
               </h2>
@@ -103,7 +103,7 @@ export default function ContactForm() {
               </p>
             </div>
             <div className="form-div">
-              <form onSubmit={handleSubmit} className="space-y-4 w-2/3 m-auto">
+              <form onSubmit={handleSubmit} className="space-y-4 lg:w-2/3 w-full m-auto">
                 <input
                   type="text"
                   name="name"

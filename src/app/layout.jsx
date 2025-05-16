@@ -1,6 +1,7 @@
 import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react";
+import "./responsive.css";
+// import { SpeedInsights } from "@vercel/speed-insights/next";
+// import { Analytics } from "@vercel/analytics/react";
 import { Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -30,8 +31,8 @@ export default async function RootLayout({ children }) {
           <main>{children}</main>
           <Footer socialLinks={socialLinks.social_media_links} />
         </CategoryProvider>
-        <SpeedInsights />
-        <Analytics />
+        {/* <SpeedInsights />
+        <Analytics /> */}
       </body>
     </html>
   );
