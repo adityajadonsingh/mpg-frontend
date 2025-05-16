@@ -92,7 +92,7 @@ export default function ContactForm() {
           <div className="grid sm:grid-cols-2 grid-cols-1">
             <div className="content my-auto lg:px-8 pr-4 sm:pb-0 pb-8 ">
               <h2 className="heading mb-4">
-                Contact us to discuss your Project today
+                Contact us to discuss your Project today now
               </h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
