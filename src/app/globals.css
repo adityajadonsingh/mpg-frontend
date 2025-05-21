@@ -24,7 +24,8 @@ html {
   scroll-behavior: smooth;
 }
 
-input, textarea{
+input,
+textarea {
   outline: 0;
 }
 
@@ -61,7 +62,7 @@ main {
 }
 .header {
   padding: 22px 0;
-  background-color: #EDEDF0;
+  background-color: #ededf0;
   position: fixed;
   top: 0;
   left: 0;
@@ -117,6 +118,14 @@ main {
   border-radius: 5px;
   font-size: 18px;
   color: #fff;
+}
+.header .dropdown-menu {
+  column-count: 4;
+  top: 76%;
+  left: 24%;
+  margin-top: 20px;
+  padding: 20px 20px;
+  border-radius: 15px;
 }
 .home-banner {
   height: 65vh;
@@ -218,14 +227,18 @@ main {
   color: #fff;
 }
 .home-category .swiper-button-prev,
-.home-category .swiper-button-next, .best-home .swiper-button-next, .best-home .swiper-button-prev {
+.home-category .swiper-button-next,
+.best-home .swiper-button-next,
+.best-home .swiper-button-prev, .related-products .swiper-button-next, .related-products .swiper-button-prev {
   background-color: #fff;
   width: 35px;
   height: 35px;
   border-radius: 100%;
 }
 .home-category .swiper-button-prev::after,
-.home-category .swiper-button-next::after, .best-home .swiper-button-next::after, .best-home .swiper-button-prev::after {
+.home-category .swiper-button-next::after,
+.best-home .swiper-button-next::after,
+.best-home .swiper-button-prev::after, .related-products .swiper-button-next::after, .related-products .swiper-button-prev::after {
   font-size: 20px;
   font-weight: 600;
   color: #999999;
@@ -257,7 +270,7 @@ h2.heading {
   text-transform: capitalize;
   white-space: nowrap;
 }
-.best-home .best-card{
+.best-home .best-card {
   width: 250px;
 }
 .best-home .tab-buttons .tab-btn:hover {
@@ -449,101 +462,101 @@ h2.heading {
   background-color: #0000002f;
 }
 
-.breadcrum{
-  background-color: #EBEDF0;
+.breadcrum {
+  background-color: #ebedf0;
   color: #727174;
   padding: 6px 0;
 }
-.breadcrum ul li a{
+.breadcrum ul li a {
   text-transform: capitalize;
 }
-.breadcrum ul li:not(:first-child){
+.breadcrum ul li:not(:first-child) {
   padding-left: 15px;
   position: relative;
 }
-.breadcrum ul li:not(:first-child)::before{
+.breadcrum ul li:not(:first-child)::before {
   position: absolute;
   content: "/";
   top: 50%;
   left: 5px;
   transform: translateY(-50%);
 }
-.breadcrum ul li a:hover{
+.breadcrum ul li a:hover {
   color: #000;
 }
-.category-grid{
+.category-grid {
   padding: 50px 0;
 }
-.category-grid .first-cols{
+.category-grid .first-cols {
   height: 350px;
 }
-.category-grid .second-cols{
+.category-grid .second-cols {
   height: 400px;
 }
-.category-grid .third-cols{
+.category-grid .third-cols {
   height: 450px;
 }
-.overlay-txt{
+.overlay-txt {
   background-color: #0000004f;
 }
 
-.overlay-txt:hover{
+.overlay-txt:hover {
   background-color: #00000000;
 }
 
-.cat-banner{
+.cat-banner {
   min-height: 30vh;
 }
-.cat-banner .category-info{
+.cat-banner .category-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 40px 0 60px;
 }
-.cat-banner .category-info h1{
+.cat-banner .category-info h1 {
   font-size: 35px;
   font-weight: 700;
   margin-bottom: 10px;
 }
-.cat-banner .category-info p{
-  color: #5A5C5D;
+.cat-banner .category-info p {
+  color: #5a5c5d;
   font-weight: 400;
   margin-bottom: 30px;
 }
-.cat-banner .category-image{
+.cat-banner .category-image {
   height: 350px;
 }
-.view-prod-btn{
+.view-prod-btn {
   background-color: #000;
   color: #fff;
   padding: 15px 30px;
   cursor: pointer;
-    border: 2px solid #000;
+  border: 2px solid #000;
 }
-.view-prod-btn:hover{
-  background-color: #E9E9ED;
+.view-prod-btn:hover {
+  background-color: #e9e9ed;
   color: #000;
 }
-.enquire-btn{
-  background-color: #E9E9ED;
+.enquire-btn {
+  background-color: #e9e9ed;
   border: 2px solid #000;
   padding: 15px 30px;
   cursor: pointer;
 }
-.enquire-btn:hover{
+.enquire-btn:hover {
   background-color: #000;
   color: #fff;
 }
-.product-grid{
+.product-grid {
   min-height: 50vh;
 }
-.product-grid .card{
+.product-grid .card {
   overflow: hidden;
   border-radius: 5px;
-  height: 400px;
+  height: 300px;
 }
-.product-grid .prod-name{
-bottom: 0;
+.product-grid .prod-name {
+  bottom: 0;
   left: 0;
   width: 100%;
   padding: 10px 15px;
@@ -553,11 +566,11 @@ bottom: 0;
   font-weight: 500;
   color: #fff;
 }
-.product-grid .card:hover .prod-name{
+.product-grid .card:hover .prod-name {
   color: #f36c23;
 }
-.product-grid .card .read-more{
-position: absolute;
+.product-grid .card .read-more {
+  position: absolute;
   top: 10px;
   right: 0;
   z-index: 99;
@@ -567,7 +580,7 @@ position: absolute;
   border-radius: 20px 0 0 20px;
   transform: translateX(72%);
 }
-.product-grid .card:hover .read-more{
+.product-grid .card:hover .read-more {
   transform: translateX(0);
 }
 
@@ -575,29 +588,59 @@ position: absolute;
   margin: 50px 0 20px;
 }
 
-.product-top .img-box{
+.product-top .img-box {
   height: 400px;
 }
-.product-top .product-content h1{
+.product-top .product-content h1 {
   margin: 20px 0;
   font-size: 30px;
   font-weight: 600;
 }
-.product-top .product-content p{
+.product-top .product-content p {
   color: #707070;
   margin-bottom: 20px;
 }
-.product-top .enquire-btn{
-  background-color: #DC5100;
-  border-color: #DC5100;  
+.product-top .enquire-btn {
+  background-color: #dc5100;
+  border-color: #dc5100;
   color: #fff;
 }
-.product-top .enquire-btn:hover{
+.product-top .enquire-btn:hover {
   background-color: #f45c04;
-  border-color: #f45c04;  
+  border-color: #f45c04;
   color: #fff;
 }
-.product-top .breadcrum{
+.product-top .breadcrum {
   background-color: #fff;
   padding: 0;
+}
+.product-mid {
+  padding: 40px 0 30px 0;
+}
+.product-mid .toggle-btn {
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-bottom: 3px solid #fff;
+  padding: 0 5px;
+  color: #7e7e7e;
+  cursor: pointer;
+}
+.product-mid .toggle-btn.active {
+  text-transform: uppercase;
+  border-bottom: 3px solid #dc5100;
+  color: #000;
+}
+.product-mid .toggle-item .wrap {
+  min-height: 300px;
+  background-color: #f9f9f9;
+  border-radius: 30px;
+  width: 65%;
+  margin: 0 auto;
+}
+.related-products{
+  padding: 25px 0;
+}
+.related-products .swiper{
+  padding: 0px 0 54px;
 }

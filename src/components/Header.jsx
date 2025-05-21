@@ -2,12 +2,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCategories } from "@/context/CategoryContext";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const categories = useCategories();
+  const [dropdown, setDropdown] = useState("hidden");
   const [scrolled, setScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const dropdownRef = useRef(null); // Ref for dropdown container
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,10 +22,28 @@ export default function Header() {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
+  const handleDropdown = () => {
+    setDropdown((prev) => (prev === "hidden" ? "block" : "hidden"));
+  };
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setDropdown("hidden");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <>
       <header
-        className={`header transition-all duration-300 ${
+        className={`header relative transition-all duration-300 ${
           scrolled ? "shadow-md bg-white" : ""
         }`}
       >
@@ -43,6 +64,7 @@ export default function Header() {
             <input className="search-input outline-0" type="text" />
             <i className="bi bi-search search-icn"></i>
           </div>
+
           {/* Mobile Menu Icon */}
           <button
             onClick={toggleSidebar}
@@ -50,17 +72,20 @@ export default function Header() {
           >
             <i className="bi bi-list"></i>
           </button>
+
           {/* Desktop Nav + Icons */}
           <div className="end-side flex gap-x-5 nav-things">
             <nav>
               <ul className="nav">
-                <li className="nav-item relative group">
-                  <span className="cursor-pointer">
+                <li className="nav-item group" ref={dropdownRef}>
+                  <span className="cursor-pointer" onClick={handleDropdown}>
                     Categories<i className="bi bi-caret-down-fill ml-2"></i>
                   </span>
-                  <ul className="absolute left-0 top-full hidden group-hover:block bg-white shadow-md rounded z-50 min-w-[150px] overflow-hidden">
+                  <ul
+                    className={`dropdown-menu absolute bg-white shadow-md z-50 min-w-[150px] overflow-hidden ${dropdown}`}
+                  >
                     {categories.map((cat) => (
-                      <li key={cat.slug}>
+                      <li key={cat.slug} className="rounded overflow-hidden">
                         <a
                           href={`/product-category/${cat.slug}`}
                           className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap"

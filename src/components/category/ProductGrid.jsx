@@ -39,7 +39,7 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
         </div>
 
         {filteredProducts.length !== 0 ? (
-          <div className="grid grid-cols-4 products-grid gap-5 mb-10">
+          <div className="grid grid-cols-5 products-grid gap-5 mb-10">
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
                 <a

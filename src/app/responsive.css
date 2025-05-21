@@ -4,9 +4,17 @@
     font-size: 14px;
   }
 }
+@media (max-width: 1420px) {
+  .header .dropdown-menu {
+    left: 15%;
+  }
+}
 @media (max-width: 1300px) {
   .custom-footer-grid {
     grid-template-columns: 1fr 0.6fr 0.7fr 0.8fr 1fr;
+  }
+  .header .dropdown-menu {
+    left: 8%;
   }
 }
 @media (max-width: 1124px) {
@@ -24,12 +32,16 @@
   .header .nav .nav-item {
     font-size: 15px;
   }
+  .header .dropdown-menu {
+    column-count: 3;
+    left: 17%;
+  }
 }
 @media screen and (max-width: 991px) {
   .home-banner {
     height: 50vh;
   }
-  
+
   .home-banner .content-box h2 {
     font-size: 35px;
   }
@@ -63,38 +75,38 @@
     z-index: 9999999;
   }
   .best-home .tab-buttons {
-  font-size: 16px;
-}
+    font-size: 16px;
+  }
 
-.messageBox .box{
+  .messageBox .box {
     width: 100%;
-}
+  }
 }
 @media screen and (max-width: 800px) {
-    .best-home .tab-buttons {
-  padding: 20px 0 15px;
-  margin-bottom: 10px;
-  justify-content: start;
-}
-    .best-home .tab-buttons .tab-btn.active {
-  background-color: #de6520;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
+  .best-home .tab-buttons {
+    padding: 20px 0 15px;
+    margin-bottom: 10px;
+    justify-content: start;
+  }
+  .best-home .tab-buttons .tab-btn.active {
+    background-color: #de6520;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
 }
 @media screen and (max-width: 768px) {
-.messageBox .img-box img{
+  .messageBox .img-box img {
     bottom: 0 !important;
-}
-.messageBox {
-  padding: 40px 0;
-}
+  }
+  .messageBox {
+    padding: 40px 0;
+  }
 }
 @media screen and (max-width: 620px) {
-    .messageBox .img-box {
-  height: 145px;
-}
+  .messageBox .img-box {
+    height: 145px;
+  }
   .home-banner .content-box h2 {
     font-size: 30px;
   }

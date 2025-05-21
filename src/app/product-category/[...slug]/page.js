@@ -12,7 +12,7 @@ export default async function CategoryPage({ params }) {
     return notFound();
   }
 
-  const category = slugArray[0];
+  const category = slugArray[0].toLowerCase();
   let pageIndex = 1;
   // Handle paginated URL like /wall-cladding/page/2
   if (slugArray.length === 3 && slugArray[1] === "page") {
@@ -33,10 +33,10 @@ export default async function CategoryPage({ params }) {
   }
 
   // Fetch and paginate products
-  const perPage = 4;
+  const perPage = 5;
   const allProducts = await getAllProducts("category-all" ,category.replace(/-/g, " "));
   if (!allProducts || allProducts.length === 0) return notFound();
-
+  console.log(allProducts)
   const totalPages = Math.ceil(allProducts.length / perPage);
   if (pageIndex > totalPages || pageIndex < 1 || isNaN(pageIndex)) {
     return notFound();

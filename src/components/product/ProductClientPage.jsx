@@ -1,11 +1,9 @@
-"use client";
+import ProductTop from "@/components/product/ProductTop";
+import ProductMid from "@/components/product/ProductMid";
+import RelatedProducts from "@/components/product/RelatedProducts";
 
-import { useState } from "react";
-import ProductTop from "./ProductTop";
+export default function ProductClientPage({ product, relatedProducts }) {
 
-export default function ProductClientPage({ product }) {
-//   const [activeTab, setActiveTab] = useState(categories[0]);
-  console.log(product);
   const slugPath = [
     {
       slug_name: "Product Categories",
@@ -31,13 +29,9 @@ export default function ProductClientPage({ product }) {
         productDescription={product.descriptions}
         path_arr={slugPath}
       />
-      <section className="product-mid">
-        <div className="wrapper">
-          <div className="flex">
-
-          </div>
-        </div>
-      </section>
+      
+      <ProductMid accordionData={product.attributes} product_id={product.id}/>
+      <RelatedProducts relatedProducts={relatedProducts}/>
     </>
   );
 }
