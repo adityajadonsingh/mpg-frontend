@@ -55,7 +55,7 @@ export default function Footer({ socialLinks }) {
       )}
       <footer className="footer">
         <div className="wrapper">
-          <div className="grid gap-x-4 gap-y-6 grid-cols-[1fr_0.6fr_0.6fr_1fr_1fr] custom-footer-grid">
+          <div className="grid gap-x-4 gap-y-6 lg:grid-cols-[1fr_0.6fr_1fr_1fr] md:grid-cols-[1fr_0.6fr_1fr]">
             <div className="foot-logo">
               <div className="logo-box">
                 <Link href="/">
@@ -94,18 +94,10 @@ export default function Footer({ socialLinks }) {
                 </li>
               </ul>
             </div>
-            <div className="link-box">
+            {/* <div className="link-box">
               <h4>Categories</h4>
-              <ul className="links">
-                {categories.map((category, idx) => {
-                  return (
-                    <li className="link" key={`cat-key-${idx}`}>
-                      <a href={`/product-category/${category.slug}`}>{category.category_name}</a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+              
+            </div> */}
             <div className="link-box contact-links">
               <h4>Contact Us</h4>
               <ul className="links">
@@ -164,6 +156,18 @@ export default function Footer({ socialLinks }) {
                 placeholder="Email"
               />
             </div>
+          </div>
+          <div className="foot-category link-box mt-5">
+              <h4>Shop All Categories</h4>
+              <ul className="links flex flex-wrap gap-y-1">
+                {categories.map((category, idx) => {
+                  return (
+                    <li className="link" key={`cat-key-${idx}`}>
+                      <a href={`/product-category/${category.slug}`}>{category.category_name}</a>
+                    </li>
+                  );
+                })}
+              </ul>
           </div>
           <div className="foot-mid">
             <div className="flex md:justify-between items-center flex-wrap justify-center gap-y-2">

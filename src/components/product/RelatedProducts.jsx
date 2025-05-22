@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import Image from "next/image";
 
 export default function RelatedProducts({ relatedProducts }) {
-  console.log(relatedProducts);
   return (
     <>
       <section className="related-products">

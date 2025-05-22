@@ -644,3 +644,16 @@ h2.heading {
 .related-products .swiper{
   padding: 0px 0 54px;
 }
+.foot-category.link-box .link a{
+  white-space: nowrap;
+}
+.foot-category.link-box .link{
+  position: relative;
+  padding: 0 10px;
+}
+.foot-category.link-box .link:not(:last-child):before{
+  position: absolute;
+  content: "|";
+  top: 0%;
+  right: -2px;
+}

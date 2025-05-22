@@ -3,7 +3,7 @@ import ProductMid from "@/components/product/ProductMid";
 import RelatedProducts from "@/components/product/RelatedProducts";
 
 export default function ProductClientPage({ product, relatedProducts }) {
-
+console.log(relatedProducts.length)
   const slugPath = [
     {
       slug_name: "Product Categories",

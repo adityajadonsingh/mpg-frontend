@@ -58,9 +58,9 @@
   .toggle-menu-bg {
     display: block;
   }
-  .custom-footer-grid {
+  /* .custom-footer-grid {
     grid-template-columns: 1.2fr 1fr 1fr;
-  }
+  } */
   .nav-things {
     display: none;
   }
@@ -120,9 +120,9 @@
   .home-category .wrap {
     height: 190px;
   }
-  .custom-footer-grid {
+  /* .custom-footer-grid {
     grid-template-columns: 1fr 1fr;
-  }
+  } */
   .footer .foot-mid {
     padding: 10px 0px;
     a {
@@ -140,7 +140,7 @@
   .footer p {
     font-size: 16px;
   }
-  .custom-footer-grid {
+  /* .custom-footer-grid {
     grid-template-columns: 1fr;
-  }
+  } */
 }
