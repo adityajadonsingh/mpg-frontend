@@ -25,7 +25,7 @@ export default function ProductAttributes({accordionData}) {
 
   return (
     <>
-      <h2 className="text-lg font-bold mb-4">ATTRIBUTES</h2>
+      <h2 className="text-xl font-semibold mb-4">Attributes</h2>
       {accordionData.map((item, index) => (
         <div key={index} className={`border-b border-gray-300 ${
                 openIndex === index ? "bg-white" : ""

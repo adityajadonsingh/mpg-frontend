@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useCategories } from "@/context/CategoryContext";
 import { useEffect, useRef, useState } from "react";
 
-export default function Header() {
+
+export default function Header({contactDetails}) {
   const categories = useCategories();
   const [dropdown, setDropdown] = useState("hidden");
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +26,6 @@ export default function Header() {
   const handleDropdown = () => {
     setDropdown((prev) => (prev === "hidden" ? "block" : "hidden"));
   };
-
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -108,12 +108,12 @@ export default function Header() {
               </ul>
             </nav>
             <div className="contact-icns flex gap-x-2 items-center">
-              <a href="">
+              <a href={`tel: ${contactDetails.phones[0]}`}>
                 <div className="icn">
                   <i className="bi bi-telephone"></i>
                 </div>
               </a>
-              <a href="">
+              <a href={`mailto: ${contactDetails.emails[0]}`}>
                 <div className="icn">
                   <i className="bi bi-envelope"></i>
                 </div>
@@ -125,13 +125,13 @@ export default function Header() {
 
       {/* Sidebar (mobile) */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 sm:w-64 w-full h-full bg-[#ededf0] transform transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } hidden toggle-menus`}
       >
         <div className="p-4 border-b flex justify-between items-center">
           <span className="text-lg font-semibold">Menu</span>
-          <button onClick={toggleSidebar}>
+          <button className="cursor-pointer" onClick={toggleSidebar}>
             <i className="bi bi-x-lg text-xl"></i>
           </button>
         </div>
@@ -142,7 +142,7 @@ export default function Header() {
                 <summary className="cursor-pointer flex justify-between items-center">
                   Categories <i className="bi bi-caret-down-fill ml-2"></i>
                 </summary>
-                <ul className="pl-4 mt-2">
+                <ul className="mt-2 h-[320px] overflow-y-scroll bg-white p-3 rounded-md">
                   {categories.map((cat) => (
                     <li key={cat.slug}>
                       <a
@@ -175,16 +175,16 @@ export default function Header() {
           </ul>
 
           <div className="contact-icns flex gap-x-4 items-center mt-6">
-            <a href="">
-              <div className="icn">
-                <i className="bi bi-telephone"></i>
-              </div>
-            </a>
-            <a href="">
-              <div className="icn">
-                <i className="bi bi-envelope"></i>
-              </div>
-            </a>
+            <a href={`tel: ${contactDetails.phones[0]}`}>
+                <div className="icn">
+                  <i className="bi bi-telephone"></i>
+                </div>
+              </a>
+              <a href={`mailto: ${contactDetails.emails[0]}`}>
+                <div className="icn">
+                  <i className="bi bi-envelope"></i>
+                </div>
+              </a>
           </div>
         </div>
       </div>

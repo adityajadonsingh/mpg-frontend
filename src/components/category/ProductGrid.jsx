@@ -24,7 +24,7 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
     <section className="product-grid">
       <div className="wrapper">
         <div className="search-product-box flex w-full justify-end">
-          <div className="wrap w-2/5">
+          <div className="wrap sm:w-2/5 w-full">
             <div className="relative">
               <input
                 className="w-full my-8 border border-gray-300 rounded pl-3 pr-8 py-2 bg-gray-100"
@@ -39,12 +39,12 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
         </div>
 
         {filteredProducts.length !== 0 ? (
-          <div className="grid grid-cols-5 products-grid gap-5 mb-10">
+          <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 products-grid gap-5 mb-10">
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
                 <a
                   className="block w-full h-full"
-                  href={`/product-category/${categorySlug}/${product.slug}`}
+                  href={`/product-category/${categorySlug}/${product.slug}/`}
                 >
                   <div className="card-wrap w-full h-full relative">
                     <div className="read-more">

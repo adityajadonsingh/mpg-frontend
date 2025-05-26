@@ -3,7 +3,7 @@ import ProductMid from "@/components/product/ProductMid";
 import RelatedProducts from "@/components/product/RelatedProducts";
 
 export default function ProductClientPage({ product, relatedProducts }) {
-console.log(relatedProducts.length)
+  // console.log(relatedProducts.length)
   const slugPath = [
     {
       slug_name: "Product Categories",
@@ -20,7 +20,6 @@ console.log(relatedProducts.length)
       slug: `/product-category/${product.slug}`,
     },
   ];
-
   return (
     <>
       <ProductTop
@@ -29,9 +28,11 @@ console.log(relatedProducts.length)
         productDescription={product.descriptions}
         path_arr={slugPath}
       />
-      
-      <ProductMid accordionData={product.attributes} product_id={product.id}/>
-      <RelatedProducts relatedProducts={relatedProducts}/>
+
+      <ProductMid accordionData={product.attributes} product_id={product.id} />
+      {relatedProducts.length !== 0 ? (
+        <RelatedProducts relatedProducts={relatedProducts} />
+      ) : null}
     </>
   );
 }

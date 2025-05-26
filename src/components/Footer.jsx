@@ -7,7 +7,7 @@ import axios from "axios";
 
 import Popup from "@/components/Popup";
 
-export default function Footer({ socialLinks }) {
+export default function Footer({ socialLinks, contactDetails }) {
   const categories = useCategories();
   const [email, setEmail] = useState("");
   const [subscribers, setSubscribers] = useState([]);
@@ -106,10 +106,12 @@ export default function Footer({ socialLinks }) {
                     <i className="bi bi-telephone"></i>
                   </div>
                   <div className="cont-link">
-                    {/* <span className="block">Phone</span> */}
-                    <Link href="tel:+44 7418 376978" className="block">
-                      +44 7418 376978
-                    </Link>
+                    {
+                      contactDetails.phones.map((tel, idx) => <Link key={`tel-${idx}`} href={`tel: ${tel}`} className="block">
+                      {tel}
+                    </Link>)
+                    }
+                    
                   </div>
                 </li>
                 <li className="link flex items-center gap-x-3 pb-6">
@@ -117,10 +119,12 @@ export default function Footer({ socialLinks }) {
                     <i className="bi bi-envelope"></i>
                   </div>
                   <div className="cont-link">
-                    {/* <span className="block">Mail</span> */}
-                    <Link href="mailto:example@gmail.com" className="block">
-                      example@gmail.com
-                    </Link>
+                    {
+                      contactDetails.emails.map((mail, idx) => <Link key={`mail-${idx}`} href={`mailto: ${mail}`} className="block">
+                      {mail}
+                    </Link>)
+                    }
+                    
                   </div>
                 </li>
                 <li className="link flex items-center gap-x-3 pb-6">
@@ -134,7 +138,7 @@ export default function Footer({ socialLinks }) {
                       target="_blank"
                       className="block"
                     >
-                      124 City Road, London, EC1V 2NX, UK
+                      {contactDetails.address}
                     </Link>
                   </div>
                 </li>

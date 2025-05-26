@@ -27,7 +27,6 @@ export default function RelatedProducts({ relatedProducts }) {
             className="product-grid"
           >
             {relatedProducts.map((product, idx) => {
-              console.log(product)
               return (
                 <SwiperSlide key={`${idx}-product-slide`} className="h-full">
                   <div

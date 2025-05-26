@@ -16,10 +16,11 @@
   .header .dropdown-menu {
     left: 8%;
   }
-}
-@media (max-width: 1124px) {
-  .custom-footer-grid {
-    grid-template-columns: 1.5fr 0.9fr 1fr 1.2fr;
+  .product-grid .card {
+    height: 270px;
+  }
+  .product-grid .prod-name {
+    font-size: 15px;
   }
 }
 @media screen and (max-width: 1176px) {
@@ -37,7 +38,40 @@
     left: 17%;
   }
 }
+@media (max-width: 1124px) {
+  .product-grid .card {
+    height: 230px;
+  }
+  .custom-footer-grid {
+    grid-template-columns: 1.5fr 0.9fr 1fr 1.2fr;
+  }
+  .product-grid .prod-name {
+    padding: 10px 10px;
+  }
+}
+
 @media screen and (max-width: 991px) {
+  .header{
+    padding: 18px 0;
+  }
+  .product-grid .card .read-more{
+    padding: 7px 9px 7px 15px;
+    font-size: 15px;
+  }
+  .view-prod-btn,
+  .enquire-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  .cat-banner .category-info p {
+    font-size: 14px;
+  }
+  .cat-banner .category-info h1 {
+    font-size: 30px;
+  }
+  .cat-banner .category-info {
+    padding: 0 25px 0 20px;
+  }
   .home-banner {
     height: 50vh;
   }
@@ -53,7 +87,7 @@
     font-size: 16px;
   }
   main {
-    margin-top: 78px;
+    margin-top: 72px;
   }
   .toggle-menu-bg {
     display: block;
@@ -81,6 +115,12 @@
   .messageBox .box {
     width: 100%;
   }
+  .product-grid .card {
+    height: 200px;
+  }
+  .product-grid .prod-name{
+    font-size: 14px;
+  }
 }
 @media screen and (max-width: 800px) {
   .best-home .tab-buttons {
@@ -95,15 +135,44 @@
     border-radius: 5px;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
+    main {
+    margin-top: 68px;
+  }
+  .cat-page {
+    display: none;
+  }
+  .cat-banner .category-info .breadcrum {
+    display: block;
+    background-color: #ffff;
+  }
+  .cat-banner .category-info .breadcrum .wrapper {
+    padding: 0;
+  }
+  .cat-banner .category-image {
+    height: 40vh;
+    margin-bottom: 10px;
+  }
   .messageBox .img-box img {
     bottom: 0 !important;
   }
   .messageBox {
     padding: 40px 0;
   }
+  .product-grid .card {
+    height: 240px;
+  }
 }
 @media screen and (max-width: 620px) {
+  .cat-banner .category-info .breadcrum{
+    font-size: 14px;
+  }
+    .product-grid .prod-name{
+    font-size: 13px;
+  }
+  .product-grid .card {
+    height: 200px;
+  }
   .messageBox .img-box {
     height: 145px;
   }

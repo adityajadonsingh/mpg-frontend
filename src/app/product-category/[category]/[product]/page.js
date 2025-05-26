@@ -8,7 +8,6 @@ export default async function ProductDetail({ params }) {
   const productDetails = await getAllProducts(product, null);
   const fetchRelatedProducts = await getAllProducts("10", category.replace("-", " "));
   const relatedProducts = fetchRelatedProducts.filter(prod => prod.name !== productDetails[0].name)
-  console.log(relatedProducts)
   if (!productDetails || productDetails.length === 0) return notFound();
   // You can fetch product detail from API using product slug
   return <ProductClientPage product = {productDetails[0]} relatedProducts={relatedProducts}/>;

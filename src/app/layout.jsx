@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { CategoryProvider } from "@/context/CategoryContext";
 import { getAllCategories } from "@/lib/api/categories";
 import { getSocialLinks } from "@/lib/api/socialLinks";
+import { getContactDetails } from "@/lib/api/contactDetails";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,13 +24,14 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const categories = await getAllCategories();
   const socialLinks = await getSocialLinks();
+  const contactDetails = await getContactDetails();
   return (
     <html lang="en">
       <body className={`${montserrat.className} flex flex-col min-h-screen`}>
         <CategoryProvider categories={categories}>
-          <Header />
+          <Header contactDetails={contactDetails} />
           <main>{children}</main>
-          <Footer socialLinks={socialLinks.social_media_links} />
+          <Footer socialLinks={socialLinks.social_media_links} contactDetails={contactDetails} />
         </CategoryProvider>
         {/* <SpeedInsights />
         <Analytics /> */}

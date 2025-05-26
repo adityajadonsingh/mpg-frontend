@@ -26,8 +26,11 @@ export default function CategoryClientPage({
         name={categoryDetails.category_name}
         image={categoryDetails.image}
         short_des={categoryDetails.short_description}
+        breadcrum={breadcrum}
       />
-      <Breadcrum path_arr={breadcrum} />
+      <div className="cat-page">
+        <Breadcrum path_arr={breadcrum} />
+      </div>
 
       {/* Search and Product Grid */}
       <ProductGrid
