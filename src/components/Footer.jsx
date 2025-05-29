@@ -75,22 +75,22 @@ export default function Footer({ socialLinks, contactDetails }) {
               <h4>Quick Links</h4>
               <ul className="links">
                 <li className="link">
-                  <Link href="/about-us">About Us</Link>
+                  <Link href="/about-us/">About Us</Link>
                 </li>
                 <li className="link">
-                  <Link href="/contact-us">Contact Us</Link>
+                  <Link href="/contact-us/">Contact Us</Link>
                 </li>
                 <li className="link">
-                  <Link href="/blogs">Blogs</Link>
+                  <Link href="/blogs/">Blogs</Link>
                 </li>
                 <li className="link">
-                  <Link href="/categories">Categories</Link>
+                  <Link href="/categories/">Categories</Link>
                 </li>
                 <li className="link">
-                  <Link href="/products">Products</Link>
+                  <Link href="/products/">Products</Link>
                 </li>
                 <li className="link">
-                  <Link href="/product-catalogue">Product Catalogue</Link>
+                  <Link href="/product-catalogue/">Product Catalogue</Link>
                 </li>
               </ul>
             </div>
@@ -167,7 +167,7 @@ export default function Footer({ socialLinks, contactDetails }) {
                 {categories.map((category, idx) => {
                   return (
                     <li className="link" key={`cat-key-${idx}`}>
-                      <a href={`/product-category/${category.slug}`}>{category.category_name}</a>
+                      <a href={`/product-category/${category.slug}/`}>{category.category_name}</a>
                     </li>
                   );
                 })}
