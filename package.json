@@ -18,7 +18,8 @@
     "nodemailer": "^7.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.6",
+    "yet-another-react-lightbox": "^3.23.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

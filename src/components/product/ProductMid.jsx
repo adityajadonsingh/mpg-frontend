@@ -30,7 +30,7 @@ export default function ProductMid({ accordionData, product_id }) {
           </div>
 
           <div className="toggle-item mt-8">
-            <div className="wrap p-10">
+            <div className="wrap md:p-10 p-6">
               {activeTab === "details" && (
                 <ProductAttributes accordionData={accordionData} />
               )}

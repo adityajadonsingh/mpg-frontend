@@ -5,24 +5,39 @@ import Link from "next/link";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/captions.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function ProductTop({
   gallery,
   productName,
   productDescription,
-  path_arr
+  path_arr,
 }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+  console.log(gallery)
 
   return (
     <section className="product-top">
       <div className="wrapper">
-        <div className="flex gap-x-10">
+        <div className="flex gap-x-10 lg:flex-nowrap flex-wrap gap-y-10 justify-center">
           {/* Swiper Gallery */}
-          <div className="img-box w-2/5">
+          <div className="img-box lg:w-2/5 md:w-3/5 w-full">
             <Swiper
               spaceBetween={10}
               navigation={true}
@@ -32,13 +47,19 @@ export default function ProductTop({
             >
               {gallery.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <div className="relative w-full h-[400px]">
+                  <div className="relative w-full md:h-[400px] h-[300px] group">
                     <Image
                       src={item.image}
                       alt={item.alt_text || productName}
                       fill
                       className="object-cover"
                     />
+                    <button
+                      onClick={() => openLightbox(index)}
+                      className="absolute top-2 right-2 p-2 bg-white rounded-full shadow hover:scale-110 transition"
+                    >
+                      <i className="bi bi-zoom-in text-xl text-gray-800" />
+                    </button>
                   </div>
                 </SwiperSlide>
               ))}
@@ -54,7 +75,7 @@ export default function ProductTop({
             >
               {gallery.map((item, index) => (
                 <SwiperSlide key={`thumb-${index}`}>
-                  <div className="relative w-full h-[100px] cursor-pointer">
+                  <div className="relative w-full md:h-[100px] h-[80px] cursor-pointer">
                     <Image
                       src={item.image}
                       alt={item.alt_text || productName}
@@ -68,30 +89,42 @@ export default function ProductTop({
           </div>
 
           {/* Product Content */}
-          <div className="product-content w-3/5 flex flex-col justify-between">
+          <div className="product-content lg:w-3/5 w-full flex flex-col justify-between">
             <div className="context">
               <div className="breadcrum">
-                <ul className="flex space-x-2">
+                <ul className="flex space-x-1 flex-wrap">
                   <li>
                     <Link href="/">Home</Link>
                   </li>
                   {path_arr.map((path, idx) => (
                     <li key={`bread-${idx}`}>
-                      {/* <span>/</span> */}
                       <Link href={path.slug}>{path.slug_name}</Link>
                     </li>
                   ))}
                 </ul>
               </div>
-              <h1 className="text-2xl font-semibold mt-2">{productName}</h1>
+              <h1 className="font-semibold mt-2">{productName}</h1>
               <p className="mt-2 text-gray-700">{productDescription}</p>
             </div>
-            <button className="enquire-btn w-fit mt-4 px-4 py-2 bg-black text-white rounded">
+            <button className="enquire-btn sm:w-fit w-full sm:mt-4 mt-2 font-semibold px-4 py-2 bg-black text-white rounded">
               Enquire Now
             </button>
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        index={lightboxIndex}
+        slides={gallery.map((item) => ({
+          src: item.image,
+          alt: item.alt_text || productName,
+          description: item.alt_text || productName,
+        }))}
+        plugins={[Captions]}
+      />
     </section>
   );
 }

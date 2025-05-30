@@ -17,11 +17,11 @@ export default function RelatedProducts({ relatedProducts }) {
             modules={[Navigation, Pagination]}
             navigation
             pagination={{ clickable: true }}
-            spaceBetween={20}
+            spaceBetween={10}
             slidesPerView={4}
             breakpoints={{
-              320: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
+              320: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
               1024: { slidesPerView: 4 },
             }}
             className="product-grid"
