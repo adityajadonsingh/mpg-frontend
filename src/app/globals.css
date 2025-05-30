@@ -713,3 +713,6 @@ h2.heading {
     opacity: 1;
   }
 }
+.yarl__slide_description{
+  text-align: center !important;
+}

@@ -36,7 +36,6 @@ export default async function CategoryPage({ params }) {
   const perPage = 5;
   const allProducts = await getAllProducts("category-all" ,category.replace(/-/g, " "));
   if (!allProducts || allProducts.length === 0) return notFound();
-  console.log(allProducts)
   const totalPages = Math.ceil(allProducts.length / perPage);
   if (pageIndex > totalPages || pageIndex < 1 || isNaN(pageIndex)) {
     return notFound();

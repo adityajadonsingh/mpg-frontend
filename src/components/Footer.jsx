@@ -30,20 +30,37 @@ export default function Footer({ socialLinks, contactDetails }) {
   // Handle email submission
   const handleSubscribe = async (e) => {
     if (e.key === "Enter" && email.trim()) {
-      const alreadySubscribed = subscribers.some((sub) => sub.email.toLowerCase() === email.toLowerCase());
+      const alreadySubscribed = subscribers.some(
+        (sub) => sub.email.toLowerCase() === email.toLowerCase()
+      );
+
       if (alreadySubscribed) {
         setPopupMessage("You are already subscribed.");
       } else {
         try {
-          await axios.post("https://mpg-backend-production.up.railway.app/api/subscribe/", { email, type: "newsletter", });
+          // Save subscriber
+          await axios.post(
+            "https://mpg-backend-production.up.railway.app/api/subscribe/",
+            { email, type: "newsletter" }
+          );
+
+          // Send thank-you email
+          await fetch("/api/sendMail", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, type: "newsletter" }),
+          });
+
           setPopupMessage("Subscription successful!");
           setEmail("");
         } catch (error) {
+          console.error("Subscription error:", error);
           setPopupMessage("Subscription failed. Try again.");
         }
       }
     }
   };
+
   return (
     <>
       {popupMessage && (
@@ -106,12 +123,15 @@ export default function Footer({ socialLinks, contactDetails }) {
                     <i className="bi bi-telephone"></i>
                   </div>
                   <div className="cont-link">
-                    {
-                      contactDetails.phones.map((tel, idx) => <Link key={`tel-${idx}`} href={`tel: ${tel}`} className="block">
-                      {tel}
-                    </Link>)
-                    }
-                    
+                    {contactDetails.phones.map((tel, idx) => (
+                      <Link
+                        key={`tel-${idx}`}
+                        href={`tel: ${tel}`}
+                        className="block"
+                      >
+                        {tel}
+                      </Link>
+                    ))}
                   </div>
                 </li>
                 <li className="link flex items-center gap-x-3 pb-6">
@@ -119,12 +139,15 @@ export default function Footer({ socialLinks, contactDetails }) {
                     <i className="bi bi-envelope"></i>
                   </div>
                   <div className="cont-link">
-                    {
-                      contactDetails.emails.map((mail, idx) => <Link key={`mail-${idx}`} href={`mailto: ${mail}`} className="block">
-                      {mail}
-                    </Link>)
-                    }
-                    
+                    {contactDetails.emails.map((mail, idx) => (
+                      <Link
+                        key={`mail-${idx}`}
+                        href={`mailto: ${mail}`}
+                        className="block"
+                      >
+                        {mail}
+                      </Link>
+                    ))}
                   </div>
                 </li>
                 <li className="link flex items-center gap-x-3 pb-6">
@@ -162,16 +185,18 @@ export default function Footer({ socialLinks, contactDetails }) {
             </div>
           </div>
           <div className="foot-category link-box mt-5">
-              <h4>Shop All Categories</h4>
-              <ul className="links flex flex-wrap gap-y-1">
-                {categories.map((category, idx) => {
-                  return (
-                    <li className="link" key={`cat-key-${idx}`}>
-                      <a href={`/product-category/${category.slug}/`}>{category.category_name}</a>
-                    </li>
-                  );
-                })}
-              </ul>
+            <h4>Shop All Categories</h4>
+            <ul className="links flex flex-wrap gap-y-1">
+              {categories.map((category, idx) => {
+                return (
+                  <li className="link" key={`cat-key-${idx}`}>
+                    <a href={`/product-category/${category.slug}/`}>
+                      {category.category_name}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
           <div className="foot-mid">
             <div className="flex md:justify-between items-center flex-wrap justify-center gap-y-2">
