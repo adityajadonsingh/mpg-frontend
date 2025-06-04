@@ -87,7 +87,7 @@ export default function ContactForm() {
           onClose={() => setPopupMessage("")}
         />
       )}
-      <section className="contact-home pb-10">
+      <section className="contact-home pb-10 scroll-mt-28" id="contactForm">
         <div className="wrapper">
           <div className="grid sm:grid-cols-2 grid-cols-1">
             <div className="content my-auto lg:px-8 pr-4 sm:pb-0 pb-8 ">

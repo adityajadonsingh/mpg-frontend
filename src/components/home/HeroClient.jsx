@@ -29,7 +29,9 @@ export default function HeroClient({ banners }) {
               <div className="content-box">
                 <h2>{banner.title}</h2>
                 <p>{banner.subtitle}</p>
-                <button>Enquire Now</button>
+                <a href="#contactForm">
+                  <button>Enquire Now</button>
+                </a>
               </div>
             </div>
           </SwiperSlide>
