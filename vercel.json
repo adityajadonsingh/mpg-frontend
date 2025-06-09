@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    {
-      "source": "https://mpgstone.co.uk/:path*",
-      "destination": "https://www.mpgstone.co.uk/:path*",
-      "permanent": true
-    }
-  ]
-}
