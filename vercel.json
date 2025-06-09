@@ -1,17 +1,9 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "mpgstone.co.uk"
-        }
-      ],
-      "destination": "https://www.mpgstone.co.uk/:1",
+      "source": "https://mpgstone.co.uk/:path*",
+      "destination": "https://www.mpgstone.co.uk/:path*",
       "permanent": true
     }
   ]
 }
-
-
