@@ -1,5 +1,5 @@
 export const getContactDetails = async () => {
-  const res = await fetch("https://mpg-backend-production.up.railway.app/api/contactdetails/", {
+  const res = await fetch("https://backend.mpgstone.co.uk/api/contactdetails/", {
     next: { revalidate: 60000000 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",

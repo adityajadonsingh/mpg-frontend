@@ -101,7 +101,7 @@ export default function Footer({ socialLinks, contactDetails }) {
                   <Link href="/blogs/">Blogs</Link>
                 </li>
                 <li className="link">
-                  <Link href="/categories/">Categories</Link>
+                  <Link href="/product-category/">Categories</Link>
                 </li>
                 <li className="link">
                   <Link href="/products/">Products</Link>
