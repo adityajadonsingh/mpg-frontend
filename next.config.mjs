@@ -15,6 +15,7 @@ const nextConfig = {
         pathname: '/media/**',
       },
 
+      
             {
         protocol: 'https',
         hostname: 'backend.mpgstone.co.uk',
