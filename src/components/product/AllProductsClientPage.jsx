@@ -33,7 +33,7 @@ export default function AllProductsClientPage({
       <CategoryBanner
         name={"All Products"}
         image={"https://img.freepik.com/free-photo/colorful-vertical-slabs-marble_53876-74705.jpg"}
-        short_des={"categoryDetails.short_description"}
+        short_des={""}
         breadcrum={breadcrum}
         setIsPopupOpen={setIsPopupOpen}
       />

@@ -42,9 +42,6 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
           <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 products-grid lg:gap-5 md:gap-4 sm:gap-3 gap-2 mb-10">
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
-                {
-                  console.log(product.category.replace(" ", "-").toLowerCase())
-                }
                 <a
                   className="block w-full h-full"
                   href={`/product-category/${categorySlug === "all" ? product.category.replace(" ", "-").toLowerCase() : categorySlug}/${product.slug}/`}

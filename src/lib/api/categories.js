@@ -1,5 +1,5 @@
 export const getAllCategories = async () => {
-  const res = await fetch("https://mpg-backend-production.up.railway.app/api/categories/", {
+  const res = await fetch("http://168.231.120.232/api/categories/", {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",
