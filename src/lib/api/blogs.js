@@ -12,3 +12,4 @@ export const getAllBlogs = async () => {
 
   return res.json();
 };
+//
