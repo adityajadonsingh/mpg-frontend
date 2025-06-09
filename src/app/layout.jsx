@@ -14,14 +14,12 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap", // Optional: improves performance
-    robots: 'noindex, nofollow',
-
 });
-
 
 export const metadata = {
   title: "MPG Stone",
   description: "Informative website for stone products",
+  robots: "noindex, nofollow",
 };
 
 export default async function RootLayout({ children }) {
@@ -34,7 +32,10 @@ export default async function RootLayout({ children }) {
         <CategoryProvider categories={categories}>
           <Header contactDetails={contactDetails} />
           <main>{children}</main>
-          <Footer socialLinks={socialLinks.social_media_links} contactDetails={contactDetails} />
+          <Footer
+            socialLinks={socialLinks.social_media_links}
+            contactDetails={contactDetails}
+          />
         </CategoryProvider>
         {/* <SpeedInsights />
         <Analytics /> */}
