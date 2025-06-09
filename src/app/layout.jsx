@@ -14,7 +14,10 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap", // Optional: improves performance
+    robots: 'noindex, nofollow',
+
 });
+
 
 export const metadata = {
   title: "MPG Stone",
