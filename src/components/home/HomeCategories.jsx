@@ -2,6 +2,7 @@
 
 import { useCategories } from "@/context/CategoryContext";
 import Image from "next/image";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -39,7 +40,7 @@ export default function HomeCategories() {
         >
           {categories.map((category, idx) => (
             <SwiperSlide key={`${idx}-category-slide`}>
-              <a href={`/product-category/${category.slug}`}>
+              <Link href={`/product-category/${category.slug}/`}>
                 <div className="wrap relative">
                   <Image
                     src={category.image}
@@ -52,7 +53,7 @@ export default function HomeCategories() {
                     <h2>{category.category_name}</h2>
                   </div>
                 </div>
-              </a>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
