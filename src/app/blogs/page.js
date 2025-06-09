@@ -1,3 +1,5 @@
+// app/blogs/page.js
+
 import Breadcrum from "@/components/Breadcrum";
 import MiniBanner from "@/components/MiniBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
@@ -11,11 +13,10 @@ export default async function BlogsDefaultPage() {
     const allBlogs = await getAllBlogs();
     console.log(allBlogs.blogs)
 
-    const totalPages = Math.ceil(allBlogs.length / perPage);
+    const totalPages = Math.ceil(allBlogs.blogs.length / perPage);
     const start = (pageIndex - 1) * perPage;
     const end = start + perPage;
     const paginatedBlogs = allBlogs.blogs.slice(start, end);
-
     const slugPath = [
         { slug_name: "Blogs", slug: "/blogs/" },
     ];
@@ -28,7 +29,7 @@ export default async function BlogsDefaultPage() {
                 <div className="wrapper">
                     <div className="grid lg:grid-cols-3 gap-5">
                         {
-                            allBlogs.blogs.map((blog, idx) => {
+                            paginatedBlogs.map((blog, idx) => {
                                 return <Link key={`blog-${idx}`} href={`/blogs/${blog.slug}`} className="block">
                                     <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
                                         <div className="img-box relative">
@@ -56,6 +57,27 @@ export default async function BlogsDefaultPage() {
                     </div>
                 </div>
             </section>
+            {totalPages > 1 && (
+                <div className="pagination text-center my-6 space-x-2">
+                    {Array.from({ length: totalPages }, (_, idx) => (
+                        <Link
+                            key={idx}
+                            href={
+                                idx === 0
+                                    ? `/blogs`
+                                    : `/blogs/page/${idx + 1}`
+                            }
+                            className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${pageIndex === idx + 1
+                                    ? "bg-[#DC5100] text-white"
+                                    : "bg-[#E9E9ED] text-[#8a8a8c]"
+                                }`}
+                        >
+                            {idx + 1}
+                        </Link>
+                    ))}
+                </div>
+            )}
+
         </>
     );
 }

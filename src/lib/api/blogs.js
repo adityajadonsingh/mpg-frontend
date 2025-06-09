@@ -1,5 +1,5 @@
 export const getAllBlogs = async () => {
-  const res = await fetch("https://mpg-backend-production.up.railway.app/api/blogs/", {
+  const res = await fetch("https://backend.mpgstone.co.uk/api/blogs/", {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",

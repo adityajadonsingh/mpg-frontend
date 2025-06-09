@@ -14,6 +14,12 @@ const nextConfig = {
         hostname: 'mpg-backend-production.up.railway.app',
         pathname: '/media/**',
       },
+
+            {
+        protocol: 'https',
+        hostname: 'backend.mpgstone.co.uk',
+        pathname: '/media/**',
+      },
     ],
   },
 };
