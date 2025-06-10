@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ContactPopupForm from "@/components/ContactPopupForm";
 import Popup from "@/components/Popup";
-
+import PageDescription from "@/components/PageDescription";
 
 export default function CategoryClientPage({
   categorySlug,
@@ -27,13 +27,13 @@ export default function CategoryClientPage({
 
   return (
     <>
-    {popupMessage && (
-            <Popup
-              message={popupMessage}
-              duration={3000}
-              onClose={() => setPopupMessage("")}
-            />
-          )}
+      {popupMessage && (
+        <Popup
+          message={popupMessage}
+          duration={3000}
+          onClose={() => setPopupMessage("")}
+        />
+      )}
       <CategoryBanner
         name={categoryDetails.category_name}
         image={categoryDetails.image}
@@ -74,6 +74,7 @@ export default function CategoryClientPage({
           ))}
         </div>
       )}
+      <PageDescription content={categoryDetails.descriptions} />
       <ContactPopupForm
         isOpen={isPopupOpen}
         setIsOpen={setIsPopupOpen}

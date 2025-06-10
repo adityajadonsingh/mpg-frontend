@@ -8,7 +8,7 @@ export default function CategoryBanner({ name, image, short_des, breadcrum, setI
         <div className="flex flex-wrap md:flex-row flex-col-reverse">
           <div className="category-info md:w-1/2 w-full">
           <Breadcrum path_arr={breadcrum} />
-            <h1>{name}</h1>
+            <h1 className="capitalize">{name}</h1>
             <p>{short_des}</p>
             <div className="flex gap-x-5">
               <a href="/all-products">

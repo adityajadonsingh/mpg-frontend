@@ -773,3 +773,40 @@ h2.heading {
   height: 200px;
   position: relative;
 }
+.pg-des {
+  margin-bottom: 30px;
+}
+
+.pg-des .wrapper .inner-wrapper {
+padding: 40px 40px 24px;
+  border-radius: 15px;
+}
+
+.pg-des .prose.collapsed {
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.read-btn{
+  background-color: #f36c23;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+.read-btn:hover{
+  background-color: #fff;
+  color: #f36c23;
+}
+
+.pg-des .fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(235, 237, 240, 0) 0%, #ebedf0 100%);
+  pointer-events: none;
+  z-index: 10;
+}

@@ -40,7 +40,7 @@ export default async function CategoryPage({ params }) {
   if (pageIndex > totalPages || pageIndex < 1 || isNaN(pageIndex)) {
     return notFound();
   }
-
+console.log(allProducts)
   const start = (pageIndex - 1) * perPage;
   const end = start + perPage;
   const paginatedProducts = allProducts.slice(start, end);

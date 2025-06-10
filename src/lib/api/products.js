@@ -13,7 +13,7 @@ export const getAllProducts = async (quantity, category) => {
     }
     // console.log("Fetching all products from api")
     return res.json();
-  }else if(quantity == "10", category){
+  } else if (quantity === "10" && category) {
     const res = await fetch(`https://backend.mpgstone.co.uk/api/products/?category=${category}&limit=10`, {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
@@ -27,8 +27,8 @@ export const getAllProducts = async (quantity, category) => {
     // console.log("Fetching all products in specified category from api")
     return res.json();
   }
-  
-  else if (quantity == "category-all", category) {
+
+  else if (quantity === "category-all" && category) {
     const res = await fetch(`https://backend.mpgstone.co.uk/api/products/?category=${category}`, {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
