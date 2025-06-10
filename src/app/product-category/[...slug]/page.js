@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }) {
   }
 
   // Fetch and paginate products
-  const perPage = 5;
+  const perPage = 15;
   const allProducts = await getAllProducts("category-all" ,category.replace(/-/g, " "));
   if (!allProducts || allProducts.length === 0) return notFound();
   const totalPages = Math.ceil(allProducts.length / perPage);

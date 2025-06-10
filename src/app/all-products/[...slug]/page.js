@@ -27,7 +27,7 @@ export default async function AllProductPage({ params }) {
 }
 
 async function renderPage(pageIndex) {
-  const perPage = 2;
+  const perPage = 15;
   const allProducts = await getAllProducts("all", "all"); // Adjust your key if needed
   console.log(allProducts)
   if (!allProducts || allProducts.length === 0) return notFound();

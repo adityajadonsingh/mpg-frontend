@@ -4,7 +4,7 @@ import AllProductsClientPage from "@/components/product/AllProductsClientPage";
 
 export default async function AllProductsDefaultPage() {
   const pageIndex = 1;
-  const perPage = 2;
+  const perPage = 15;
 
   const allProducts = await getAllProducts("all", "all"); 
   console.log(allProducts)
