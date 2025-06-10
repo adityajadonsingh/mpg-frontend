@@ -114,7 +114,7 @@ export default function ProductTop({
                     ))}
                   </ul>
                 </div>
-                <h1 className="font-semibold mt-2">{productName}</h1>
+                <h1 className="font-semibold mt-2 capitalize">{productName}</h1>
                 <p className="mt-2 text-gray-700">{productDescription}</p>
               </div>
               <button

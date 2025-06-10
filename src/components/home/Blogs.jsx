@@ -107,6 +107,8 @@ export default function Blogs({ blogs }) {
                       alt={blog.title}
                       fill
                       style={{ objectFit: "cover" }}
+                      placeholder="blur"
+                      blurDataURL="/media/placeholder.jpg"
                     />
                   </div>
                   <div className="p-4 flex flex-col justify-between h-[150px] text-center">

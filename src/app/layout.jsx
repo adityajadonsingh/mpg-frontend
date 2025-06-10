@@ -37,8 +37,6 @@ export default async function RootLayout({ children }) {
             contactDetails={contactDetails}
           />
         </CategoryProvider>
-        {/* <SpeedInsights />
-        <Analytics /> */}
       </body>
     </html>
   );

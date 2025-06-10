@@ -60,7 +60,7 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
                       placeholder="blur"
                       blurDataURL="/media/placeholder.jpg"
                     />
-                    <span className="z-20 absolute prod-name">
+                    <span className="z-20 absolute prod-name capitalize">
                       {product.name}
                     </span>
                   </div>

@@ -48,6 +48,8 @@ export default function HomeCategories() {
                     loading="lazy"
                     fill
                     style={{ objectFit: "cover" }}
+                    placeholder="blur"
+                    blurDataURL="/media/placeholder.jpg"
                   />
                   <div className="text-box">
                     <h2>{category.category_name}</h2>
