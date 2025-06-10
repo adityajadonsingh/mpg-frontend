@@ -57,6 +57,4 @@ export const getAllProducts = async (quantity, category) => {
     // console.log("Fetching single product from api")
     return res.json();
   }
-
-
 };

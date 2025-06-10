@@ -26,12 +26,13 @@ export default async function BlogSinglePage({ params }) {
 
     return (
         <>
-            <div className="single-blog-breadcrum">
-                <Breadcrum path_arr={slugPath} />
-            </div>
 
-            <section className="single-blog wrapper my-5">
+
+            <section className="single-blog wrapper my-8">
                 <div className="blog-content">
+                    <div className="single-blog-breadcrum">
+                        <Breadcrum path_arr={slugPath} />
+                    </div>
                     <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
                     <p className="text-sm text-gray-600 mb-6">
                         Posted on {blog.date_posted} | Author: {blog.author || "Admin"}
