@@ -21,7 +21,9 @@ export default function ProductClientPage({ product, relatedProducts }) {
     },
     {
       slug_name: product.name,
-      slug: `/product-category/${product.slug}`,
+      slug: `/product-category/${product.category
+        .toLowerCase()
+        .replace(" ", "-")}/${product.slug}`,
     },
   ];
   return (

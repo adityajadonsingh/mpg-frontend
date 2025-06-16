@@ -2,8 +2,12 @@
 const nextConfig = {
   trailingSlash: true,
   images: {
-    domains: ['img.freepik.com'],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.freepik.com',
+        pathname: '/**',
+      },
       {
         protocol: 'https',
         hostname: 'mpg-backend-production.up.railway.app',
@@ -14,9 +18,7 @@ const nextConfig = {
         hostname: 'mpg-backend-production.up.railway.app',
         pathname: '/media/**',
       },
-
-      
-            {
+      {
         protocol: 'https',
         hostname: 'backend.mpgstone.co.uk',
         pathname: '/media/**',

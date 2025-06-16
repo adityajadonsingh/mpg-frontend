@@ -17,7 +17,7 @@ export default function Footer({ socialLinks, contactDetails }) {
     const fetchSubscribers = async () => {
       try {
         const res = await axios.get(
-          "https://mpg-backend-production.up.railway.app/api/subscribe/"
+          "https://backend.mpgstone.co.uk/api/subscribe/"
         );
         setSubscribers(res.data.subscribers || []);
       } catch (error) {
@@ -40,7 +40,7 @@ export default function Footer({ socialLinks, contactDetails }) {
         try {
           // Save subscriber
           await axios.post(
-            "https://mpg-backend-production.up.railway.app/api/subscribe/",
+            "https://backend.mpgstone.co.uk/api/subscribe/",
             { email, type: "newsletter" }
           );
 
@@ -190,9 +190,9 @@ export default function Footer({ socialLinks, contactDetails }) {
               {categories.map((category, idx) => {
                 return (
                   <li className="link" key={`cat-key-${idx}`}>
-                    <a href={`/product-category/${category.slug}/`}>
+                    <Link href={`/product-category/${category.slug}/`}>
                       {category.category_name}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}

@@ -36,7 +36,7 @@ export default function ProductReviews({ product_id }) {
 
     try {
       const res = await fetch(
-        "https://mpg-backend-production.up.railway.app/api/reviews/",
+        "https://backend.mpgstone.co.uk/api/reviews/",
         {
           method: "POST",
           headers: {

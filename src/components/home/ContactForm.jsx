@@ -47,7 +47,7 @@ export default function ContactForm() {
     try {
       // Send to external API
       const postRes = await fetch(
-        "https://mpg-backend-production.up.railway.app/api/contact/",
+        "https://backend.mpgstone.co.uk/api/contact/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -56,8 +56,6 @@ export default function ContactForm() {
       );
 
       if (!postRes.ok) throw new Error("External API failed");
-
-      // Optional: If you implement a mail API later, use this
 
       const emailRes = await fetch("/api/sendMail", {
         method: "POST",

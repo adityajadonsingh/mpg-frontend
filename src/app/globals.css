@@ -753,7 +753,7 @@ h2.heading {
 .single-blog {
   display: flex;
 }
-.single-blog .related-post{
+.single-blog .related-post {
   border: 1px solid #f36c23;
   margin: 20px 0;
   border-left: 0;
@@ -763,11 +763,33 @@ h2.heading {
 .single-blog .blog-content {
   width: 70%;
   padding: 0 80px 0 60px;
-  h2{
+  h2 {
     font-size: 22px;
   }
-  h3{
+  h3 {
     font-size: 18px;
+  }
+  .prose {
+    a {
+      color: #e88934;
+    }
+    a:hover {
+      color: #c27531;
+    }
+  }
+  .blog-btm {
+    .post-nav {
+      background-color: #ededf0;
+      padding: 10px 10px;
+      width: 180px;
+      border: 2px solid #ededf0;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 5px;
+      &:hover {
+        border: 2px solid #a7a7a7;
+      }
+    }
   }
 }
 .single-blog .latest-blogs {
@@ -784,9 +806,13 @@ h2.heading {
   font-weight: 600;
 }
 .latest-blogs .latest-list .img-box {
-  width: 100%;
-  height: 200px;
+  width: 115px;
+  height: 75px;
   position: relative;
+}
+.latest-blogs .latest-list .text-side {
+  width: calc(100% - 115px);
+  padding-left: 10px;
 }
 .pg-des {
   margin-bottom: 30px;
@@ -828,4 +854,24 @@ h2.heading {
   );
   pointer-events: none;
   z-index: 10;
+}
+.blog-btm {
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #a5a5a5;
+  .share { 
+    .icn {
+      background-color: #ededf0;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      font-size: 13px;
+      &:hover {
+        background-color: #d9d9d9;
+      }
+    }
+  }
 }

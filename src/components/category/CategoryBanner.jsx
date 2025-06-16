@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Breadcrum from "../Breadcrum";
-
+import Link from "next/link";
 export default function CategoryBanner({ name, image, short_des, breadcrum, setIsPopupOpen }) {
   return (
     <>
@@ -11,9 +11,9 @@ export default function CategoryBanner({ name, image, short_des, breadcrum, setI
             <h1 className="capitalize">{name}</h1>
             <p>{short_des}</p>
             <div className="flex gap-x-5">
-              <a href="/all-products">
+              <Link href="/all-products/">
                 <button  className="view-prod-btn">View All Products</button>
-              </a>
+              </Link>
               <button onClick={() => setIsPopupOpen(true)} className="enquire-btn">Enquire Now</button>
             </div>
           </div>

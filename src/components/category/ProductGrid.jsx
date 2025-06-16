@@ -1,24 +1,20 @@
-// components/category/ProductGrid.jsx
-
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
-
-export default function ProductGrid({ categorySlug, paginatedProducts, allProducts }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(paginatedProducts);
-
-  useEffect(() => {
-    if (searchTerm === "") {
-      setFilteredProducts(paginatedProducts);
-    } else {
-      const filtered = allProducts.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    }
-  }, [searchTerm, allProducts, paginatedProducts]);
+import Link from "next/link";
+export default function ProductGrid({
+  categorySlug,
+  paginatedProducts,
+  allProducts,
+  searchTerm,
+  setSearchTerm,
+}) {
+  const filteredProducts =
+    searchTerm === ""
+      ? paginatedProducts
+      : allProducts.filter((product) =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
   return (
     <section className="product-grid">
@@ -42,9 +38,13 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
           <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 products-grid lg:gap-6 md:gap-4 sm:gap-3 gap-2 mb-10">
             {filteredProducts.map((product, idx) => (
               <div className="card w-full relative z-0" key={`product-${idx}`}>
-                <a
+                <Link
                   className="block w-full h-full"
-                  href={`/product-category/${categorySlug === "all" ? product.category.replace(" ", "-").toLowerCase() : categorySlug}/${product.slug}/`}
+                  href={`/product-category/${
+                    categorySlug === "all"
+                      ? product.category.replace(" ", "-").toLowerCase()
+                      : categorySlug
+                  }/${product.slug}/`}
                 >
                   <div className="card-wrap w-full h-full relative">
                     <div className="read-more">
@@ -64,7 +64,7 @@ export default function ProductGrid({ categorySlug, paginatedProducts, allProduc
                       {product.name}
                     </span>
                   </div>
-                </a>
+                </Link>
               </div>
             ))}
           </div>

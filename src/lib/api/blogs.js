@@ -7,9 +7,9 @@ export const getAllBlogs = async () => {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch categories");
+    throw new Error("Failed to fetch blogs");
   }
 
   return res.json();
 };
-//
+

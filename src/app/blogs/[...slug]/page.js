@@ -17,7 +17,7 @@ export default async function BlogPaginatedPage({ params }) {
   if (!/^\d+$/.test(rawPage) || rawPage.startsWith("0")) return notFound();
 
   const pageIndex = parseInt(rawPage);
-  const perPage = 2;
+  const perPage = 9;
   const allBlogs = await getAllBlogs();
 
   if (!allBlogs || !allBlogs.blogs.length) return notFound();

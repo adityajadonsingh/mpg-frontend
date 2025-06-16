@@ -21,9 +21,13 @@ export default function CategoryClientPage({
   const categories = useCategories();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
   const categoryDetails = categories.find(
     (cat) => cat.slug.toLowerCase() === categorySlug.toLowerCase()
   );
+
+  const showPagination = totalPages > 1 && searchTerm === "";
 
   return (
     <>
@@ -34,6 +38,7 @@ export default function CategoryClientPage({
           onClose={() => setPopupMessage("")}
         />
       )}
+
       <CategoryBanner
         name={categoryDetails.category_name}
         image={categoryDetails.image}
@@ -41,40 +46,76 @@ export default function CategoryClientPage({
         breadcrum={breadcrum}
         setIsPopupOpen={setIsPopupOpen}
       />
+
       <div className="cat-page">
         <Breadcrum path_arr={breadcrum} />
       </div>
 
-      {/* Search and Product Grid */}
       <ProductGrid
         categorySlug={categorySlug}
         paginatedProducts={paginatedProducts}
         allProducts={allProducts}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
 
-      {/* Pagination - hide when searching (handled in ProductGrid) */}
-      {totalPages > 1 && (
+      {showPagination && (
         <div className="pagination text-center my-6 space-x-2">
-          {Array.from({ length: totalPages }, (_, idx) => (
+          {currentPage > 1 && (
             <Link
-              key={idx}
-              href={
-                idx === 0
-                  ? `/product-category/${categorySlug}`
-                  : `/product-category/${categorySlug}/page/${idx + 1}`
-              }
-              className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${
-                currentPage === idx + 1
-                  ? "bg-[#DC5100] text-white"
-                  : "bg-[#E9E9ED] text-[#8a8a8c]"
-              }`}
+              href={`/product-category/${categorySlug}/page/${currentPage - 1}`}
+              className="px-4 py-2 bg-gray-200 rounded"
             >
-              {idx + 1}
+              « Previous
             </Link>
-          ))}
+          )}
+
+          {[1, 2, currentPage - 1, currentPage, currentPage + 1, totalPages - 1, totalPages]
+            .filter(
+              (value, index, self) =>
+                value > 0 &&
+                value <= totalPages &&
+                self.indexOf(value) === index
+            )
+            .sort((a, b) => a - b)
+            .map((page, idx, arr) => (
+              <span key={page + "-wrap"}>
+                {idx > 0 && page - arr[idx - 1] > 1 && (
+                  <span className="px-2 py-2">...</span>
+                )}
+                <Link
+                  key={page}
+                  href={
+                    page === 1
+                      ? `/product-category/${categorySlug}`
+                      : `/product-category/${categorySlug}/page/${page}`
+                  }
+                  className={`px-4 py-2 rounded font-semibold ${
+                    currentPage === page
+                      ? "bg-[#DC5100] text-white"
+                      : "bg-[#E9E9ED] text-[#8a8a8c]"
+                  }`}
+                >
+                  {page}
+                </Link>
+              </span>
+            ))}
+
+          {currentPage < totalPages && (
+            <Link
+              href={`/product-category/${categorySlug}/page/${currentPage + 1}`}
+              className="px-4 py-2 bg-gray-200 rounded"
+            >
+              Next »
+            </Link>
+          )}
         </div>
       )}
-      <PageDescription content={categoryDetails.descriptions} />
+
+      {currentPage === 1 && (
+        <PageDescription content={categoryDetails.descriptions} />
+      )}
+
       <ContactPopupForm
         isOpen={isPopupOpen}
         setIsOpen={setIsPopupOpen}

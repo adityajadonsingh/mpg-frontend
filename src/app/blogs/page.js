@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default async function BlogsDefaultPage() {
     const pageIndex = 1;
-    const perPage = 2;
+    const perPage = 9;
 
     const allBlogs = await getAllBlogs();
     console.log(allBlogs.blogs)
@@ -43,7 +43,7 @@ export default async function BlogsDefaultPage() {
                                         <div className="p-4 flex flex-col justify-between h-[150px] text-center">
                                             <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
                                             <p className="text-orange-600 text-sm mb-2">
-                                                Author Name |{" "}
+                                                Jaya Tripathi |{" "}
                                                 <span className="text-gray-600">{blog.date_posted}</span>
                                             </p>
                                             <p className="text-sm text-gray-600 line-clamp-3">
