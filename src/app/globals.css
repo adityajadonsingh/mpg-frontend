@@ -481,9 +481,8 @@ h2.heading {
 .breadcrum ul li:not(:first-child)::before {
   position: absolute;
   content: "/";
-  top: 50%;
+  top: 0%;
   left: 5px;
-  transform: translateY(-50%);
 }
 .breadcrum ul li a:hover {
   color: #000;

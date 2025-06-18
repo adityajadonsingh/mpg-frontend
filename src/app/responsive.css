@@ -232,6 +232,15 @@
   }
 }
 @media screen and (max-width: 620px) {
+  .single-blog .blog-content {
+    .blog-btm {
+      .post-nav {
+        padding: 6px 10px;
+        width: 50px;
+        font-size: 12px;
+      }
+    }
+  }
   .single-blog {
     width: 100%;
   }
@@ -290,6 +299,9 @@
   }
 }
 @media screen and (max-width: 450px) {
+  .single-blog-breadcrum .breadcrum {
+    font-size: 12px;
+  }
   .view-prod-btn,
   .enquire-btn {
     padding: 8px 14px;
