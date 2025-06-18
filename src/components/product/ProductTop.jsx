@@ -63,7 +63,9 @@ export default function ProductTop({
                         src={item.image}
                         alt={item.alt_text || productName}
                         fill
-                        className="object-cover"
+                        className="object-cover h-full w-full bg-[#ebedf0]"
+                        placeholder="blur"
+                        blurDataURL="/media/placeholder.jpg"
                       />
                       <button
                         onClick={() => openLightbox(index)}
@@ -91,7 +93,9 @@ export default function ProductTop({
                         src={item.image}
                         alt={item.alt_text || productName}
                         fill
-                        className="object-cover rounded"
+                        className="object-cover rounded h-full w-full bg-[#ebedf0]"
+                        placeholder="blur"
+                        blurDataURL="/media/placeholder.jpg"
                       />
                     </div>
                   </SwiperSlide>
@@ -115,7 +119,8 @@ export default function ProductTop({
                   </ul>
                 </div>
                 <h1 className="font-semibold mt-2 capitalize">{productName}</h1>
-                <p className="mt-2 text-gray-700">{productDescription}</p>
+                <p className="mt-2 text-gray-700 prose max-w-none"
+                        dangerouslySetInnerHTML={{ __html: productDescription }}></p>
               </div>
               <button
                 onClick={() => setIsPopupOpen(true)}

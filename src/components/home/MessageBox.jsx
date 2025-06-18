@@ -12,6 +12,7 @@ export default function MessageBox() {
                         alt="leaf"
                         fill
                         style={{ objectFit: "contain" }}
+                        
                     />
                 </div>
                 <div className="content h-fit md:text-start text-center">

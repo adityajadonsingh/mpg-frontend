@@ -25,6 +25,9 @@ export default function HeroClient({ banners }) {
                 src={banner.image}
                 alt={banner.title}
                 loading="lazy"
+                className="z-10 h-full w-full bg-[#ebedf0]"
+                placeholder="blur"
+                blurDataURL="/media/placeholder.jpg"
               />
               <div className="content-box">
                 <h2>{banner.title}</h2>

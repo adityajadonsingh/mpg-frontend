@@ -86,12 +86,12 @@ export default function Header({contactDetails}) {
                   >
                     {categories.map((cat) => (
                       <li key={cat.slug} className="rounded overflow-hidden">
-                        <a
+                        <Link
                           href={`/product-category/${cat.slug}`}
                           className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap"
                         >
                           {cat.category_name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

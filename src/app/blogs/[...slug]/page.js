@@ -49,12 +49,19 @@ export default async function BlogPaginatedPage({ params }) {
                       alt={blog.title}
                       fill
                       style={{ objectFit: "cover" }}
+                      className="z-10 h-full w-full bg-[#ebedf0]"
+                      placeholder="blur"
+                      blurDataURL="/media/placeholder.jpg"
                     />
                   </div>
                   <div className="p-4 flex flex-col justify-between h-[150px] text-center">
                     <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
                     <p className="text-orange-600 text-sm mb-2">
-                      Author Name | <span className="text-gray-600">{blog.date_posted}</span>
+                      Author Name | <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })}</span>
                     </p>
                     <p className="text-sm text-gray-600 line-clamp-3">{blog.description}</p>
                   </div>
