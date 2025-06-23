@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Popup from "@/components/Popup";
-export default function ContactForm() {
+export default function ContactForm({ isContactPage = false }) {
   const [popupMessage, setPopupMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -40,7 +40,6 @@ export default function ContactForm() {
       return;
     }
 
-    // Remove `consent` from data before sending
     const { consent, ...dataToSend } = formData;
     setPopupMessage("Message sent successfully!");
 
@@ -87,21 +86,52 @@ export default function ContactForm() {
       )}
       <section className="contact-home pb-10 scroll-mt-28" id="contactForm">
         <div className="wrapper">
-          <div className="grid sm:grid-cols-2 grid-cols-1">
-            <div className="content my-auto lg:px-8 pr-4 sm:pb-0 pb-8 ">
-              <h2 className="heading mb-4">
-                Contact us to discuss your Project today now
-              </h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                temporibus harum, sapiente nostrum numquam quas nesciunt vitae
-                eos dolor minus ipsam. Aut optio aliquam temporibus perspiciatis
-                quos voluptatem culpa porro iste vero ipsa vitae in cumque
-                dignissimos harum, voluptatum minus!
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 grid-cols-1">
+            {isContactPage ? (
+              <div className="contact-map w-full md:h-full h-60 md:pb-0 pb-8 overflow-hidden rounded-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1261703.2816718512!2d-2.8678275133941526!3d51.85613199156033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876044584955555%3A0x80c9a38bec6df4a7!2sAllstone%20Products%20Ltd!5e0!3m2!1sen!2sin!4v1750402691369!5m2!1sen!2sin"
+                  allowFullScreen=""
+                  loading="lazy"
+                  className="w-full h-full"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            ) : (
+              <div className="content my-auto lg:px-8 pr-4 md:pb-0 pb-8 ">
+                <h2 className="heading mb-4">
+                  Contact us to discuss your Project today now
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  temporibus harum, sapiente nostrum numquam quas nesciunt vitae
+                  eos dolor minus ipsam. Aut optio aliquam temporibus
+                  perspiciatis quos voluptatem culpa porro iste vero ipsa vitae
+                  in cumque dignissimos harum, voluptatum minus!
+                </p>
+              </div>
+            )}
+
             <div className="form-div">
-              <form onSubmit={handleSubmit} className="space-y-4 lg:w-2/3 w-full m-auto">
+              <form
+                onSubmit={handleSubmit}
+                className={`space-y-4 ${
+                  isContactPage ? "sm:w-10/12" : "lg:w-2/3"
+                }  w-full m-auto`}
+              >
+                {isContactPage && (
+                  <div className="content pb-2 ">
+                    <h2 className="heading mb-4">
+                      Contact us to discuss your Project today now
+                    </h2>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam temporibus harum, sapiente nostrum numquam quas
+                      nesciunt vitae eos dolor minus ipsam. Aut optio aliquam
+                      temporibus.
+                    </p>
+                  </div>
+                )}
                 <input
                   type="text"
                   name="name"

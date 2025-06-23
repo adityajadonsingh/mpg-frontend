@@ -4,7 +4,7 @@ import CategoryBanner from "@/components/category/CategoryBanner";
 import Breadcrum from "@/components/Breadcrum";
 import ProductGrid from "@/components/category/ProductGrid";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContactPopupForm from "@/components/ContactPopupForm";
 import Popup from "@/components/Popup";
 
@@ -19,8 +19,19 @@ export default function AllProductsClientPage({
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   const showPagination = totalPages > 1 && searchTerm === "";
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 700);
+    };
+
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -61,19 +72,22 @@ export default function AllProductsClientPage({
               href={`/all-products/page/${currentPage - 1}`}
               className="px-4 py-2 bg-gray-200 rounded"
             >
-              « Previous
+              « <span className="sm:inline hidden">Previous</span>
             </Link>
           )}
 
-          {[
-            1,
-            2,
-            currentPage - 1,
-            currentPage,
-            currentPage + 1,
-            totalPages - 1,
-            totalPages,
-          ]
+          {(isMobile
+            ? [currentPage - 1, currentPage, currentPage + 1]
+            : [
+                1,
+                2,
+                currentPage - 1,
+                currentPage,
+                currentPage + 1,
+                totalPages - 1,
+                totalPages,
+              ]
+          )
             .filter(
               (value, index, self) =>
                 value > 0 &&
@@ -107,7 +121,7 @@ export default function AllProductsClientPage({
               href={`/all-products/page/${currentPage + 1}`}
               className="px-4 py-2 bg-gray-200 rounded"
             >
-              Next »
+              <span className="sm:inline hidden">Next</span> »
             </Link>
           )}
         </div>

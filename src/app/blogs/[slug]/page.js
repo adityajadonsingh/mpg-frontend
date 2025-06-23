@@ -63,11 +63,11 @@ export default async function BlogSinglePage({ params }) {
                     <div className="blog-btm flex justify-between items-center mt-8">
                         <div className="flex gap-x-4">
                             {
-                                prevPost.length !== 0 ? <Link href={`/blogs/${prevPost[0].slug}`}><button title="Previous Post" className="post-nav"><span className="sm:block hidden">Previous Post</span><i class="bi bi-chevron-left sm:hidden block"></i></button></Link> : null
+                                prevPost.length !== 0 ? <Link href={`/blogs/${prevPost[0].slug}`}><button title="Previous Post" className="post-nav"><span className="sm:block hidden">Previous Post</span><i className="bi bi-chevron-left sm:hidden block"></i></button></Link> : null
                             }
                             
                             {
-                                nextPost.length !== 0 ? <Link href={`/blogs/${nextPost[0].slug}`}><button title="Next Post" className="post-nav"><span className="sm:block hidden">Next Post</span><i class="bi bi-chevron-right sm:hidden block"></i></button></Link> : null
+                                nextPost.length !== 0 ? <Link href={`/blogs/${nextPost[0].slug}`}><button title="Next Post" className="post-nav"><span className="sm:block hidden">Next Post</span><i className="bi bi-chevron-right sm:hidden block"></i></button></Link> : null
                             }
                         </div>
                         <div className="share">

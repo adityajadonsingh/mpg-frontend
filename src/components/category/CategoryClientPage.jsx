@@ -5,7 +5,7 @@ import CategoryBanner from "@/components/category/CategoryBanner";
 import Breadcrum from "@/components/Breadcrum";
 import ProductGrid from "./ProductGrid";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContactPopupForm from "@/components/ContactPopupForm";
 import Popup from "@/components/Popup";
 import PageDescription from "@/components/PageDescription";
@@ -22,7 +22,17 @@ export default function CategoryClientPage({
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const categoryDetails = categories.find(
     (cat) => cat.slug.toLowerCase() === categorySlug.toLowerCase()
   );
@@ -66,11 +76,22 @@ export default function CategoryClientPage({
               href={`/product-category/${categorySlug}/page/${currentPage - 1}`}
               className="px-4 py-2 bg-gray-200 rounded"
             >
-              « Previous
+              « <span className="sm:inline hidden">Previous</span>
             </Link>
           )}
 
-          {[1, 2, currentPage - 1, currentPage, currentPage + 1, totalPages - 1, totalPages]
+          {(isMobile
+            ? [currentPage - 1, currentPage, currentPage + 1]
+            : [
+                1,
+                2,
+                currentPage - 1,
+                currentPage,
+                currentPage + 1,
+                totalPages - 1,
+                totalPages,
+              ]
+          )
             .filter(
               (value, index, self) =>
                 value > 0 &&
@@ -106,7 +127,7 @@ export default function CategoryClientPage({
               href={`/product-category/${categorySlug}/page/${currentPage + 1}`}
               className="px-4 py-2 bg-gray-200 rounded"
             >
-              Next »
+              <span className="sm:inline hidden">Next</span> »
             </Link>
           )}
         </div>

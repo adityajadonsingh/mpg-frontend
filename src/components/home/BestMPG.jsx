@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -46,7 +47,14 @@ export default function BestMPG() {
 
   return (
     <section className="best-home relative">
-      <div className="wrapper overflow-hidden">
+      <Image
+        src="/media/bg-img.webp"
+        fill
+        className="z-0"
+        alt="Best of MPG Stones"
+      />
+
+      <div className="wrapper overflow-hidden relative z-10">
         <h2 className="heading uppercase">Best Of MPG Stone</h2>
 
         {/* Tabs */}
@@ -98,31 +106,37 @@ export default function BestMPG() {
                 1024: { slidesPerView: 4 },
               }}
             >
-              {products.map((product, index) => (
-                <SwiperSlide key={index}>
-                  <div className="text-center">
-                    <div className="img-box overflow-hidden relative w-full aspect-[4/3]">
-                      <Image
-                        fill
-                        src={product.image}
-                        alt={product.name}
-                        style={{ objectFit: "cover" }}
-                        className="object-cover mb-2 transition-all duration-300 hover:scale-105 z-10 h-full w-full bg-[#ebedf0]"
-                        placeholder="blur"
-                        blurDataURL="/media/placeholder.jpg"
-                      />
-                      <div className="cta absolute bottom-0 left-0 right-0">
-                        <button className="bg-white px-3 py-2 font-medium text-sm w-full">
-                          ENQUIRE NOW
-                        </button>
+              {products.map((product, index) => {
+                console.log(product);
+
+                return (
+                  <SwiperSlide key={index}>
+                    <Link href={`/product-category/${product.category.replace(" ", "-").toLowerCase()}/${product.slug}/`}>
+                      <div className="text-center">
+                        <div className="img-box overflow-hidden rounded-sm shadow-md hover:shadow-sm relative w-full aspect-[4/3]">
+                          <Image
+                            fill
+                            src={product.image}
+                            alt={product.name}
+                            style={{ objectFit: "cover" }}
+                            className="object-cover mb-2 transition-all duration-300 hover:scale-105 z-10 h-full w-full bg-[#ebedf0]"
+                            placeholder="blur"
+                            blurDataURL="/media/placeholder.jpg"
+                          />
+                          <div className="cta absolute bottom-0 left-0 right-0 z-10">
+                            <button className="bg-white px-3 py-2 font-medium text-sm w-full">
+                              ENQUIRE NOW
+                            </button>
+                          </div>
+                        </div>
+                        <div className="font-semibold md:text-lg text-md mt-3 capitalize">
+                          {product.name}
+                        </div>
                       </div>
-                    </div>
-                    <div className="font-semibold md:text-lg text-md mt-3 capitalize">
-                      {product.name}
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           )}
         </div>

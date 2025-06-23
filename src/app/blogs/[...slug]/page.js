@@ -29,14 +29,12 @@ export default async function BlogPaginatedPage({ params }) {
   const end = start + perPage;
   const paginatedBlogs = allBlogs.blogs.slice(start, end);
 
-  const slugPath = [
-    { slug_name: "Blogs", slug: "/blogs" },
-  ];
+ 
 
   return (
     <>
-      <MiniBanner bg_img={"https://img.freepik.com/premium-photo/background-texture-natural-stone-marble-granite-mosaic_166216-235.jpg"} pageName={`All Blogs - Page ${pageIndex}`} />
-      <Breadcrum path_arr={slugPath} />
+      <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={`All Blogs - Page ${pageIndex}`} />
+
       <section className="blog-page">
         <div className="wrapper">
           <div className="grid lg:grid-cols-3 gap-5">

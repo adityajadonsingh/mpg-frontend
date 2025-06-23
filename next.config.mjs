@@ -10,6 +10,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'html.kodesolution.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'mpg-backend-production.up.railway.app',
         pathname: '/media/**',
       },

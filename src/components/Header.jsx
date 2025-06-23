@@ -87,7 +87,7 @@ export default function Header({contactDetails}) {
                     {categories.map((cat) => (
                       <li key={cat.slug} className="rounded overflow-hidden">
                         <Link
-                          href={`/product-category/${cat.slug}`}
+                          href={`/product-category/${cat.slug}/`}
                           className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap"
                         >
                           {cat.category_name}
@@ -97,13 +97,13 @@ export default function Header({contactDetails}) {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <Link href="/all-products">Products</Link>
+                  <Link href="/all-products/">Products</Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/about-us">About Us</Link>
+                  <Link href="/about-us/">About Us</Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/products">Contact Us</Link>
+                  <Link href="/contact-us/">Contact Us</Link>
                 </li>
               </ul>
             </nav>
@@ -129,7 +129,7 @@ export default function Header({contactDetails}) {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } hidden toggle-menus`}
       >
-        <div className="p-4 border-b flex justify-between items-center">
+        <div className="p-4 border-b border-[#b6b6b678] flex justify-between items-center">
           <span className="text-lg font-semibold">Menu</span>
           <button className="cursor-pointer" onClick={toggleSidebar}>
             <i className="bi bi-x-lg text-xl"></i>
@@ -145,30 +145,30 @@ export default function Header({contactDetails}) {
                 <ul className="mt-2 h-[320px] overflow-y-scroll bg-white p-3 rounded-md">
                   {categories.map((cat) => (
                     <li key={cat.slug}>
-                      <a
-                        href={`/product-category/${cat.slug}`}
+                      <Link
+                        href={`/product-category/${cat.slug}/`}
                         className="block px-2 py-1 hover:bg-gray-100 rounded"
                         onClick={toggleSidebar}
                       >
                         {cat.category_name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </details>
             </li>
             <li className="nav-item">
-              <Link href="/all-products" onClick={toggleSidebar}>
+              <Link href="/all-products/" onClick={toggleSidebar}>
                 Products
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/about-us" onClick={toggleSidebar}>
+              <Link href="/about-us/" onClick={toggleSidebar}>
                 About Us
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/products" onClick={toggleSidebar}>
+              <Link href="/contact-us/" onClick={toggleSidebar}>
                 Contact Us
               </Link>
             </li>
