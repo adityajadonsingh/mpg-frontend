@@ -264,7 +264,7 @@
 }
 @media screen and (max-width: 620px) {
   .mini-banner{
-    padding: 0 40px;
+    padding: 0 20px;
     h1{
       font-size: 30px;
     }
