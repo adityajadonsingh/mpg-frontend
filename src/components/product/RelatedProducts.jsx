@@ -6,13 +6,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function RelatedProducts({ relatedProducts }) {
+export default function RelatedProducts({ relatedProducts, isAboutUsPage = false }) {
   return (
     <>
       <section className="related-products">
         <div className="wrapper">
-          <h2 className="heading mb-6 capitalize">Related Products</h2>
+          <h2 className="heading mb-6 capitalize">{isAboutUsPage ? "Browse Our Extensive Product Line" : "Related Products"}</h2>
           <Swiper
             modules={[Navigation, Pagination]}
             navigation
@@ -33,9 +34,9 @@ export default function RelatedProducts({ relatedProducts }) {
                     className="card w-full relative z-0"
                     key={`product-${idx}`}
                   >
-                    <a
+                    <Link
                       className="block w-full h-full"
-                      href={`/product-category/${product.category.replace(" ","-").toLowerCase()}/${product.slug}`}
+                      href={`/product-category/${product.category.replace(" ","-").toLowerCase()}/${product.slug}/`}
                     >
                       <div className="card-wrap w-full h-full relative">
                         <div className="read-more">
@@ -51,11 +52,11 @@ export default function RelatedProducts({ relatedProducts }) {
                           placeholder="blur"
                           blurDataURL="/media/placeholder.jpg"
                         />
-                        <span className="z-20 absolute prod-name">
+                        <span className="z-20 absolute capitalize prod-name">
                           {product.name}
                         </span>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </SwiperSlide>
               );

@@ -49,6 +49,18 @@ export default function ProductTop({
           <div className="flex gap-x-10 lg:flex-nowrap flex-wrap gap-y-10 justify-center">
             {/* Swiper Gallery */}
             <div className="img-box lg:w-2/5 md:w-3/5 w-full">
+              <div className="breadcrum md:hidden block mb-6">
+                <ul className="flex space-x-1 flex-wrap">
+                  <li>
+                    <Link href="/">Home</Link>
+                  </li>
+                  {path_arr.map((path, idx) => (
+                    <li key={`bread-${idx}`}>
+                      <Link href={path.slug}>{path.slug_name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <Swiper
                 spaceBetween={10}
                 navigation={true}
@@ -106,7 +118,7 @@ export default function ProductTop({
             {/* Product Content */}
             <div className="product-content lg:w-3/5 w-full flex flex-col justify-between">
               <div className="context">
-                <div className="breadcrum">
+                <div className="breadcrum md:block hidden">
                   <ul className="flex space-x-1 flex-wrap">
                     <li>
                       <Link href="/">Home</Link>
@@ -119,8 +131,10 @@ export default function ProductTop({
                   </ul>
                 </div>
                 <h1 className="font-semibold mt-2 capitalize">{productName}</h1>
-                <p className="mt-2 text-gray-700 prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: productDescription }}></p>
+                <p
+                  className="mt-2 text-gray-700 prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: productDescription }}
+                ></p>
               </div>
               <button
                 onClick={() => setIsPopupOpen(true)}
