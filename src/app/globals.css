@@ -937,7 +937,36 @@ h2.heading {
   border-color: #3b82f6 transparent transparent transparent;
   animation: spin 0.8s linear infinite;
 }
-/* nprogress.css */
+.page-404 {
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.page-404 .wrapper {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: min(900px, 90%);
+}
+.page-404 .wrapper .back-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  font-size: 260px;
+  font-weight: 800;
+color: #f36c235d;
+  transform: translate(-50%, -50%);
+}
+.page-404 .wrapper .inn-text {
+  position: relative;
+  z-index: 1;
+  color: #6c6c6c;
+  font-size: 20px;
+  font-weight: 600;
+}
 
 
 @keyframes spin {
