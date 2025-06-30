@@ -1,109 +1,94 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useCategories } from "@/context/CategoryContext";
+import CardSlider from "./CardSlider";
+import { getAllProducts } from "@/lib/api/products";
+
+// ✅ Simple skeleton placeholder component
+function CategorySkeleton({direction = "row"}) {
+  console.log(direction)
+  return (
+    <div className={`animate-pulse flex items-center px-10 gap-8 py-12 flex-${direction}`}>
+      {/* Left side (text) */}
+      <div className="w-1/2 space-y-4">
+        <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+        <div className="h-4 bg-gray-200 rounded w-full"></div>
+        <div className="h-4 bg-gray-200 rounded w-full"></div>
+        <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+      </div>
+      {/* Right side (slider placeholder) */}
+      <div className="w-1/2 h-[300px] bg-gray-200 rounded-lg"></div>
+    </div>
+  );
+}
 
 export default function CategoriesGrid() {
   const categories = useCategories();
+  const [categoryArr, setCategoryArr] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const arr = await Promise.all(
+        categories.map(async (item) => ({
+          category: item.category_name,
+          short_description: item.short_description,
+          category_products: await getAllProducts("5", item.category_name),
+        }))
+      );
+      setCategoryArr(arr);
+      setIsLoading(false);
+    }
+
+    if (categories.length > 0) {
+      fetchData();
+    }
+  }, [categories]);
+
+  const bgColors = [
+    "bg-[#f9f9f9]",
+    "bg-[#f0f9ff]",
+    "bg-[#fefce8]",
+    "bg-[#f0fdf4]",
+    "bg-[#fff7ed]",
+    "bg-[#fdf2f8]",
+    "bg-[#f3f4f6]",
+  ];
+
   return (
-    <>
-      <section className="category-grid">
-        <div className="wrapper">
-          <div className="grid grid-cols-12 gap-4">
-            {/* Row 1 */}
-            <div className="col-span-6 first-cols rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[5].slug}`}>
-                <img
-                  src={categories[5].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[5].category_name} short_des={categories[5].short_description} />
-              </a>
-            </div>
+    <section className="category-grid min-h-[600px]">
+      {isLoading ? (
+        <>
+          {/* Skeletons while loading */}
+          <CategorySkeleton />
+          <CategorySkeleton direction={"row-reverse"} />
+          <CategorySkeleton />
+        </>
+      ) : (
+        categoryArr.map((catObj, index) => {
+          const bgColor = bgColors[index % bgColors.length];
 
-            <div className="col-span-6 first-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[3].slug}`}>
-                <img
-                  src={categories[3].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[3].category_name} short_des={categories[3].short_description} />
-              </a>
+          return (
+            <div
+              key={catObj.category}
+              className={`category-part flex items-center ${
+                index % 2 !== 0 ? "flex-row-reverse" : ""
+              }`}
+            >
+              <div className="content w-1/2">
+                <h2 className="text-3xl mb-4 font-semibold capitalize">
+                  {catObj.category}
+                </h2>
+                <p>{catObj.short_description}</p>
+              </div>
+              <div className={`cards-slider w-1/2 ${bgColor}`}>
+                <CardSlider products={catObj.category_products} />
+              </div>
             </div>
-
-            {/* Row 2 */}
-            <div className="col-span-3 second-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[4].slug}`}>
-                <img
-                  src={categories[4].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[4].category_name} short_des={categories[4].short_description} />
-              </a>
-            </div>
-
-            <div className="col-span-3 second-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[6].slug}`}>
-                <img
-                  src={categories[6].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[6].category_name} short_des={categories[6].short_description} />
-              </a>
-            </div>
-
-            <div className="col-span-3 second-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[1].slug}`}>
-                <img
-                  src={categories[1].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[1].category_name} short_des={categories[1].short_description} />
-              </a>
-            </div>
-
-            <div className="col-span-3 second-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[7].slug}`}>
-                <img
-                  src={categories[7].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[7].category_name} short_des={categories[7].short_description} />
-              </a>
-            </div>
-
-            {/* Row 3 */}
-            <div className="col-span-8 third-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[2].slug}`}>
-                <img
-                  src={categories[2].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[2].category_name} short_des={categories[2].short_description} />
-              </a>
-            </div>
-
-            <div className="col-span-4 third-cols relative rounded overflow-hidden group">
-              <a className="block relative w-full h-full" href={`/product-category/${categories[0].slug}`}>
-                <img
-                  src={categories[0].image}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <Overlay title={categories[0].category_name} short_des={categories[0].short_description} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-function Overlay({ title, short_des }) {
-  return (
-    <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4 overlay-txt">
-      <h2 className="text-2xl font-bold mb-2">{title}</h2>
-      <p className="font-semibold">
-        {short_des}
-      </p>
-    </div>
+          );
+        })
+      )}
+    </section>
   );
 }

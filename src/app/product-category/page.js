@@ -1,19 +1,11 @@
 
-import Breadcrum from "@/components/Breadcrum";
-import PageBanner from "@/components/PageBanner";
+import MiniBanner from "@/components/MiniBanner";
 import CategoriesGrid from "@/components/category/CategoiresGrid";
 
-const slugPath = [
-    {
-        slug_name : "Product Categories",
-        slug : "/product-category"
-    }
-]
 export default function AllCategoriesPage() {
     return (
         <>
-            <PageBanner pageName={"Product Categories"} imgUrl={"/media/all-category.png"} short_content={""} />
-            <Breadcrum path_arr={slugPath}/>
+            <MiniBanner bg_img={"/media/all-category.png"} pageName={"Product Categories"} />
             <CategoriesGrid/>
             
         </>

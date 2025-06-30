@@ -487,8 +487,15 @@ h2.heading {
 .breadcrum ul li a:hover {
   color: #000;
 }
-.category-grid {
+/* .category-grid {
   padding: 50px 0;
+} */
+
+.category-part .content {
+  padding: 0 30px;
+}
+.category-part .cat-swiper {
+  padding: 40px 0 20px;
 }
 .category-grid .first-cols {
   height: 350px;
@@ -498,6 +505,9 @@ h2.heading {
 }
 .category-grid .third-cols {
   height: 450px;
+}
+.cat-swiper .swiper-cards{
+  padding-bottom: 40px;
 }
 .overlay-txt {
   background-color: #0000004f;
@@ -918,7 +928,6 @@ h2.heading {
 
 .contact-info .card:hover {
   transform: translate3d(0, -2px, 0);
-  
 }
 
 .loader {

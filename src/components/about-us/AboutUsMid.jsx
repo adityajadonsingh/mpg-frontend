@@ -3,7 +3,7 @@ export default function AboutUsMid(){
         <>
             <section className="about-cards md:py-10 pb-5">
                 <div className="wrapper">
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8 sm:px-6">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 sm:px-6">
                         <div className="card text-center w-full h-full xl:py-18 lg:py-16 md:py-10 py-6 xl:px-8 px-6 bg-[#F2F2F2] rounded-md shadow-md" >
                             <div className="icn">
                                 <img src="/media/icons/target.png" className="w-20 h-20 mx-auto" alt="mission" />
