@@ -9,11 +9,12 @@ import { CategoryProvider } from "@/context/CategoryContext";
 import { getAllCategories } from "@/lib/api/categories";
 import { getSocialLinks } from "@/lib/api/socialLinks";
 import { getContactDetails } from "@/lib/api/contactDetails";
+import ProgressBar from "@/components/ProgressBar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap", // Optional: improves performance
+  display: "swap",
 });
 
 export const metadata = {
@@ -28,8 +29,11 @@ export default async function RootLayout({ children }) {
   const contactDetails = await getContactDetails();
   return (
     <html lang="en">
-      <body className={`${montserrat.className} flex flex-col min-h-screen`}>
+      <body
+        className={`${montserrat.className} flex flex-col min-h-screen relative`}
+      >
         <CategoryProvider categories={categories}>
+          <ProgressBar />
           <Header contactDetails={contactDetails} />
           <main>{children}</main>
           <Footer

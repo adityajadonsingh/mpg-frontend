@@ -937,6 +937,8 @@ h2.heading {
   border-color: #3b82f6 transparent transparent transparent;
   animation: spin 0.8s linear infinite;
 }
+/* nprogress.css */
+
 
 @keyframes spin {
   to {
