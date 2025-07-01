@@ -197,7 +197,6 @@ export default function ContactForm({ isContactPage = false }) {
                   </span>
                 </label>
 
-                {/* ✅ Classic visible reCAPTCHA */}
                 <ReCAPTCHA
                   sitekey={"6LeXonMrAAAAAGtX_r67cVdX-OFictaSFfINO5GM"}
                   onChange={handleCaptchaChange}

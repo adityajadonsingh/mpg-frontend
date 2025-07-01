@@ -10,6 +10,7 @@ import { getAllCategories } from "@/lib/api/categories";
 import { getSocialLinks } from "@/lib/api/socialLinks";
 import { getContactDetails } from "@/lib/api/contactDetails";
 import ProgressBar from "@/components/ProgressBar";
+import { Suspense } from 'react';
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -33,7 +34,9 @@ export default async function RootLayout({ children }) {
         className={`${montserrat.className} flex flex-col min-h-screen relative`}
       >
         <CategoryProvider categories={categories}>
+          <Suspense fallback={null}>
           <ProgressBar />
+        </Suspense>
           <Header contactDetails={contactDetails} />
           <main>{children}</main>
           <Footer
