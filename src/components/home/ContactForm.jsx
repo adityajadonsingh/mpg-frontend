@@ -20,7 +20,6 @@ export default function ContactForm({ isContactPage = false }) {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -182,13 +181,13 @@ export default function ContactForm({ isContactPage = false }) {
                   rows={4}
                   required
                 />
-                <label className="flex items-start space-x-2 text-sm text-gray-700">
+                <label className="flex items-start hidden space-x-2 text-sm text-gray-700">
                   <input
                     type="checkbox"
                     name="consent"
                     checked={formData.consent}
                     onChange={handleChange}
-                    required
+                    className=""
                   />
                   <span>
                     I am happy to give you personal data because I know you'll
