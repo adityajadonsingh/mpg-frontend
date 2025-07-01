@@ -1,4 +1,5 @@
 "use client";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useEffect } from "react";
 
 export default function ContactPopupForm({
@@ -62,6 +63,16 @@ export default function ContactPopupForm({
     console.log("Submitting form:", dataToSend); // Optional: for debugging
 
     try {
+      const captchaRes = await fetch("/api/verifyCaptcha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: captchaToken }),
+      });
+
+      if (!captchaRes.ok) {
+        setPopupMessage("Captcha verification failed. Please try again.");
+        return;
+      }
       const res1 = await fetch(
         "https://backend.mpgstone.co.uk/api/enquiry/",
         {
@@ -146,7 +157,12 @@ export default function ContactPopupForm({
             rows={4}
             required
           />
-          <label className="flex items-start space-x-2 text-sm text-gray-700">
+          <ReCAPTCHA
+                  sitekey={"6LeXonMrAAAAAGtX_r67cVdX-OFictaSFfINO5GM"}
+                  onChange={handleCaptchaChange}
+                  ref={recaptchaRef}
+                />
+          <label className="hidden items-start space-x-2 text-sm text-gray-700">
             <input
               type="checkbox"
               name="consent"

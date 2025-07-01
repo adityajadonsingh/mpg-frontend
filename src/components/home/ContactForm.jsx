@@ -181,7 +181,7 @@ export default function ContactForm({ isContactPage = false }) {
                   rows={4}
                   required
                 />
-                <label className="flex items-start hidden space-x-2 text-sm text-gray-700">
+                <label className=" items-start hidden space-x-2 text-sm text-gray-700">
                   <input
                     type="checkbox"
                     name="consent"
