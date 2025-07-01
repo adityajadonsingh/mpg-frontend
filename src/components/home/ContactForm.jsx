@@ -5,6 +5,7 @@ import Popup from "@/components/Popup";
 
 export default function ContactForm({ isContactPage = false }) {
   const [popupMessage, setPopupMessage] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
   const recaptchaRef = useRef();
 
   const [formData, setFormData] = useState({
@@ -21,6 +22,10 @@ export default function ContactForm({ isContactPage = false }) {
       ...formData,
       [name]: type === "checkbox" ? checked : value,
     });
+  };
+
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
   };
 
   const handleSubmit = async (e) => {
@@ -42,16 +47,17 @@ export default function ContactForm({ isContactPage = false }) {
         "Phone number must contain only digits, spaces, hyphens, or start with '+'!"
       );
       return;
+    } else if (!captchaToken) {
+      setPopupMessage("Please complete the captcha!");
+      return;
     }
 
     try {
-      const token = await recaptchaRef.current.executeAsync();
-      recaptchaRef.current.reset();
-
+      // ✅ Verify captcha first with your API
       const captchaRes = await fetch("/api/verifyCaptcha", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
+        body: JSON.stringify({ token: captchaToken }),
       });
 
       if (!captchaRes.ok) {
@@ -61,7 +67,7 @@ export default function ContactForm({ isContactPage = false }) {
 
       const { consent, ...dataToSend } = formData;
 
-      // ✅ 3️⃣ If passed, send real data to external API
+      // ✅ Send to external API
       const postRes = await fetch(
         "https://backend.mpgstone.co.uk/api/contact/",
         {
@@ -72,7 +78,7 @@ export default function ContactForm({ isContactPage = false }) {
       );
       if (!postRes.ok) throw new Error("External API failed");
 
-      // ✅ 4️⃣ Then call your internal sendMail API
+      // ✅ Send to your internal API
       const emailRes = await fetch("/api/sendMail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,6 +94,8 @@ export default function ContactForm({ isContactPage = false }) {
         message: "",
         consent: false,
       });
+      setCaptchaToken("");
+      recaptchaRef.current.reset();
     } catch (err) {
       console.error(err);
       setPopupMessage("Submission failed");
@@ -138,19 +146,6 @@ export default function ContactForm({ isContactPage = false }) {
                   isContactPage ? "sm:w-10/12" : "lg:w-2/3"
                 }  w-full m-auto`}
               >
-                {isContactPage && (
-                  <div className="content pb-2 ">
-                    <h2 className="heading mb-4">
-                      Contact us to discuss your Project today now
-                    </h2>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Quam temporibus harum, sapiente nostrum numquam quas
-                      nesciunt vitae eos dolor minus ipsam. Aut optio aliquam
-                      temporibus.
-                    </p>
-                  </div>
-                )}
                 <input
                   type="text"
                   name="name"
@@ -202,10 +197,10 @@ export default function ContactForm({ isContactPage = false }) {
                   </span>
                 </label>
 
-                
+                {/* ✅ Classic visible reCAPTCHA */}
                 <ReCAPTCHA
-                  sitekey={"6Le0nXMrAAAAAOVP_ciccdFEXJ-FC6MAdrMKdKLo"}
-                  size="invisible"
+                  sitekey={"6LeXonMrAAAAAGtX_r67cVdX-OFictaSFfINO5GM"}
+                  onChange={handleCaptchaChange}
                   ref={recaptchaRef}
                 />
 
