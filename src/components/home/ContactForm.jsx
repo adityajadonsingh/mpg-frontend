@@ -1,8 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import Popup from "@/components/Popup";
+
 export default function ContactForm({ isContactPage = false }) {
   const [popupMessage, setPopupMessage] = useState("");
+  const recaptchaRef = useRef();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,11 +44,24 @@ export default function ContactForm({ isContactPage = false }) {
       return;
     }
 
-    const { consent, ...dataToSend } = formData;
-    setPopupMessage("Message sent successfully!");
-
     try {
-      // Send to external API
+      const token = await recaptchaRef.current.executeAsync();
+      recaptchaRef.current.reset();
+
+      const captchaRes = await fetch("/api/verifyCaptcha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
+
+      if (!captchaRes.ok) {
+        setPopupMessage("Captcha verification failed. Please try again.");
+        return;
+      }
+
+      const { consent, ...dataToSend } = formData;
+
+      // ✅ 3️⃣ If passed, send real data to external API
       const postRes = await fetch(
         "https://backend.mpgstone.co.uk/api/contact/",
         {
@@ -53,16 +70,17 @@ export default function ContactForm({ isContactPage = false }) {
           body: JSON.stringify(dataToSend),
         }
       );
-
       if (!postRes.ok) throw new Error("External API failed");
 
+      // ✅ 4️⃣ Then call your internal sendMail API
       const emailRes = await fetch("/api/sendMail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...dataToSend, type: "contact" }),
       });
+      if (!emailRes.ok) throw new Error("Email API failed");
 
-      const emailResult = await emailRes.json();
+      setPopupMessage("Message sent successfully!");
       setFormData({
         name: "",
         email: "",
@@ -71,6 +89,7 @@ export default function ContactForm({ isContactPage = false }) {
         consent: false,
       });
     } catch (err) {
+      console.error(err);
       setPopupMessage("Submission failed");
     }
   };
@@ -156,9 +175,8 @@ export default function ContactForm({ isContactPage = false }) {
                   placeholder="PHONE"
                   value={formData.phone_number}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded p-3 bg-gray-100
+                  className="w-full border border-gray-300 rounded p-3 bg-gray-100"
                   required
-                  "
                 />
                 <textarea
                   name="message"
@@ -183,6 +201,14 @@ export default function ContactForm({ isContactPage = false }) {
                     news and special offers.
                   </span>
                 </label>
+
+                
+                <ReCAPTCHA
+                  sitekey={"6Le0nXMrAAAAAOVP_ciccdFEXJ-FC6MAdrMKdKLo"}
+                  size="invisible"
+                  ref={recaptchaRef}
+                />
+
                 <button
                   type="submit"
                   className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 cursor-pointer"

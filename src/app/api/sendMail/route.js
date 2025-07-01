@@ -6,7 +6,7 @@ export async function POST(request) {
 
     console.log("Request JSON:", { type, name, email, phone_number, message, product_name, blog_name });
 
-    // Validate required fields based on type
+
     if (
       !email ||
       (type === "contact" && (!name || !message)) ||
@@ -20,7 +20,7 @@ export async function POST(request) {
       service: "gmail",
       auth: {
         user: "adityajadonsingh@gmail.com",
-        pass: "tweyyqoxizopiimz", // Make sure this is an environment variable in production
+        pass: "tweyyqoxizopiimz",
       },
       tls: {
         rejectUnauthorized: false,
