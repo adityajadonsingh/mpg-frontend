@@ -1,5 +1,5 @@
 export const getSocialLinks = async () => {
-  const res = await fetch("https://backend.mpgstone.co.uk/api/social-media/", {
+  const res = await fetch(`${process.env.BACKEND_INTERNAL_URL}/api/social-media/`, {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",

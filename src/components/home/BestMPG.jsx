@@ -107,7 +107,6 @@ export default function BestMPG() {
               }}
             >
               {products.map((product, index) => {
-                console.log(product);
 
                 return (
                   <SwiperSlide key={index}>

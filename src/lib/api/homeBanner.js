@@ -1,5 +1,6 @@
 export const getAllBanners = async () => {
-  const res = await fetch("https://backend.mpgstone.co.uk/api/banners/", {
+    console.log(`${process.env.BACKEND_INTERNAL_URL}`)
+  const res = await fetch(`${process.env.BACKEND_INTERNAL_URL}/api/banners/`, {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",
