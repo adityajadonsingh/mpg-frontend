@@ -1,9 +1,7 @@
 export const getAllProducts = async (quantity, category) => {
-    const backendUrl =
-    process.env.BACKEND_INTERNAL_URL || process.env.NEXT_PUBLIC_BACKEND_URL;
-  
+
   if (quantity == "all" && category != null) {
-    const res = await fetch(`${backendUrl}/api/products/`, {
+    const res = await fetch("https://backend.mpgstone.co.uk/api/products/", {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +15,7 @@ export const getAllProducts = async (quantity, category) => {
     return res.json();
   }
   else if (quantity === "5" && category) {
-    const res = await fetch(`${backendUrl}/api/products/?category=${category}&limit=5`, {
+    const res = await fetch(`https://backend.mpgstone.co.uk/api/products/?category=${category}&limit=5`, {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +28,7 @@ export const getAllProducts = async (quantity, category) => {
     // console.log("Fetching all products in specified category from api")
     return res.json();
   } else if (quantity === "10" && category) {
-    const res = await fetch(`${backendUrl}/api/products/?category=${category}&limit=10`, {
+    const res = await fetch(`https://backend.mpgstone.co.uk/api/products/?category=${category}&limit=10`, {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +43,7 @@ export const getAllProducts = async (quantity, category) => {
   }
 
   else if (quantity === "category-all" && category) {
-    const res = await fetch(`${backendUrl}/api/products/?category=${category}`, {
+    const res = await fetch(`https://backend.mpgstone.co.uk/api/products/?category=${category}`, {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +58,7 @@ export const getAllProducts = async (quantity, category) => {
   }
 
   else if (quantity && category == null) {
-    const res = await fetch(`${backendUrl}/api/products/?slug=${quantity}`, {
+    const res = await fetch(`https://backend.mpgstone.co.uk/api/products/?slug=${quantity}`, {
       next: { revalidate: 60 }, // Revalidate every 60 seconds
       headers: {
         "Content-Type": "application/json",
