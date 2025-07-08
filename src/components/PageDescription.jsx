@@ -35,7 +35,7 @@ export default function PageDescription({ content }) {
            <div className="flex justify-center cursor-pointer">
              <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="mt-4 text-blue-600 underline focus:outline-none pointer-cursor read-btn"
+              className="mt-4 cursor-pointer  underline focus:outline-none pointer-cursor read-btn"
             >
               {isExpanded ? 'Show Less' : 'Read More'}
             </button>

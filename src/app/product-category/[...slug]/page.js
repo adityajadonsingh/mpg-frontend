@@ -55,10 +55,9 @@ export default async function CategoryPage({ params }) {
   const paginatedProducts = allProducts.slice(start, end);
 
   const slugPath = [
-    { slug_name: "Product Categories", slug: "/product-category" },
+    { slug_name: "Product Category", slug: "/product-category" },
     { slug_name: category.replace(/-/g, " "), slug: `/product-category/${category}` },
   ];
-
   return (
     <CategoryClientPage
       categorySlug={category}
@@ -67,6 +66,7 @@ export default async function CategoryPage({ params }) {
       breadcrum={slugPath}
       currentPage={pageIndex}
       totalPages={totalPages}
+      isPaginatedPage={pageIndex === 1}
     />
   );
 }

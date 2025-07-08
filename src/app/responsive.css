@@ -92,27 +92,27 @@
 }
 @media screen and (max-width: 991px) {
   .contact-info {
-  .icn {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    color: #fff;
-    margin-bottom: 10px;
+    .icn {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 25px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 14px;
+    }
   }
-  h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  p {
-    font-size: 14px;
-  }
-}
   .blog-content .prose {
     p {
       font-size: 15px;
@@ -263,25 +263,25 @@
   }
 }
 @media screen and (max-width: 620px) {
-  .mini-banner{
+  .mini-banner {
     padding: 0 20px;
-    h1{
+    h1 {
       font-size: 30px;
     }
-    .bread{
+    .bread {
       font-size: 12px;
       padding: 5px 10px;
       margin-top: 4px;
     }
   }
   .contact-info {
-  h2 {
-    font-size: 18px;
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 13px;
+    }
   }
-  p {
-    font-size: 13px;
-  }
-}
   .single-blog .blog-content {
     .blog-btm {
       .post-nav {
@@ -347,8 +347,20 @@
     width: 100%;
     height: 100px;
   }
+  .mini-banner {
+    height: 35vh;
+  }
+  .pg-des .wrapper .inner-wrapper {
+  padding: 20px 20px 24px;
+}
 }
 @media screen and (max-width: 450px) {
+  .mini-banner {
+    height: 25vh;
+  }
+  .header .logo {
+    width: 100px;
+  }
   .single-blog-breadcrum .breadcrum {
     font-size: 12px;
   }

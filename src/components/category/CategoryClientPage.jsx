@@ -17,6 +17,7 @@ export default function CategoryClientPage({
   breadcrum,
   currentPage,
   totalPages,
+  isPaginatedPage
 }) {
   const categories = useCategories();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -55,6 +56,7 @@ export default function CategoryClientPage({
         short_des={categoryDetails.short_description}
         breadcrum={breadcrum}
         setIsPopupOpen={setIsPopupOpen}
+        isPaginatedPage={isPaginatedPage}
       />
 
       <div className="cat-page">

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ContactPopupForm from "@/components/ContactPopupForm";
 import Popup from "@/components/Popup";
+import MiniBanner from "../MiniBanner";
 
 export default function AllProductsClientPage({
   categorySlug,
@@ -42,8 +43,13 @@ export default function AllProductsClientPage({
           onClose={() => setPopupMessage("")}
         />
       )}
-
-      <CategoryBanner
+      <MiniBanner
+        bg_img={
+          "https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"
+        }
+        pageName={"Products"}
+      />
+      {/* <CategoryBanner
         name={"All Products"}
         image={
           "https://img.freepik.com/free-photo/colorful-vertical-slabs-marble_53876-74705.jpg"
@@ -51,11 +57,11 @@ export default function AllProductsClientPage({
         short_des={""}
         breadcrum={breadcrum}
         setIsPopupOpen={setIsPopupOpen}
-      />
+      /> */}
 
-      <div className="cat-page">
+      {/* <div className="cat-page">
         <Breadcrum path_arr={breadcrum} />
-      </div>
+      </div> */}
 
       <ProductGrid
         categorySlug={categorySlug}
@@ -69,7 +75,7 @@ export default function AllProductsClientPage({
         <div className="pagination text-center my-6 space-x-2">
           {currentPage > 1 && (
             <Link
-              href={`/all-products/page/${currentPage - 1}`}
+              href={`/products/page/${currentPage - 1}`}
               className="px-4 py-2 bg-gray-200 rounded"
             >
               « <span className="sm:inline hidden">Previous</span>
@@ -102,9 +108,7 @@ export default function AllProductsClientPage({
                 )}
                 <Link
                   key={page}
-                  href={
-                    page === 1 ? `/all-products/` : `/all-products/page/${page}`
-                  }
+                  href={page === 1 ? `/products/` : `/products/page/${page}`}
                   className={`px-4 py-2 rounded font-semibold ${
                     currentPage === page
                       ? "bg-[#DC5100] text-white"
@@ -118,7 +122,7 @@ export default function AllProductsClientPage({
 
           {currentPage < totalPages && (
             <Link
-              href={`/all-products/page/${currentPage + 1}`}
+              href={`/products/page/${currentPage + 1}`}
               className="px-4 py-2 bg-gray-200 rounded"
             >
               <span className="sm:inline hidden">Next</span> »

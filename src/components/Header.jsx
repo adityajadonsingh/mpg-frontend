@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCategories } from "@/context/CategoryContext";
 import { useEffect, useRef, useState } from "react";
+import SearchBar from "./SearchBar";
 
 
 export default function Header({contactDetails}) {
@@ -60,9 +61,8 @@ export default function Header({contactDetails}) {
           </div>
 
           {/* Search Bar */}
-          <div className="search-bar relative h-fit hidden md:block">
-            <input className="search-input outline-0" type="text" />
-            <i className="bi bi-search search-icn"></i>
+          <div className="search-bar xl:w-96 md:w-72 sm:w-52 w-40 md:relative h-fit ">
+            <SearchBar categories={categories} />
           </div>
 
           {/* Mobile Menu Icon */}
@@ -89,6 +89,7 @@ export default function Header({contactDetails}) {
                         <Link
                           href={`/product-category/${cat.slug}/`}
                           className="block px-4 py-2 hover:bg-gray-100 whitespace-nowrap"
+                          onClick={() => setDropdown("hidden")}
                         >
                           {cat.category_name}
                         </Link>
@@ -97,7 +98,7 @@ export default function Header({contactDetails}) {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <Link href="/all-products/">Products</Link>
+                  <Link href="/products/">Products</Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/about-us/">About Us</Link>
@@ -158,7 +159,7 @@ export default function Header({contactDetails}) {
               </details>
             </li>
             <li className="nav-item">
-              <Link href="/all-products/" onClick={toggleSidebar}>
+              <Link href="/products/" onClick={toggleSidebar}>
                 Products
               </Link>
             </li>

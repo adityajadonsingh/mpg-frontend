@@ -20,7 +20,7 @@ export default async function BlogsDefaultPage() {
 
     return (
         <>
-            <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"All Blogs"} />
+            <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Blogs"} />
             <section className="blog-page">
                 <div className="wrapper">
                     <div className="grid lg:grid-cols-3 gap-5">

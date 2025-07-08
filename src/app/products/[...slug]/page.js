@@ -42,7 +42,7 @@ async function renderPage(pageIndex) {
   const paginatedProducts = allProducts.slice(start, end);
 
   const slugPath = [
-    { slug_name: "All Products", slug: "/all-products" },
+    { slug_name: "Products", slug: "/products/" },
   ];
 
   return (

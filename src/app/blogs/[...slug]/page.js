@@ -33,7 +33,7 @@ export default async function BlogPaginatedPage({ params }) {
 
   return (
     <>
-      <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={`All Blogs - Page ${pageIndex}`} />
+      <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={`Blogs`} />
 
       <section className="blog-page">
         <div className="wrapper">

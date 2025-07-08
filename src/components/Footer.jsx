@@ -208,7 +208,7 @@ export default function Footer({ socialLinks, contactDetails }) {
                   <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li>
-                  <Link href="/cookies-setting">Cookies Setting</Link>
+                  <Link href="/cookies-setting">Cookies Policy</Link>
                 </li>
               </ul>
               <ul className="social-icns flex gap-x-4">
