@@ -158,7 +158,7 @@ export default function ContactPopupForm({
             required
           />
           <ReCAPTCHA
-                  sitekey={"6LeXonMrAAAAAGtX_r67cVdX-OFictaSFfINO5GM"}
+                  sitekey={"6LfklHsrAAAAANsQ64NzdjlMjE80WvbFpOv5Mg2y"}
                   onChange={handleCaptchaChange}
                   ref={recaptchaRef}
                 />
