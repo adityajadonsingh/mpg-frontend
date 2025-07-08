@@ -73,7 +73,7 @@ export default function SearchBar({ categories }) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search products or categories..."
-        className="w-full border border-gray-300 rounded p-2 sm:px-4 px-2 md:text-base text-xs"
+        className="w-full border bg-white border-0 rounded p-2 sm:px-4 px-2 md:text-base text-xs"
       />
 
       {isOpen &&

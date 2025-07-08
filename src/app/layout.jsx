@@ -22,6 +22,7 @@ export const metadata = {
   title: "MPG Stone",
   description: "Informative website for stone products",
   robots: "noindex, nofollow",
+  authors: [{ name: "mpgstone.co.uk" }],
 };
 
 export default async function RootLayout({ children }) {

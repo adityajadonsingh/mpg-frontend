@@ -8,12 +8,15 @@ import ContactForm from "@/components/home/ContactForm";
 import { getAllBanners } from "@/lib/api/homeBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
 import { getAllTestimonials } from "@/lib/api/testimonials";
+import PageDescription from "@/components/PageDescription";
+import { getHomepageContent } from "@/lib/api/homepageContent";
 
 export default async function Home() {
   const banners = await getAllBanners();
   const blogs = await getAllBlogs();
   const testimonials = await getAllTestimonials();
-
+  const homePageContent = await getHomepageContent();
+  console.log(homePageContent.content)
   return (
     <>
       <HeroClient banners={banners} />
@@ -23,6 +26,7 @@ export default async function Home() {
       <Testimonials testimonials={testimonials.testimonials} />
       <Blogs blogs={blogs.blogs} />
       <ContactForm/>
+      <PageDescription content={homePageContent.content} />
     </>
   );
 }
