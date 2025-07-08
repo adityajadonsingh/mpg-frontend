@@ -1,6 +1,6 @@
 "use client";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function ContactPopupForm({
   isOpen,
@@ -14,8 +14,10 @@ export default function ContactPopupForm({
     email: "",
     phone_number: "",
     message: "",
-    consent: false,
   });
+
+  const recaptchaRef = useRef();
+  const [captchaToken, setCaptchaToken] = useState("");
 
   useEffect(() => {
     if (isOpen) {
@@ -25,27 +27,28 @@ export default function ContactPopupForm({
         email: "",
         phone_number: "",
         message: "",
-        consent: false,
       });
-      setPopupMessage(""); // Clear previous message when reopening
+      setPopupMessage("");
+      setCaptchaToken("");
     }
   }, [isOpen, productName]);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
+  };
+
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.consent) {
-      setPopupMessage("Please agree to the terms before submitting.");
-      return;
-    } else if (
+    if (
       formData.name === "" ||
       formData.email === "" ||
       formData.phone_number === "" ||
@@ -58,9 +61,10 @@ export default function ContactPopupForm({
       return;
     }
 
-    const { consent, ...dataToSend } = formData;
-
-    console.log("Submitting form:", dataToSend); // Optional: for debugging
+    if (!captchaToken) {
+      setPopupMessage("Please complete the captcha!");
+      return;
+    }
 
     try {
       const captchaRes = await fetch("/api/verifyCaptcha", {
@@ -73,19 +77,20 @@ export default function ContactPopupForm({
         setPopupMessage("Captcha verification failed. Please try again.");
         return;
       }
+
       const res1 = await fetch(
         "https://backend.mpgstone.co.uk/api/enquiry/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(dataToSend),
+          body: JSON.stringify(formData),
         }
       );
 
       const res2 = await fetch("/api/sendMail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...dataToSend, type: "product" }),
+        body: JSON.stringify({ ...formData, type: "product" }),
       });
 
       if (!res1.ok || !res2.ok) {
@@ -99,9 +104,8 @@ export default function ContactPopupForm({
         email: "",
         phone_number: "",
         message: "",
-        consent: false,
       });
-      setIsOpen(false); // Close only after successful submission
+      setIsOpen(false);
     } catch (err) {
       console.error("Submission error:", err);
       setPopupMessage("Submission failed");
@@ -158,22 +162,10 @@ export default function ContactPopupForm({
             required
           />
           <ReCAPTCHA
-                  sitekey={"6LfVlnsrAAAAABI5DwQKOyFKU_yn49jytbUWOflm"}
-                  onChange={handleCaptchaChange}
-                  ref={recaptchaRef}
-                />
-          <label className="hidden items-start space-x-2 text-sm text-gray-700">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={formData.consent}
-              onChange={handleChange}
-              required
-            />
-            <span>
-              I agree to the terms and want to stay updated with offers.
-            </span>
-          </label>
+            sitekey={"6LfVlnsrAAAAABI5DwQKOyFKU_yn49jytbUWOflm"}
+            onChange={handleCaptchaChange}
+            ref={recaptchaRef}
+          />
           <button
             type="submit"
             className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 cursor-pointer"

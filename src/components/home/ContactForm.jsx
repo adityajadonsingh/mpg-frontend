@@ -1,46 +1,26 @@
 "use client";
+import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useState, useEffect, useRef } from "react";
+import Popup from "@/components/Popup";
 
-export default function ContactPopupForm({
-  isOpen,
-  setIsOpen,
-  productName,
-  setPopupMessage,
-}) {
+export default function ContactForm({ isContactPage = false }) {
+  const [popupMessage, setPopupMessage] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const recaptchaRef = useRef();
+
   const [formData, setFormData] = useState({
-    product_name: "",
     name: "",
     email: "",
     phone_number: "",
     message: "",
-    consent: false,
   });
 
-  const recaptchaRef = useRef();
-  const [captchaToken, setCaptchaToken] = useState("");
-
-  useEffect(() => {
-    if (isOpen) {
-      setFormData({
-        product_name: productName || "",
-        name: "",
-        email: "",
-        phone_number: "",
-        message: "",
-        consent: false,
-      });
-      setPopupMessage("");
-      setCaptchaToken("");
-    }
-  }, [isOpen, productName]);
-
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleCaptchaChange = (token) => {
@@ -50,10 +30,7 @@ export default function ContactPopupForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.consent) {
-      setPopupMessage("Please agree to the terms before submitting.");
-      return;
-    } else if (
+    if (
       formData.name === "" ||
       formData.email === "" ||
       formData.phone_number === "" ||
@@ -62,16 +39,14 @@ export default function ContactPopupForm({
       setPopupMessage("Please fill all details!");
       return;
     } else if (!/^[+\d][\d\s-]*$/.test(formData.phone_number)) {
-      setPopupMessage("Invalid phone number format!");
+      setPopupMessage(
+        "Phone number must contain only digits, spaces, hyphens, or start with '+'!"
+      );
       return;
-    }
-
-    if (!captchaToken) {
+    } else if (!captchaToken) {
       setPopupMessage("Please complete the captcha!");
       return;
     }
-
-    const { consent, ...dataToSend } = formData;
 
     try {
       const captchaRes = await fetch("/api/verifyCaptcha", {
@@ -85,115 +60,136 @@ export default function ContactPopupForm({
         return;
       }
 
-      const res1 = await fetch(
-        "https://backend.mpgstone.co.uk/api/enquiry/",
+      const postRes = await fetch(
+        "https://backend.mpgstone.co.uk/api/contact/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(dataToSend),
+          body: JSON.stringify(formData),
         }
       );
+      if (!postRes.ok) throw new Error("External API failed");
 
-      const res2 = await fetch("/api/sendMail", {
+      const emailRes = await fetch("/api/sendMail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...dataToSend, type: "product" }),
+        body: JSON.stringify({ ...formData, type: "contact" }),
       });
-
-      if (!res1.ok || !res2.ok) {
-        throw new Error("API response not ok");
-      }
+      if (!emailRes.ok) throw new Error("Email API failed");
 
       setPopupMessage("Message sent successfully!");
       setFormData({
-        product_name: productName || "",
         name: "",
         email: "",
         phone_number: "",
         message: "",
-        consent: false,
       });
-      setIsOpen(false);
+      setCaptchaToken("");
+      recaptchaRef.current.reset();
     } catch (err) {
-      console.error("Submission error:", err);
+      console.error(err);
       setPopupMessage("Submission failed");
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-[#00000086] bg-opacity-50 z-[99999] backdrop-blur-[2px] flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 max-w-lg w-[95%] relative shadow-lg">
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-2 right-2 text-3xl cursor-pointer text-gray-600 hover:text-black"
-        >
-          &times;
-        </button>
-        <h2 className="text-xl font-bold mb-4">Contact Us</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="NAME"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-3 bg-gray-100"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="EMAIL"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-3 bg-gray-100"
-            required
-          />
-          <input
-            type="tel"
-            name="phone_number"
-            placeholder="PHONE"
-            value={formData.phone_number}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-3 bg-gray-100"
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="MESSAGE"
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-3 bg-gray-100"
-            rows={4}
-            required
-          />
-          <ReCAPTCHA
-            sitekey={"6LfVlnsrAAAAABI5DwQKOyFKU_yn49jytbUWOflm"}
-            onChange={handleCaptchaChange}
-            ref={recaptchaRef}
-          />
-          <label className="hidden items-start space-x-2 text-sm text-gray-700">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={formData.consent}
-              onChange={handleChange}
-              required
-            />
-            <span>
-              I agree to the terms and want to stay updated with offers.
-            </span>
-          </label>
-          <button
-            type="submit"
-            className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 cursor-pointer"
-          >
-            Send message
-          </button>
-        </form>
-      </div>
-    </div>
+    <>
+      {popupMessage && (
+        <Popup
+          message={popupMessage}
+          duration={3000}
+          onClose={() => setPopupMessage("")}
+        />
+      )}
+      <section className="contact-home pb-10 scroll-mt-28" id="contactForm">
+        <div className="wrapper">
+          <div className="grid md:grid-cols-2 grid-cols-1">
+            {isContactPage ? (
+              <div className="contact-map w-full md:h-full h-60 md:pb-0 pb-8 overflow-hidden rounded-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1261703.2816718512!2d-2.8678275133941526!3d51.85613199156033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876044584955555%3A0x80c9a38bec6df4a7!2sAllstone%20Products%20Ltd!5e0!3m2!1sen!2sin!4v1750402691369!5m2!1sen!2sin"
+                  allowFullScreen=""
+                  loading="lazy"
+                  className="w-full h-full"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            ) : (
+              <div className="content my-auto lg:px-8 pr-4 md:pb-0 pb-8">
+                <h2 className="heading mb-4">
+                  Contact us to discuss your Project today now
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  temporibus harum, sapiente nostrum numquam quas nesciunt vitae
+                  eos dolor minus ipsam. Aut optio aliquam temporibus
+                  perspiciatis quos voluptatem culpa porro iste vero ipsa vitae
+                  in cumque dignissimos harum, voluptatum minus!
+                </p>
+              </div>
+            )}
+
+            <div className="form-div">
+              <form
+                onSubmit={handleSubmit}
+                className={`space-y-4 ${
+                  isContactPage ? "sm:w-10/12" : "lg:w-2/3"
+                } w-full m-auto`}
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="NAME"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded p-3 bg-gray-100"
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="EMAIL"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded p-3 bg-gray-100"
+                  required
+                />
+                <input
+                  type="tel"
+                  name="phone_number"
+                  placeholder="PHONE"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded p-3 bg-gray-100"
+                  required
+                />
+                <textarea
+                  name="message"
+                  placeholder="MESSAGE"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded p-3 bg-gray-100"
+                  rows={4}
+                  required
+                />
+
+                <ReCAPTCHA
+                  sitekey={"6LfVlnsrAAAAABI5DwQKOyFKU_yn49jytbUWOflm"}
+                  onChange={handleCaptchaChange}
+                  ref={recaptchaRef}
+                />
+
+                <button
+                  type="submit"
+                  className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 cursor-pointer"
+                >
+                  Send message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
