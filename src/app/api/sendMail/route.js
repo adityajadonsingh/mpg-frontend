@@ -19,8 +19,8 @@ export async function POST(request) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "adityajadonsingh@gmail.com",
-        pass: "tweyyqoxizopiimz",
+        user: "digital@mpgstone.com",
+        pass: "aoakrnsezvcfhjig",
       },
       tls: {
         rejectUnauthorized: false,
@@ -29,8 +29,8 @@ export async function POST(request) {
 
     // Admin email content
     const adminMailOptions = {
-      from: "adityajadonsingh@gmail.com",
-      to: "adityajadonsingh@gmail.com",
+      from: "digital@mpgstone.com",
+      to: "digital@mpgstone.com",
       subject:
         type === "contact"
           ? "New Contact Form Submission"
@@ -51,7 +51,7 @@ export async function POST(request) {
 
     // User thank-you email content
     const userMailOptions = {
-      from: "adityajadonsingh@gmail.com",
+      from: "digital@mpgstone.com",
       to: email,
       subject:
         type === "contact"
