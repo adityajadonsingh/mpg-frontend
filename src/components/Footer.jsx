@@ -124,6 +124,7 @@ export default function Footer({ socialLinks, contactDetails }) {
                   </div>
                   <div className="cont-link">
                     {contactDetails.phones.map((tel, idx) => (
+                      
                       <Link
                         key={`tel-${idx}`}
                         href={`tel: ${tel}`}
