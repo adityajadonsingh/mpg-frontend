@@ -10,8 +10,8 @@ export default function ProductClientPage({ product, relatedProducts }) {
   const galleryImages = [mainImage, ...product.gallery_images];
   const slugPath = [
     {
-      slug_name: "Product Categories",
-      slug: "/product-category",
+      slug_name: "Product Category",
+      slug: "/product-category/",
     },
     {
       slug_name: product.category,
@@ -23,7 +23,7 @@ export default function ProductClientPage({ product, relatedProducts }) {
       slug_name: product.name,
       slug: `/product-category/${product.category
         .toLowerCase()
-        .replace(" ", "-")}/${product.slug}`,
+        .replace(" ", "-")}/${product.slug}/`,
     },
   ];
   return (

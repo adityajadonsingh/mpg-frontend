@@ -82,7 +82,7 @@ export default function Header({contactDetails}) {
                     Categories<i className="bi bi-caret-down-fill ml-2"></i>
                   </span>
                   <ul
-                    className={`dropdown-menu absolute bg-white shadow-md z-50 min-w-[150px] overflow-hidden ${dropdown}`}
+                    className={`dropdown-menu absolute bg-white shadow-md z-[999999] min-w-[150px] overflow-hidden ${dropdown}`}
                   >
                     {categories.map((cat) => (
                       <li key={cat.slug} className="rounded overflow-hidden">

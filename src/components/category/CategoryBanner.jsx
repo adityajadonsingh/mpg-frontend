@@ -16,7 +16,7 @@ export default function CategoryBanner({
           <div className="category-info md:w-1/2 w-full">
             <Breadcrum path_arr={breadcrum} />
             <h1 className="capitalize">{name}</h1>
-            {isPaginatedPage && <p>{short_des}</p>}
+            <p>{short_des}</p>
             <div className="flex gap-x-5">
               <Link href="/all-products/">
                 <button className="view-prod-btn">View All Products</button>

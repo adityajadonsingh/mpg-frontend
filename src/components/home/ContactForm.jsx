@@ -2,12 +2,13 @@
 import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Popup from "@/components/Popup";
+import { useRouter } from "next/navigation";
 
 export default function ContactForm({ isContactPage = false }) {
   const [popupMessage, setPopupMessage] = useState("");
   const [captchaToken, setCaptchaToken] = useState("");
   const recaptchaRef = useRef();
-
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,7 +78,11 @@ export default function ContactForm({ isContactPage = false }) {
       });
       if (!emailRes.ok) throw new Error("Email API failed");
 
-      setPopupMessage("Message sent successfully!");
+      if (isContactPage) {
+        router.push("/thank-you");
+      } else {
+        setPopupMessage("Message sent successfully!");
+      }
       setFormData({
         name: "",
         email: "",
