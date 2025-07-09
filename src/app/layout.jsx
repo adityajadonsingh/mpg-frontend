@@ -22,7 +22,7 @@ export const metadata = {
   title: "MPG Stone",
   description: "Informative website for stone products",
   robots: "noindex, nofollow",
-  authors: [{ name: "mpgstone.co.uk" }],
+  authors: [{ name: "mpgstone.com" }],
 };
 
 export default async function RootLayout({ children }) {
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
   const socialLinks = await getSocialLinks();
   const contactDetails = await getContactDetails();
   return (
-    <html lang="en">
+    <html lang="en-US">
       <body
         className={`${montserrat.className} flex flex-col min-h-screen relative`}
       >

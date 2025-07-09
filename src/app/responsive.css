@@ -168,7 +168,7 @@
     height: 50vh;
   }
 
-  .home-banner .content-box h2 {
+  .home-banner .content-box h1 {
     font-size: 35px;
   }
   .home-banner .content-box p {
@@ -309,7 +309,7 @@
   .messageBox .img-box {
     height: 145px;
   }
-  .home-banner .content-box h2 {
+  .home-banner .content-box h1 {
     font-size: 30px;
   }
   .home-category .swiper-button-prev,

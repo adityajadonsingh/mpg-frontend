@@ -30,7 +30,7 @@ export default function HeroClient({ banners }) {
                 blurDataURL="/media/placeholder.jpg"
               />
               <div className="content-box">
-                <h2>{banner.title}</h2>
+                <h1>{banner.title}</h1>
                 <p>{banner.subtitle}</p>
                 <a href="#contactForm">
                   <button>Enquire Now</button>

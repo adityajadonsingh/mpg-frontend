@@ -128,7 +128,7 @@ main {
   border-radius: 15px;
 }
 .home-banner {
-  height: 65vh;
+  height: 55vh;
   width: 100%;
 }
 .home-banner .wrap {
@@ -157,13 +157,13 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(800px, 90%);
+  width: min(900px, 90%);
   text-align: center;
   color: #fff;
   z-index: 1;
 }
-.home-banner .content-box h2 {
-  font-size: 45px;
+.home-banner .content-box h1 {
+  font-size: 40px;
   font-weight: 600;
   line-height: 1.1;
   margin-bottom: 20px;
