@@ -45,7 +45,6 @@ export default function ProductReviews({ product_id }) {
           body: JSON.stringify(payload),
         }
       );
-      console.log(payload)
       if (!res.ok) throw new Error("Failed to submit review");
 
       setPopupMessage("Review submitted!");

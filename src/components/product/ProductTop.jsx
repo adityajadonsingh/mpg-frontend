@@ -54,11 +54,18 @@ export default function ProductTop({
                   <li>
                     <Link href="/">Home</Link>
                   </li>
-                  {path_arr.map((path, idx) => (
-                    <li key={`bread-${idx}`}>
-                      <Link href={path.slug}>{path.slug_name}</Link>
-                    </li>
-                  ))}
+                  {path_arr.map((path, idx) => {
+                    const isLast = idx === path_arr.length - 1;
+                    return (
+                      <li className="capitalize" key={`bread-${idx}`}>
+                        {isLast ? (
+                          <span>{path.slug_name}</span>
+                        ) : (
+                          <Link href={path.slug}>{path.slug_name}</Link>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <Swiper
@@ -123,11 +130,20 @@ export default function ProductTop({
                     <li>
                       <Link href="/">Home</Link>
                     </li>
-                    {path_arr.map((path, idx) => (
-                      <li key={`bread-${idx}`}>
-                        <Link href={path.slug}>{path.slug_name}</Link>
-                      </li>
-                    ))}
+                    {
+                       path_arr.map((path, idx) => {
+                            const isLast = idx === path_arr.length - 1
+                            return (
+                                <li className="capitalize" key={`bread-${idx}`}>
+                                    {isLast ? (
+                                        <span>{path.slug_name}</span>  
+                                    ) : (
+                                        <Link href={path.slug}>{path.slug_name}</Link>
+                                    )}
+                                </li>
+                            )
+                        })
+                    }
                   </ul>
                 </div>
                 <h1 className="font-semibold mt-2 capitalize">{productName}</h1>

@@ -18,7 +18,7 @@ export default function CategoryBanner({
             <h1 className="capitalize">{name}</h1>
             <p>{short_des}</p>
             <div className="flex gap-x-5">
-              <Link href="/all-products/">
+              <Link href="/products/">
                 <button className="view-prod-btn">View All Products</button>
               </Link>
               <button
