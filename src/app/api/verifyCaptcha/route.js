@@ -9,7 +9,7 @@ export async function POST(request) {
       );
     }
 
-    const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=6LfVlnsrAAAAAJfOD2Ua1XschKpWLejpRGj5zR9c&response=${token}`;
+    const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=6LdG53wrAAAAAFK1JljtjCnDPlelz5FqKEUUhJad&response=${token}`;
 
     const googleRes = await fetch(verifyURL, { method: "POST" });
     const googleData = await googleRes.json();

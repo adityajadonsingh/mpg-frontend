@@ -179,7 +179,7 @@ export default function ContactForm({ isContactPage = false }) {
                 />
 
                 <ReCAPTCHA
-                  sitekey={"6LfVlnsrAAAAABI5DwQKOyFKU_yn49jytbUWOflm"}
+                  sitekey={"6LdG53wrAAAAAEuNMH5VOHXBtm_O_3M3flAPvbJS"}
                   onChange={handleCaptchaChange}
                   ref={recaptchaRef}
                 />
