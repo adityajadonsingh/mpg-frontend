@@ -77,7 +77,7 @@ export default function ProductTop({
               >
                 {gallery.map((item, index) => (
                   <SwiperSlide key={index}>
-                    <div className="relative w-full md:h-[400px] h-[300px] group">
+                    <div className="relative w-full md:h-[490px] h-[340px] group">
                       <Image
                         src={item.image}
                         alt={item.alt_text || productName}
@@ -130,20 +130,18 @@ export default function ProductTop({
                     <li>
                       <Link href="/">Home</Link>
                     </li>
-                    {
-                       path_arr.map((path, idx) => {
-                            const isLast = idx === path_arr.length - 1
-                            return (
-                                <li className="capitalize" key={`bread-${idx}`}>
-                                    {isLast ? (
-                                        <span>{path.slug_name}</span>  
-                                    ) : (
-                                        <Link href={path.slug}>{path.slug_name}</Link>
-                                    )}
-                                </li>
-                            )
-                        })
-                    }
+                    {path_arr.map((path, idx) => {
+                      const isLast = idx === path_arr.length - 1;
+                      return (
+                        <li className="capitalize" key={`bread-${idx}`}>
+                          {isLast ? (
+                            <span>{path.slug_name}</span>
+                          ) : (
+                            <Link href={path.slug}>{path.slug_name}</Link>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
                 <h1 className="font-semibold mt-2 capitalize">{productName}</h1>
@@ -152,12 +150,17 @@ export default function ProductTop({
                   dangerouslySetInnerHTML={{ __html: productDescription }}
                 ></p>
               </div>
-              <button
-                onClick={() => setIsPopupOpen(true)}
-                className="enquire-btn sm:w-fit w-full sm:mt-4 mt-2 font-semibold px-4 py-2 bg-black text-white rounded"
-              >
-                Enquire Now
-              </button>
+              <div className="block">
+                <div className="relative sm:h-[100px] h-[64px] md:w-2/3 w-full my-2">
+                  <Image src={"/media/outdoor.png"} alt="outdoor" fill className="object-contain"/>
+                </div>
+                <button
+                  onClick={() => setIsPopupOpen(true)}
+                  className="enquire-btn sm:w-fit w-full sm:mt-4 mt-2 font-semibold px-4 py-2 bg-black text-white rounded"
+                >
+                  Enquire Now
+                </button>
+              </div>
             </div>
           </div>
         </div>

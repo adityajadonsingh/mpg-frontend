@@ -798,11 +798,12 @@ h2.heading {
     a span {
       color: #e88934;
       text-decoration: none !important;
+      font-weight: 600 !important;
     }
     a:hover span {
       color: #c27531;
     }
-    h2 span{
+    h2 span, h3 span, h4 span, h5 span{
       font-weight: 600 !important;
     }
     ul, li{
