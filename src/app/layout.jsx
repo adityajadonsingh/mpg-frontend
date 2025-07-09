@@ -11,6 +11,7 @@ import { getSocialLinks } from "@/lib/api/socialLinks";
 import { getContactDetails } from "@/lib/api/contactDetails";
 import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from 'react';
+import ExtraMetaTags from "@/components/ExtraMetaTags";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,6 +32,9 @@ export default async function RootLayout({ children }) {
   const contactDetails = await getContactDetails();
   return (
     <html lang="en-US">
+      <head>
+        <ExtraMetaTags publisher={" "}/>
+      </head>
       <body
         className={`${montserrat.className} flex flex-col min-h-screen relative`}
       >
