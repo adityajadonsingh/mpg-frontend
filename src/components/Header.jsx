@@ -5,8 +5,7 @@ import { useCategories } from "@/context/CategoryContext";
 import { useEffect, useRef, useState } from "react";
 import SearchBar from "./SearchBar";
 
-
-export default function Header({contactDetails}) {
+export default function Header({ contactDetails }) {
   const categories = useCategories();
   const [dropdown, setDropdown] = useState("hidden");
   const [scrolled, setScrolled] = useState(false);
@@ -29,16 +28,17 @@ export default function Header({contactDetails}) {
   };
   // Close dropdown on outside click
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    function handleClickOutside(event) {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
+        !event.composedPath().includes(dropdownRef.current)
       ) {
         setDropdown("hidden");
       }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+    document.addEventListener("pointerdown", handleClickOutside);
+    return () =>
+      document.removeEventListener("pointerdown", handleClickOutside);
   }, []);
 
   return (
@@ -177,15 +177,15 @@ export default function Header({contactDetails}) {
 
           <div className="contact-icns flex gap-x-4 items-center mt-6">
             <a href={`tel: ${contactDetails.phones[0]}`}>
-                <div className="icn">
-                  <i className="bi bi-telephone"></i>
-                </div>
-              </a>
-              <a href={`mailto: ${contactDetails.emails[0]}`}>
-                <div className="icn">
-                  <i className="bi bi-envelope"></i>
-                </div>
-              </a>
+              <div className="icn">
+                <i className="bi bi-telephone"></i>
+              </div>
+            </a>
+            <a href={`mailto: ${contactDetails.emails[0]}`}>
+              <div className="icn">
+                <i className="bi bi-envelope"></i>
+              </div>
+            </a>
           </div>
         </div>
       </div>
