@@ -841,6 +841,16 @@ h2.heading {
 }
 .pg-des {
   margin-bottom: 30px;
+  span{
+    font-family: 'Montserrat', 'Montserrat Fallback' !important;
+  }
+  a span{
+    color: #f36c23 !important;
+    text-decoration: none !important;
+  }
+  a:hover span{
+    color: #ff782f !important;
+  }
   ol, ul{
     margin-left: 20px;
   }
