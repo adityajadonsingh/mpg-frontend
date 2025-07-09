@@ -22,7 +22,10 @@ export async function generateMetadata() {
       title: content.og_title || content.meta_title,
       description: content.og_description || content.meta_description,
       url: content.canonical_url,
-      images: content.meta_image
+      images: content.meta_image,
+      type: "website",
+      locale: "en_US",
+      siteName: "MPG Stone"
     },
     twitter: {
       title: content.twitter_title || content.meta_title,

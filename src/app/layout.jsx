@@ -23,11 +23,6 @@ export const metadata = {
   description: "Informative website for stone products",
   robots: "noindex, nofollow",
   authors: [{ name: "mpgstone.com" }],
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "MPG Stone"
-  }
 };
 
 export default async function RootLayout({ children }) {
