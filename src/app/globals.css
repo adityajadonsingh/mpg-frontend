@@ -796,12 +796,12 @@ h2.heading {
   }
   .prose {
     a span {
-      color: #e88934;
+      color: #f36c23;
       text-decoration: none !important;
-      font-weight: 600 !important;
+      font-weight: 700 !important;
     }
     a:hover span {
-      color: #c27531;
+      color: #ff6714;
     }
     h2 span, h3 span, h4 span, h5 span{
       font-weight: 600 !important;
