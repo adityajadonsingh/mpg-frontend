@@ -841,6 +841,17 @@ h2.heading {
 }
 .pg-des {
   margin-bottom: 30px;
+  ol, ul{
+    margin-left: 20px;
+  }
+  ol, ol li{
+    list-style: decimal !important;
+    /* margin-left: 15px; */
+  }
+  ul, ul li{
+    list-style: disc !important;
+    /* margin-left: 15px; */
+  }
 }
 
 .pg-des .wrapper .inner-wrapper {

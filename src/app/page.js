@@ -21,12 +21,13 @@ export async function generateMetadata() {
     openGraph: {
       title: content.og_title || content.meta_title,
       description: content.og_description || content.meta_description,
-      // Optional: add images: [content.og_image], ...etc
+      url: content.canonical_url,
+      images: content.og_image
     },
     twitter: {
       title: content.twitter_title || content.meta_title,
       description: content.twitter_description || content.meta_description,
-      // Optional: add images: [content.twitter_image], ...etc
+      images: content.og_image
     },
     alternates: {
       canonical: content.canonical_url || "",
