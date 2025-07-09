@@ -83,9 +83,7 @@ export default function Footer({ socialLinks, contactDetails }) {
                 </Link>
               </div>
               <p className="mt-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-                labore magnam similique amet praesentium odit est non nobis modi
-                ad!
+                Leading natural stones manufacturer and supplier in the USA and worldwide since 1984. With a proven experience of 38+ years, MPG Stone has evolved as one of the fastest-growing natural stones and floor tiles offering brands in a short time.
               </p>
             </div>
             <div className="link-box">
@@ -170,9 +168,7 @@ export default function Footer({ socialLinks, contactDetails }) {
             <div className="link-box">
               <h4>Subscribe</h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Exercitationem consequatur laudantium, voluptatum quia rerum
-                placeat.
+                Stay informed about the latest trends and developments, ensuring you’re always one step ahead. Join us on this journey to explore what’s next in the fascinating world of stones.
               </p>
               <input
                 type="email"

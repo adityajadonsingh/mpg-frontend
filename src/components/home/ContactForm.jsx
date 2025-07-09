@@ -125,11 +125,7 @@ export default function ContactForm({ isContactPage = false }) {
                   Contact us to discuss your Project today now
                 </h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                  temporibus harum, sapiente nostrum numquam quas nesciunt vitae
-                  eos dolor minus ipsam. Aut optio aliquam temporibus
-                  perspiciatis quos voluptatem culpa porro iste vero ipsa vitae
-                  in cumque dignissimos harum, voluptatum minus!
+                  Welcome to MPG Stone! We’re here to assist you in any way we can. Please feel free to reach out to us using the contact information below. Discover a wide range of high-quality products like pavers, cobblestones, indoor tiles, natural stone pavers, different types of marble floorings, and more.
                 </p>
               </div>
             )}
