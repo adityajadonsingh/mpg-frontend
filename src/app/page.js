@@ -32,7 +32,7 @@ export async function generateMetadata() {
     alternates: {
       canonical: content.canonical_url || "",
     },
-    robots: content.robots_tag || "index,follow",
+    robots: content.robots_tag,
   };
 }
 
