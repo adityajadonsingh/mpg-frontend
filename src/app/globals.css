@@ -506,7 +506,7 @@ h2.heading {
 .category-grid .third-cols {
   height: 450px;
 }
-.cat-swiper .swiper-cards{
+.cat-swiper .swiper-cards {
   padding-bottom: 40px;
 }
 .overlay-txt {
@@ -795,11 +795,22 @@ h2.heading {
     font-size: 18px;
   }
   .prose {
-    a {
+    a span {
       color: #e88934;
+      text-decoration: none !important;
     }
-    a:hover {
+    a:hover span {
       color: #c27531;
+    }
+    h2 span{
+      font-weight: 600 !important;
+    }
+    ul, li{
+      padding-left: 20px;
+    }
+    span{
+      font-family: "Montserrat", "Montserrat Fallback" !important;
+      font-weight: 500 !important;
     }
   }
   .blog-btm {
@@ -814,6 +825,11 @@ h2.heading {
       &:hover {
         border: 2px solid #a7a7a7;
       }
+    }
+  }
+  .prose {
+    img {
+      width: 100%;
     }
   }
 }
@@ -841,24 +857,27 @@ h2.heading {
 }
 .pg-des {
   margin-bottom: 30px;
-  span{
-    font-family: 'Montserrat', 'Montserrat Fallback' !important;
+  span {
+    font-family: "Montserrat", "Montserrat Fallback" !important;
   }
-  a span{
+  a span {
     color: #f36c23 !important;
     text-decoration: none !important;
   }
-  a:hover span{
+  a:hover span {
     color: #ff782f !important;
   }
-  ol, ul{
+  ol,
+  ul {
     margin-left: 20px;
   }
-  ol, ol li{
+  ol,
+  ol li {
     list-style: decimal !important;
     /* margin-left: 15px; */
   }
-  ul, ul li{
+  ul,
+  ul li {
     list-style: disc !important;
     /* margin-left: 15px; */
   }
@@ -978,7 +997,7 @@ h2.heading {
   z-index: -1;
   font-size: 260px;
   font-weight: 800;
-color: #f36c235d;
+  color: #f36c235d;
   transform: translate(-50%, -50%);
 }
 .page-404 .wrapper .inn-text {

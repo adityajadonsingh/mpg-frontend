@@ -82,7 +82,7 @@ export default function ProductTop({
                         src={item.image}
                         alt={item.alt_text || productName}
                         fill
-                        className="object-cover h-full w-full bg-[#ebedf0]"
+                        className="object-cover object-center h-full w-full bg-[#ebedf0]"
                         placeholder="blur"
                         blurDataURL="/media/placeholder.jpg"
                       />
@@ -112,7 +112,7 @@ export default function ProductTop({
                         src={item.image}
                         alt={item.alt_text || productName}
                         fill
-                        className="object-cover rounded h-full w-full bg-[#ebedf0]"
+                        className="object-cover object-center rounded h-full w-full bg-[#ebedf0]"
                         placeholder="blur"
                         blurDataURL="/media/placeholder.jpg"
                       />
