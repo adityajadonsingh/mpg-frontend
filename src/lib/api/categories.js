@@ -1,5 +1,5 @@
 export const getAllCategories = async () => {
-  const res = await fetch("https://backend.mpgstone.co.uk/api/categories/", {
+  const res = await fetch("https://backend.mpgstone.com/api/categories/", {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",

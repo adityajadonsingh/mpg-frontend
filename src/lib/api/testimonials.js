@@ -1,5 +1,5 @@
 export const getAllTestimonials = async () => {
-  const res = await fetch("https://backend.mpgstone.co.uk/api/testimonials/", {
+  const res = await fetch("https://backend.mpgstone.com/api/testimonials/", {
     next: { revalidate: 60 }, // Revalidate every 60 seconds
     headers: {
       "Content-Type": "application/json",

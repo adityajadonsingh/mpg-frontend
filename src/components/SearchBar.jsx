@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { getAllProducts } from "@/lib/api/products";
 
 export default function SearchBar({ categories }) {
   const minimalCategories = categories.map((cat) => ({
@@ -21,18 +20,6 @@ export default function SearchBar({ categories }) {
     }
     fetchProducts();
   }, []);
-  console.log(minimalCategories, products);
-  const dummyCategories = [
-    { slug: "cobblestone-paving", name: "Cobblestone Paving" },
-    { slug: "natural-stone-paving", name: "Natural Stone Paving" },
-    { slug: "granite-steps", name: "Granite Steps" },
-  ];
-
-  const dummyProducts = [
-    { slug: "buff-sandstone-paving", name: "Buff Sandstone Paving" },
-    { slug: "grey-limestone-tiles", name: "Grey Limestone Tiles" },
-    { slug: "kandla-grey-paving", name: "Kandla Grey Paving" },
-  ];
 
   useEffect(() => {
     if (query.trim() === "") {

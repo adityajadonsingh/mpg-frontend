@@ -79,7 +79,7 @@ export default function ContactPopupForm({
       }
 
       const res1 = await fetch(
-        "https://backend.mpgstone.co.uk/api/enquiry/",
+        "https://backend.mpgstone.com/api/enquiry/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

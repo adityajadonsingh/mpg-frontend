@@ -62,7 +62,7 @@ export default function ContactForm({ isContactPage = false }) {
       }
 
       const postRes = await fetch(
-        "https://backend.mpgstone.co.uk/api/contact/",
+        "https://backend.mpgstone.com/api/contact/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

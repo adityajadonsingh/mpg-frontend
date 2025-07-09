@@ -17,7 +17,7 @@ export default function Footer({ socialLinks, contactDetails }) {
     const fetchSubscribers = async () => {
       try {
         const res = await axios.get(
-          "https://backend.mpgstone.co.uk/api/subscribe/"
+          "https://backend.mpgstone.com/api/subscribe/"
         );
         setSubscribers(res.data.subscribers || []);
       } catch (error) {
@@ -39,10 +39,10 @@ export default function Footer({ socialLinks, contactDetails }) {
       } else {
         try {
           // Save subscriber
-          await axios.post(
-            "https://backend.mpgstone.co.uk/api/subscribe/",
-            { email, type: "newsletter" }
-          );
+          await axios.post("https://backend.mpgstone.com/api/subscribe/", {
+            email,
+            type: "newsletter",
+          });
 
           // Send thank-you email
           await fetch("/api/sendMail", {
@@ -124,7 +124,6 @@ export default function Footer({ socialLinks, contactDetails }) {
                   </div>
                   <div className="cont-link">
                     {contactDetails.phones.map((tel, idx) => (
-                      
                       <Link
                         key={`tel-${idx}`}
                         href={`tel: ${tel}`}
@@ -203,13 +202,10 @@ export default function Footer({ socialLinks, contactDetails }) {
             <div className="flex md:justify-between items-center flex-wrap justify-center gap-y-2">
               <ul className="links flex gap-x-4">
                 <li>
-                  <Link href="/terms-and-conditions">Terms & Conditions</Link>
+                  <Link href="/terms-and-conditions/">Terms & Conditions</Link>
                 </li>
                 <li>
-                  <Link href="/privacy-policy">Privacy Policy</Link>
-                </li>
-                <li>
-                  <Link href="/cookies-setting">Cookies Policy</Link>
+                  <Link href="/privacy-policy/">Privacy Policy</Link>
                 </li>
               </ul>
               <ul className="social-icns flex gap-x-4">

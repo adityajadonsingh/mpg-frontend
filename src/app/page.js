@@ -16,7 +16,6 @@ export default async function Home() {
   const blogs = await getAllBlogs();
   const testimonials = await getAllTestimonials();
   const homePageContent = await getHomepageContent();
-  console.log(homePageContent.content)
   return (
     <>
       <HeroClient banners={banners} />

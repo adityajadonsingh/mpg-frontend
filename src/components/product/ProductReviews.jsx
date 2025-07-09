@@ -36,7 +36,7 @@ export default function ProductReviews({ product_id }) {
 
     try {
       const res = await fetch(
-        "https://backend.mpgstone.co.uk/api/reviews/",
+        "https://backend.mpgstone.com/api/reviews/",
         {
           method: "POST",
           headers: {

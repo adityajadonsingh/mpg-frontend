@@ -19,7 +19,7 @@ export default function CommentSection({ blogId, blogTitle }) {
   // Fetch all comments and filter by blogId
   const fetchComments = async () => {
     try {
-      const res = await fetch("https://backend.mpgstone.co.uk/api/comments/");
+      const res = await fetch("https://backend.mpgstone.com/api/comments/");
       if (!res.ok) throw new Error("Failed to load comments");
       const data = await res.json();
 
@@ -51,7 +51,7 @@ export default function CommentSection({ blogId, blogTitle }) {
 
     try {
       const response = await fetch(
-        "https://backend.mpgstone.co.uk/api/comments/",
+        "https://backend.mpgstone.com/api/comments/",
         {
           method: "POST",
           headers: {
