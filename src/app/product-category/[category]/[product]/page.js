@@ -2,6 +2,40 @@ import ProductClientPage from "@/components/product/ProductClientPage";
 import { getAllProducts } from "@/lib/api/products";
 import { notFound } from "next/navigation";
 
+export async function generateStaticParams() {
+  const allProducts = await getAllProducts("all", "all-category");
+  console.log(allProducts)
+  return allProducts.map((product) => ({
+    category: product.category.replace(" ", "-"),  
+    product: product.slug,            
+  }));
+}
+export const revalidate = 60;
+export default async function ProductDetail({ params }) {
+  const { category, product } = await params;
+
+  // Fetch product detail
+  const productDetails = await getAllProducts(product, null);
+  // ❗ Check immediately if not found
+  if (!productDetails || productDetails.length === 0) {
+    return notFound();
+  }
+
+  // Fetch related only if product exists
+  const fetchRelatedProducts = await getAllProducts("10", category.replace("-", " "));
+  const relatedProducts = fetchRelatedProducts.filter(
+    (prod) => prod.name !== productDetails[0].name
+  );
+
+  return (
+    <ProductClientPage
+      product={productDetails[0]}
+      relatedProducts={relatedProducts}
+    />
+  );
+}
+
+
 export async function generateMetadata({ params }) {
   const { category, product } = await params;
   console.log(category, product)
@@ -29,29 +63,4 @@ export async function generateMetadata({ params }) {
   //   },
   //   robots: categoryData[0].robots_tag,
   // };
-}
-
-export default async function ProductDetail({ params }) {
-  const { category, product } = await params;
-
-  // Fetch product detail
-  const productDetails = await getAllProducts(product, null);
-
-  // ❗ Check immediately if not found
-  if (!productDetails || productDetails.length === 0) {
-    return notFound();
-  }
-
-  // Fetch related only if product exists
-  const fetchRelatedProducts = await getAllProducts("10", category.replace("-", " "));
-  const relatedProducts = fetchRelatedProducts.filter(
-    (prod) => prod.name !== productDetails[0].name
-  );
-
-  return (
-    <ProductClientPage
-      product={productDetails[0]}
-      relatedProducts={relatedProducts}
-    />
-  );
 }
