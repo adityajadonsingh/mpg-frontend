@@ -27,7 +27,6 @@ export default async function BlogSinglePage({ params }) {
     const prevPost = allBlogs.blogs.filter(b => b.id === blog.id - 1);
     const nextPost = allBlogs.blogs.filter(b => b.id === blog.id + 1);
     if (!blog) return notFound();
-    console.log(blog)
     const slugPath = [
         { slug_name: "Blogs", slug: "/blogs" },
         { slug_name: blog.title, slug: `/blogs/${blog.slug}` },
@@ -65,7 +64,7 @@ export default async function BlogSinglePage({ params }) {
                             {
                                 prevPost.length !== 0 ? <Link href={`/blogs/${prevPost[0].slug}`}><button title="Previous Post" className="post-nav"><span className="sm:block hidden">Previous Post</span><i className="bi bi-chevron-left sm:hidden block"></i></button></Link> : null
                             }
-                            
+
                             {
                                 nextPost.length !== 0 ? <Link href={`/blogs/${nextPost[0].slug}`}><button title="Next Post" className="post-nav"><span className="sm:block hidden">Next Post</span><i className="bi bi-chevron-right sm:hidden block"></i></button></Link> : null
                             }
@@ -111,4 +110,34 @@ export default async function BlogSinglePage({ params }) {
 
         </>
     );
+}
+
+export async function generateMetadata({ params }) {
+    const allBlogs = await getAllBlogs();
+    const pageSlug = await params.slug;
+    const blog = allBlogs.blogs.find((b) => b.slug === pageSlug);
+
+      return {
+        title: blog.meta_title,
+        description: blog.meta_description,
+        keywords: blog.meta_keywords,
+        openGraph: {
+          title: blog.og_title || blog.meta_title,
+          description: blog.og_descriptions || blog.meta_description,
+          url: blog.canonical_url,
+          images: blog.meta_image,
+          type: "website",
+          locale: "en_US",
+          siteName: "MPG Stone"
+        },
+        twitter: {
+          title: blog.twitter_title || blog.meta_title,
+          description: blog.twitter_description || blog.meta_description,
+          images: blog.meta_image
+        },
+        alternates: {
+          canonical: blog.canonical_url || "",
+        },
+        robots: blog.robots_tag,
+      };
 }

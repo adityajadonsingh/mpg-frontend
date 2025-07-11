@@ -1,6 +1,5 @@
 // app/blogs/[...slug]/page.js
 
-import Breadcrum from "@/components/Breadcrum";
 import MiniBanner from "@/components/MiniBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
 import Link from "next/link";
@@ -8,7 +7,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export default async function BlogPaginatedPage({ params }) {
-  const slug = params.slug;
+  const slug = await params.slug;
 
   // Validate: expecting /blogs/page/2
   if (slug.length !== 2 || slug[0] !== "page") return notFound();
