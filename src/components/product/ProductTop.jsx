@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 
@@ -30,11 +30,15 @@ export default function ProductTop({
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [safeDescription, setSafeDescription] = useState("");
   const openLightbox = (index) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
 
+  useEffect(() => {
+    setSafeDescription(productDescription);
+  }, [productDescription]);
   return (
     <>
       {popupMessage && (
@@ -147,69 +151,77 @@ export default function ProductTop({
                 <h1 className="font-semibold mt-2 capitalize">{productName}</h1>
                 <p
                   className="mt-2 text-gray-700 prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: productDescription }}
+                  dangerouslySetInnerHTML={{ __html: safeDescription }}
                 ></p>
               </div>
               <div className="block">
-                <div class="features-cards">
-                  <div class="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-4 grid-cols-2 gap-3">
-                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
-                      <div class="img-box w-[60px] h-[60px] relative">
+                <div className="features-cards">
+                  <div className="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-4 grid-cols-2 gap-3">
+                    <div className="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div className="img-box w-[60px] h-[60px] relative">
                         <Image
                           fill
                           className="w-full h-full object-contain object-cente"
                           src="/media/icons/delivery-truck.png"
-                          class="img-fluid"
+                          
                           alt="truck"
                         />
                       </div>
-                      <div class="text">
-                        <h4 className="sm:text-base text-sm font-medium">Delivery all over UK</h4>
+                      <div className="text">
+                        <h4 className="sm:text-base text-sm font-medium">
+                          Delivery all over UK
+                        </h4>
                       </div>
                     </div>
 
-                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
-                      <div class="img-box w-[60px] h-[60px] relative">
+                    <div className="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div className="img-box w-[60px] h-[60px] relative">
                         <Image
                           fill
                           className="w-full h-full object-contain object-cente"
                           src="/media/icons/satisfaction.png"
-                          class="img-fluid"
+                          
                           alt=""
                         />
                       </div>
-                      <div class="text">
-                        <h4 className="sm:text-base text-sm font-medium">Customer Satisfaction</h4>
+                      <div className="text">
+                        <h4 className="sm:text-base text-sm font-medium">
+                          Customer Satisfaction
+                        </h4>
                       </div>
                     </div>
 
-                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
-                      <div class="img-box w-[60px] h-[60px] relative">
+                    <div className="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div className="img-box w-[60px] h-[60px] relative">
                         <Image
                           fill
                           className="w-full h-full object-contain object-cente"
                           src="/media/icons/premium.png"
-                          class="img-fluid"
+                          
                           alt=""
                         />
                       </div>
-                      <div class="text">
-                        <h4 className="sm:text-base text-sm font-medium">Premium Quality</h4>
+                      <div className="text">
+                        <h4 className="sm:text-base text-sm font-medium">
+                          Premium Quality
+                        </h4>
                       </div>
                     </div>
 
-                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
-                      <div class="img-box w-[60px] h-[60px] relative">
+                    <div className="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div className="img-box w-[60px] h-[60px] relative">
                         <Image
                           fill
                           className="w-full h-full object-contain object-cente"
                           src="/media/icons/price-comparison.png"
-                          class="img-fluid"
+                          
                           alt=""
                         />
                       </div>
-                      <div class="text">
-                        <h4 className="sm:text-base text-sm font-medium">Price Match Guarantee</h4>
+                      <div className="text">
+                        <h4 className="sm:text-base text-sm font-medium">
+                          Price Match Guarantee
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -227,11 +239,11 @@ export default function ProductTop({
                     >
                       Contact Us
                     </button>
-                    <Link href={"mailto:info@mpgstone.com"} className="block w-full">
-                      <button
-                        
-                        className=" w-full font-semibold px-4 py-2 bg-[#5a5c5d] text-white rounded cursor-pointer"
-                      >
+                    <Link
+                      href={"mailto:info@mpgstone.com"}
+                      className="block w-full"
+                    >
+                      <button className=" w-full font-semibold px-4 py-2 bg-[#5a5c5d] text-white rounded cursor-pointer">
                         Mail Us
                       </button>
                     </Link>
