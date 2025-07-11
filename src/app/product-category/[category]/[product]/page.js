@@ -4,10 +4,8 @@ import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const allProducts = await getAllProducts("all", "all-category");
-  console.log(allProducts)
   return allProducts.map((product) => {
     let categorySlug = product.category.replace(/ /g, "-").toLowerCase();
-
     return {
       category: categorySlug,
       product: product.slug,
@@ -42,29 +40,29 @@ export default async function ProductDetail({ params }) {
 
 export async function generateMetadata({ params }) {
   const { category, product } = await params;
-  console.log(category, product)
+  const [productDetails] = await getAllProducts(product, null);
 
-  // return {
-  //   title: categoryData[0].meta_title,
-  //   description: categoryData[0].meta_description,
-  //   keywords: categoryData[0].meta_keywords,
-  //   openGraph: {
-  //     title: categoryData[0].og_title || categoryData[0].meta_title,
-  //     description: categoryData[0].og_description || categoryData[0].meta_description,
-  //     url: categoryData[0].canonical_url,
-  //     images: categoryData[0].meta_image,
-  //     type: "website",
-  //     locale: "en_US",
-  //     siteName: "MPG Stone"
-  //   },
-  //   twitter: {
-  //     title: categoryData[0].twitter_title || categoryData[0].meta_title,
-  //     description: categoryData[0].twitter_description || categoryData[0].meta_description,
-  //     images: categoryData[0].meta_image
-  //   },
-  //   alternates: {
-  //     canonical: categoryData[0].canonical_url || "",
-  //   },
-  //   robots: categoryData[0].robots_tag,
-  // };
+  return {
+    title: productDetails.meta_title,
+    description: productDetails.meta_description,
+    keywords: productDetails.meta_keywords,
+    openGraph: {
+      title: productDetails.og_title || productDetails.meta_title,
+      description: productDetails.og_descriptions || productDetails.meta_description,
+      url: productDetails.canonical_url,
+      images: productDetails.meta_image,
+      type: "website",
+      locale: "en_US",
+      siteName: "MPG Stone"
+    },
+    twitter: {
+      title: productDetails.twitter_title || productDetails.meta_title,
+      description: productDetails.twitter_description || productDetails.meta_description,
+      images: productDetails.meta_image
+    },
+    alternates: {
+      canonical: productDetails.canonical_url || "",
+    },
+    robots: productDetails.robots_tag,
+  };
 }
