@@ -4,6 +4,7 @@ import MiniBanner from "@/components/MiniBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
 import Link from "next/link";
 import Image from "next/image";
+import { getPageMetaData } from "@/lib/api/pagesMetaData";
 
 export async function generateMetadata() {
     const pageMetaData = await getPageMetaData("blogs");
