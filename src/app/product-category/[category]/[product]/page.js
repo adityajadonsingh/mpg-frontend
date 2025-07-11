@@ -6,7 +6,7 @@ export async function generateStaticParams() {
   const allProducts = await getAllProducts("all", "all-category");
   console.log(allProducts)
   return allProducts.map((product) => ({
-    category: product.category.replace(" ", "-"),  
+    category: product.category.replace(" ", "-").toLowerCase(),  
     product: product.slug,            
   }));
 }
