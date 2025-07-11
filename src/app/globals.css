@@ -864,6 +864,7 @@ h2.heading {
   a span {
     color: #f36c23 !important;
     text-decoration: none !important;
+    font-weight: 700 !important;
   }
   a:hover span {
     color: #ff782f !important;

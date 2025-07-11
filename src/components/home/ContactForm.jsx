@@ -112,7 +112,7 @@ export default function ContactForm({ isContactPage = false }) {
             {isContactPage ? (
               <div className="contact-map w-full md:h-full h-60 md:pb-0 pb-8 overflow-hidden rounded-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1261703.2816718512!2d-2.8678275133941526!3d51.85613199156033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876044584955555%3A0x80c9a38bec6df4a7!2sAllstone%20Products%20Ltd!5e0!3m2!1sen!2sin!4v1750402691369!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3298.3841937519933!2d-118.53760508820062!3d34.23873897297508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c29baaf292a48d%3A0xc20ed60f30ae1dd7!2s9250%20Reseda%20Blvd%20%23777%2C%20Northridge%2C%20CA%2091324%2C%20USA!5e0!3m2!1sen!2sin!4v1752059259240!5m2!1sen!2sin"
                   allowFullScreen=""
                   loading="lazy"
                   className="w-full h-full"

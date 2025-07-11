@@ -46,7 +46,7 @@ export default function ProductTop({
       )}
       <section className="product-top">
         <div className="wrapper">
-          <div className="flex gap-x-10 lg:flex-nowrap flex-wrap gap-y-10 justify-center">
+          <div className="flex xl:w-11/12 w-full mx-auto gap-x-10 lg:flex-nowrap flex-wrap gap-y-10 justify-center">
             {/* Swiper Gallery */}
             <div className="img-box lg:w-2/5 md:w-3/5 w-full">
               <div className="breadcrum md:hidden block mb-6">
@@ -123,7 +123,7 @@ export default function ProductTop({
             </div>
 
             {/* Product Content */}
-            <div className="product-content lg:w-3/5 w-full flex flex-col justify-between">
+            <div className="product-content lg:w-3/5 w-full flex flex-col ">
               <div className="context">
                 <div className="breadcrum md:block hidden">
                   <ul className="flex space-x-1 flex-wrap">
@@ -151,15 +151,92 @@ export default function ProductTop({
                 ></p>
               </div>
               <div className="block">
-                <div className="relative sm:h-[100px] h-[64px] md:w-2/3 w-full my-2">
-                  <Image src={"/media/outdoor.png"} alt="outdoor" fill className="object-contain"/>
+                <div class="features-cards">
+                  <div class="grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-4 grid-cols-2 gap-3">
+                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div class="img-box w-[60px] h-[60px] relative">
+                        <Image
+                          fill
+                          className="w-full h-full object-contain object-cente"
+                          src="/media/icons/delivery-truck.png"
+                          class="img-fluid"
+                          alt="truck"
+                        />
+                      </div>
+                      <div class="text">
+                        <h4 className="sm:text-base text-sm font-medium">Delivery all over UK</h4>
+                      </div>
+                    </div>
+
+                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div class="img-box w-[60px] h-[60px] relative">
+                        <Image
+                          fill
+                          className="w-full h-full object-contain object-cente"
+                          src="/media/icons/satisfaction.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text">
+                        <h4 className="sm:text-base text-sm font-medium">Customer Satisfaction</h4>
+                      </div>
+                    </div>
+
+                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div class="img-box w-[60px] h-[60px] relative">
+                        <Image
+                          fill
+                          className="w-full h-full object-contain object-cente"
+                          src="/media/icons/premium.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text">
+                        <h4 className="sm:text-base text-sm font-medium">Premium Quality</h4>
+                      </div>
+                    </div>
+
+                    <div class="card flex justify-center items-center sm:gap-x-5 gap-x-2 bg-[#f9f9f9] md:py-3 py-2 md:px-3 px-2 rounded-md">
+                      <div class="img-box w-[60px] h-[60px] relative">
+                        <Image
+                          fill
+                          className="w-full h-full object-contain object-cente"
+                          src="/media/icons/price-comparison.png"
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text">
+                        <h4 className="sm:text-base text-sm font-medium">Price Match Guarantee</h4>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <button
-                  onClick={() => setIsPopupOpen(true)}
-                  className="enquire-btn sm:w-fit w-full sm:mt-4 mt-2 font-semibold px-4 py-2 bg-black text-white rounded"
-                >
-                  Enquire Now
-                </button>
+                <div className="connect flex sm:flex-nowrap flex-wrap items-center rounded-md gap-x-2 gap-y-2 mt-5 px-5 py-6 bg-[#f9f9f9]">
+                  <div className="xl:w-7/12 lg:w-6/12 w-full sm:w-5/12 sm:text-start text-center">
+                    <span className="text-lg font-medium ">
+                      Would you like to connect?
+                    </span>
+                  </div>
+                  <div className="xl:w-5/12 lg:w-6/12 sm:w-7/12 w-full flex gap-x-3">
+                    <button
+                      onClick={() => setIsPopupOpen(true)}
+                      className=" w-full font-semibold px-4 py-2 bg-[#f36c23] hover:bg-[#f36c23d2] cursor-pointer text-white rounded"
+                    >
+                      Contact Us
+                    </button>
+                    <Link href={"mailto:info@mpgstone.com"} className="block w-full">
+                      <button
+                        
+                        className=" w-full font-semibold px-4 py-2 bg-[#5a5c5d] text-white rounded cursor-pointer"
+                      >
+                        Mail Us
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
