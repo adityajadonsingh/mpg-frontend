@@ -1,17 +1,43 @@
 // app/blogs/page.js
 
-import Breadcrum from "@/components/Breadcrum";
 import MiniBanner from "@/components/MiniBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
 import Link from "next/link";
 import Image from "next/image";
+
+export async function generateMetadata() {
+    const pageMetaData = await getPageMetaData("blogs");
+
+      return {
+        title: pageMetaData.meta_title,
+        description: pageMetaData.meta_description,
+        keywords: pageMetaData.meta_keywords,
+        openGraph: {
+          title: pageMetaData.og_title || pageMetaData.meta_title,
+          description: pageMetaData.og_descriptions || pageMetaData.meta_description,
+          url: pageMetaData.canonical_url,
+          images: pageMetaData.meta_image,
+          type: "website",
+          locale: "en_US",
+          siteName: "MPG Stone"
+        },
+        twitter: {
+          title: pageMetaData.twitter_title || pageMetaData.meta_title,
+          description: pageMetaData.twitter_description || pageMetaData.meta_description,
+          images: pageMetaData.meta_image
+        },
+        alternates: {
+          canonical: pageMetaData.canonical_url || "",
+        },
+        robots: pageMetaData.robots_tag,
+      };
+}
 
 export default async function BlogsDefaultPage() {
     const pageIndex = 1;
     const perPage = 9;
 
     const allBlogs = await getAllBlogs();
-    console.log(allBlogs.blogs)
 
     const totalPages = Math.ceil(allBlogs.blogs.length / perPage);
     const start = (pageIndex - 1) * perPage;

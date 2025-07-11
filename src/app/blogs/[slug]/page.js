@@ -59,6 +59,14 @@ export default async function BlogSinglePage({ params }) {
                         className="prose max-w-none"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     ></div>
+                    <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#d6dae0]">
+                        <h5 className="sm:text-xl text-lg font-semibold text-[#f36c23]">About The Autor</h5>
+                        <hr className="my-3"/>
+                        <p className="sm:text-base text-sm">
+                            <strong>Jaya Tripathi</strong> is a seasoned content writer and editor with over a decade of experience in the stone and real estate industries. As a leading voice at MPG Stone, she shares insights on installment processes, project insights, design guides, and much more
+                        </p>
+                    </div>
+
                     <div className="blog-btm flex justify-between items-center mt-8">
                         <div className="flex gap-x-4">
                             {
