@@ -2,93 +2,40 @@
 
 import { useState, useEffect } from "react";
 import { useCategories } from "@/context/CategoryContext";
-import CardSlider from "./CardSlider";
-import { getAllProducts } from "@/lib/api/products";
-
-// ✅ Simple skeleton placeholder component
-function CategorySkeleton({direction = "row"}) {
-  console.log(direction)
-  return (
-    <div className={`animate-pulse flex items-center px-10 gap-8 py-12 flex-${direction}`}>
-      {/* Left side (text) */}
-      <div className="w-1/2 space-y-4">
-        <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-        <div className="h-4 bg-gray-200 rounded w-full"></div>
-        <div className="h-4 bg-gray-200 rounded w-full"></div>
-        <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-      </div>
-      {/* Right side (slider placeholder) */}
-      <div className="w-1/2 h-[300px] bg-gray-200 rounded-lg"></div>
-    </div>
-  );
-}
+import Image from "next/image";
+import Link from "next/link";
 
 export default function CategoriesGrid() {
   const categories = useCategories();
-  const [categoryArr, setCategoryArr] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      const arr = await Promise.all(
-        categories.map(async (item) => ({
-          category: item.category_name,
-          short_description: item.short_description,
-          category_products: await getAllProducts("5", item.category_name),
-        }))
-      );
-      setCategoryArr(arr);
-      setIsLoading(false);
-    }
-
-    if (categories.length > 0) {
-      fetchData();
-    }
-  }, [categories]);
-
-  const bgColors = [
-    "bg-[#f9f9f9]",
-    "bg-[#f0f9ff]",
-    "bg-[#fefce8]",
-    "bg-[#f0fdf4]",
-    "bg-[#fff7ed]",
-    "bg-[#fdf2f8]",
-    "bg-[#f3f4f6]",
-  ];
+  console.log(categories);
 
   return (
-    <section className="category-grid min-h-[600px]">
-      {isLoading ? (
-        <>
-          {/* Skeletons while loading */}
-          <CategorySkeleton />
-          <CategorySkeleton direction={"row-reverse"} />
-          <CategorySkeleton />
-        </>
-      ) : (
-        categoryArr.map((catObj, index) => {
-          const bgColor = bgColors[index % bgColors.length];
-
+    <section className="category-grid my-10 ">
+      <div className="wrapper grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-6">
+        {categories.map((catObj, index) => {
           return (
-            <div
-              key={catObj.category}
-              className={`category-part flex items-center ${
-                index % 2 !== 0 ? "flex-row-reverse" : ""
-              }`}
-            >
-              <div className="content w-1/2">
-                <h2 className="text-3xl mb-4 font-semibold capitalize">
-                  {catObj.category}
-                </h2>
-                <p>{catObj.short_description}</p>
+            <Link href={`/product-category/${catObj.category_name.replace(/ /g, "-").toLowerCase()}`}>
+              <div
+                className="card group"
+                key={`${catObj.category_name}-${index}`}
+              >
+                <div className="text pb-3 text-center">
+                  <span className="md:text-lg sm:text-base text-sm group-hover:text-[#f36c23] capitalize text-center font-semibold">{catObj.category_name}</span>
+                </div>
+                <div className="relative rounded-md overflow-hidden xl:h-[340px] lg:h-[300px] md:h-[280px] sm:h-[200px] h-[150px] w-full">
+                  <Image
+                  src={catObj.image}
+                  alt={catObj.category_name}
+                  fill
+                  className={"object-cover group-hover:scale-[1.05]"}
+                />
+                </div>
+                
               </div>
-              <div className={`cards-slider w-1/2 ${bgColor}`}>
-                <CardSlider products={catObj.category_products} />
-              </div>
-            </div>
+            </Link>
           );
-        })
-      )}
+        })}
+      </div>
     </section>
   );
 }

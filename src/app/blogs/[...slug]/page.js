@@ -51,7 +51,7 @@ export default async function BlogPaginatedPage({ params }) {
                       blurDataURL="/media/placeholder.jpg"
                     />
                   </div>
-                  <div className="p-4 flex flex-col justify-between h-[150px] text-center">
+                  <div className="p-4 flex flex-col justify-start h-[180px] text-center">
                     <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
                     <p className="text-orange-600 text-sm mb-2">
                       Author Name | <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
@@ -60,7 +60,11 @@ export default async function BlogPaginatedPage({ params }) {
     day: "numeric",
   })}</span>
                     </p>
-                    <p className="text-sm text-gray-600 line-clamp-3">{blog.description}</p>
+                    <p className="text-sm text-gray-600 line-clamp-3">
+                                                {blog.description.length > 100
+                                                    ? `${blog.description.slice(0, 100)} ...`
+                                                    : blog.description}
+                                            </p>
                   </div>
                 </div>
               </Link>

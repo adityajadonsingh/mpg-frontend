@@ -1,4 +1,4 @@
-// app/blogs/page.js
+// app/author/page.js
 
 import MiniBanner from "@/components/MiniBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
@@ -9,29 +9,29 @@ import { getPageMetaData } from "@/lib/api/pagesMetaData";
 export async function generateMetadata() {
     const pageMetaData = await getPageMetaData("blogs");
 
-      return {
+    return {
         title: pageMetaData.meta_title,
         description: pageMetaData.meta_description,
         keywords: pageMetaData.meta_keywords,
         openGraph: {
-          title: pageMetaData.og_title || pageMetaData.meta_title,
-          description: pageMetaData.og_descriptions || pageMetaData.meta_description,
-          url: pageMetaData.canonical_url,
-          images: pageMetaData.meta_image,
-          type: "website",
-          locale: "en_US",
-          siteName: "MPG Stone"
+            title: pageMetaData.og_title || pageMetaData.meta_title,
+            description: pageMetaData.og_descriptions || pageMetaData.meta_description,
+            url: pageMetaData.canonical_url,
+            images: pageMetaData.meta_image,
+            type: "website",
+            locale: "en_US",
+            siteName: "MPG Stone"
         },
         twitter: {
-          title: pageMetaData.twitter_title || pageMetaData.meta_title,
-          description: pageMetaData.twitter_description || pageMetaData.meta_description,
-          images: pageMetaData.meta_image
+            title: pageMetaData.twitter_title || pageMetaData.meta_title,
+            description: pageMetaData.twitter_description || pageMetaData.meta_description,
+            images: pageMetaData.meta_image
         },
         alternates: {
-          canonical: pageMetaData.canonical_url || "",
+            canonical: pageMetaData.canonical_url || "",
         },
         robots: pageMetaData.robots_tag,
-      };
+    };
 }
 
 export default async function BlogsDefaultPage() {
@@ -47,9 +47,10 @@ export default async function BlogsDefaultPage() {
 
     return (
         <>
-            <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Blogs"} />
+
             <section className="blog-page">
                 <div className="wrapper">
+                    <h1 className="md:text-2xl text-lg md:mb-8 mb-4 font-semibold">Jaya Tripathi's Blog Post</h1>
                     <div className="grid lg:grid-cols-3 gap-5">
                         {
                             paginatedBlogs.map((blog, idx) => {
@@ -66,15 +67,15 @@ export default async function BlogsDefaultPage() {
                                                 blurDataURL="/media/placeholder.jpg"
                                             />
                                         </div>
-                                        <div className="p-4 flex flex-col justify-between h-[180px] text-center">
+                                        <div className="p-4 flex flex-col justify-start h-[180px] text-center">
                                             <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
                                             <p className="text-orange-600 text-sm mb-2">
                                                 Jaya Tripathi |{" "}
                                                 <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })}</span>
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric",
+                                                })}</span>
                                             </p>
                                             <p className="text-sm text-gray-600 line-clamp-3">
                                                 {blog.description.length > 100
