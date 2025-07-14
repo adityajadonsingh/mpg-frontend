@@ -626,6 +626,13 @@ h2.heading {
 .product-top .breadcrum {
   background-color: #fff;
   padding: 0;
+  a{
+    color: #da4c00;
+    font-weight: 600;
+  }
+  a:hover{
+    color: #ff6310;
+  }
 }
 .product-mid {
   padding: 40px 0 30px 0;

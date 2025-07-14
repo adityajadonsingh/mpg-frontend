@@ -169,7 +169,7 @@ export default function ProductTop({
                       </div>
                       <div className="text">
                         <h4 className="sm:text-base text-sm font-medium">
-                          Delivery all over UK
+                          On Time Delivery
                         </h4>
                       </div>
                     </div>
