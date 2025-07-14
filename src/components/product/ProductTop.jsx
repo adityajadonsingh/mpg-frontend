@@ -249,6 +249,10 @@ export default function ProductTop({
                     </Link>
                   </div>
                 </div>
+                <span className="font-semibold text-sm mt-5 block">
+                  *Please note: The Slab size, thickness, finish could be
+                  slightly varied from the images.
+                </span>
               </div>
             </div>
           </div>
