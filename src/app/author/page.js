@@ -50,7 +50,7 @@ export default async function BlogsDefaultPage() {
 
             <section className="blog-page">
                 <div className="wrapper">
-                    <h1 className="md:text-2xl text-lg md:mb-8 mb-4 font-semibold">Jaya Tripathi's Blog Post</h1>
+                    <h1 className="md:text-2xl text-lg md:mb-8 mb-4 font-semibold">Jaya Tripathi&apos;s Blog Post</h1>
                     <div className="grid lg:grid-cols-3 gap-5">
                         {
                             paginatedBlogs.map((blog, idx) => {
