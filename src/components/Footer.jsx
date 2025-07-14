@@ -221,7 +221,7 @@ export default function Footer({ socialLinks, contactDetails }) {
             <span className="block text-center">
               @2025 all rights reserved by{" "}
               <Link className="font-semibold" href="/">
-                mpgstone.co.uk
+                mpgstone.com
               </Link>
             </span>
           </div>

@@ -113,15 +113,15 @@
       font-size: 14px;
     }
   }
-  .blog-content .prose {
+  .extra-pages .prose, .blog-content .prose {
     p {
-      font-size: 15px;
+      font-size: 15px !important;
     }
     h2 {
-      font-size: 21px;
+      font-size: 21px !important;
     }
     h3 {
-      font-size: 17px;
+      font-size: 17px !important;
     }
   }
   .single-blog-breadcrum .breadcrum {
