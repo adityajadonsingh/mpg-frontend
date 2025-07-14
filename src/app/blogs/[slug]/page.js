@@ -45,7 +45,7 @@ export default async function BlogSinglePage({ params }) {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
-                        })} | Author: {blog.author || "Jaya Tripathi"}
+                        })} | Author: <Link className="text-[#da4c00] font-semibold" href={"/author/jaya_tripathi"}>Jaya Tripathi</Link>
                     </p>
                     <div className="relative blog-main-img w-full xl:h-[500px] lg:h-[450px] md:h-[420px] sm:h-[350px] h-[280px] mb-6">
                         <Image
