@@ -788,15 +788,18 @@ h2.heading {
   padding: 10px 0;
 }
 .single-blog .blog-content {
-  h2 {
-    font-size: 22px;
+  h2 span {
+    font-size: 25px !important;
   }
-  h3 {
-    font-size: 18px;
+  h3 span {
+    font-size: 22px !important;
+  }
+  h4 span{
+    font-size: 18px !important;
   }
   .prose {
     a span {
-      color: #f36c23;
+      color: #da4c00;
       text-decoration: none !important;
       font-weight: 700 !important;
     }
@@ -1058,6 +1061,18 @@ h2.heading {
 .thank-you-page .wrapper button:hover {
   background-color: #ff7931;
   cursor: pointer;
+}
+
+.extra-pages {
+  h2 span, h3 span, h4 span, h5 span{
+    font-weight: 600 !important;
+  }
+  ol, li{
+    margin-left: 20px;
+  }
+  h2 span, h3 span, h4 span, h5 span, p span, li span{
+    font-family: 'Montserrat', 'Montserrat Fallback' !important;
+  }
 }
 
 @keyframes spin {

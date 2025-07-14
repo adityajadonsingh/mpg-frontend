@@ -59,7 +59,7 @@ export default async function BlogSinglePage({ params }) {
                         className="prose max-w-none"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     ></div>
-                    <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#d6dae0]">
+                    <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#d6dae0] shadow-md">
                         <h5 className="sm:text-xl text-lg font-semibold text-[#f36c23]">About The Autor</h5>
                         <hr className="my-3"/>
                         <p className="sm:text-base text-sm">
