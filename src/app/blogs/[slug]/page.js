@@ -34,8 +34,8 @@ export default async function BlogSinglePage({ params }) {
 
     return (
         <>
-            <section className="single-blog lg:w-full md:w-11/12 w-full mx-auto wrapper md:my-8 my-5 gap-y-6 lg:flex-nowrap flex-wrap">
-                <div className="blog-content xl:w-9/12 lg:w-8/12 w-full lg:pl-10 lg:pr-20">
+            <section className="single-blog lg:w-full md:w-11/12 w-full mx-auto wrapper md:my-8 my-5 gap-y-6 lg:flex-nowrap justify-center flex-wrap">
+                <div className="blog-content xl:w-8/12 lg:w-9/12 w-full  xl:pr-26 lg:pr-10">
                     <div className="single-blog-breadcrum xl:mb-4 mb-2">
                         <Breadcrum path_arr={slugPath} />
                     </div>
@@ -47,10 +47,10 @@ export default async function BlogSinglePage({ params }) {
                             day: "numeric",
                         })} | Author: {blog.author || "Jaya Tripathi"}
                     </p>
-                    <div className="relative w-full md:h-[400px] sm:h-[350px] h-[250px] mb-6">
+                    <div className="relative blog-main-img w-full xl:h-[500px] lg:h-[450px] md:h-[420px] sm:h-[350px] h-[280px] mb-6">
                         <Image
                             src={blog.image}
-                            alt={blog.title} fill className="object-cover rounded z-10 h-full w-full bg-[#ebedf0]"
+                            alt={blog.title} fill className="sm:object-cover object-contain rounded z-10 h-full w-full bg-[#ebedf0]"
                             placeholder="blur"
                             blurDataURL="/media/placeholder.jpg"
                         />
@@ -59,7 +59,7 @@ export default async function BlogSinglePage({ params }) {
                         className="prose max-w-none"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     ></div>
-                    <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#d6dae0] shadow-md">
+                    <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#777a80]">
                         <h5 className="sm:text-xl text-lg font-semibold text-[#f36c23]">About The Autor</h5>
                         <hr className="my-3"/>
                         <p className="sm:text-base text-sm">

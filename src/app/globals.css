@@ -816,6 +816,11 @@ h2.heading {
       font-family: "Montserrat", "Montserrat Fallback" !important;
       font-weight: 500 !important;
     }
+    p img, span img{
+      height: 470px ;
+      width: 880px;
+      object-fit: cover ;
+    }
   }
   .blog-btm {
     .post-nav {
