@@ -60,7 +60,7 @@ export default async function BlogSinglePage({ params }) {
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     ></div>
                     <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#777a80]">
-                        <h5 className="sm:text-xl text-lg font-semibold text-[#f36c23]">About The Autor</h5>
+                        <h5 className="sm:text-xl text-lg font-semibold text-[#f36c23]">About The Author</h5>
                         <hr className="my-3"/>
                         <p className="sm:text-base text-sm">
                             <strong>Jaya Tripathi</strong> is a seasoned content writer and editor with over a decade of experience in the stone and real estate industries. As a leading voice at MPG Stone, she shares insights on installment processes, project insights, design guides, and much more
