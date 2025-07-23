@@ -47,7 +47,7 @@ export default async function BlogsDefaultPage() {
 
     return (
         <>
-            <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Blogs"} />
+            <MiniBanner bg_img={"/media/blogs_banner.webp"} pageName={"Blogs"} />
             <section className="blog-page">
                 <div className="wrapper">
                     <div className="grid lg:grid-cols-3 gap-5">
@@ -66,7 +66,7 @@ export default async function BlogsDefaultPage() {
                                                 blurDataURL="/media/placeholder.jpg"
                                             />
                                         </div>
-                                        <div className="p-4 flex flex-col justify-between h-[180px] text-center">
+                                        <div className="p-4 flex flex-col text-center">
                                             <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
                                             <p className="text-orange-600 text-sm mb-2">
                                                 Jaya Tripathi |{" "}

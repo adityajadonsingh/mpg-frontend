@@ -36,7 +36,7 @@ export default async function ProductCataloguePage(){
 
     return (
         <>
-        <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Product Catalogue"} />
+        <MiniBanner bg_img={"/media/catalogue_banner.webp"} pageName={"Product Catalogue"} />
         <CataloguesGrid catalogues={productCatalogues}/>
         </>
     )

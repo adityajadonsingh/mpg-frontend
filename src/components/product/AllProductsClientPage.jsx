@@ -45,7 +45,7 @@ export default function AllProductsClientPage({
       )}
       <MiniBanner
         bg_img={
-          "https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"
+          "/media/products_banner.webp"
         }
         pageName={"Products"}
       />

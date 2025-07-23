@@ -32,44 +32,47 @@ export default async function BlogPaginatedPage({ params }) {
 
   return (
     <>
-      <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={`Blogs`} />
+      <MiniBanner bg_img={"/media/blogs_banner.webp"} pageName={`Blogs`} />
 
       <section className="blog-page">
         <div className="wrapper">
           <div className="grid lg:grid-cols-3 gap-5">
-            {paginatedBlogs.map((blog, idx) => (
-              <Link key={`blog-${idx}`} href={`/blogs/${blog.slug}`} className="block">
-                <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
-                  <div className="img-box relative">
-                    <Image
-                      src={blog.image}
-                      alt={blog.title}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      className="z-10 h-full w-full bg-[#ebedf0]"
-                      placeholder="blur"
-                      blurDataURL="/media/placeholder.jpg"
-                    />
-                  </div>
-                  <div className="p-4 flex flex-col justify-start h-[180px] text-center">
-                    <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
-                    <p className="text-orange-600 text-sm mb-2">
-                      Author Name | <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
+                        {
+                            paginatedBlogs.map((blog, idx) => {
+                                return <Link key={`blog-${idx}`} href={`/blogs/${blog.slug}`} className="block">
+                                    <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
+                                        <div className="img-box relative">
+                                            <Image
+                                                src={blog.image}
+                                                alt={blog.title}
+                                                fill
+                                                style={{ objectFit: "cover" }}
+                                                className="z-10 h-full w-full bg-[#ebedf0]"
+                                                placeholder="blur"
+                                                blurDataURL="/media/placeholder.jpg"
+                                            />
+                                        </div>
+                                        <div className="p-4 flex flex-col text-center">
+                                            <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
+                                            <p className="text-orange-600 text-sm mb-2">
+                                                Jaya Tripathi |{" "}
+                                                <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
   })}</span>
-                    </p>
-                    <p className="text-sm text-gray-600 line-clamp-3">
+                                            </p>
+                                            <p className="text-sm text-gray-600 line-clamp-3">
                                                 {blog.description.length > 100
                                                     ? `${blog.description.slice(0, 100)} ...`
                                                     : blog.description}
                                             </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            })
+                        }
+                    </div>
         </div>
       </section>
 

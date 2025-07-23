@@ -34,7 +34,7 @@ export async function generateMetadata() {
 export default function ContactUsPage() {
     return (
         <>
-            <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Contact Us"} />
+            <MiniBanner bg_img={"/media/contact_banner.webp"} pageName={"Contact Us"} />
             <ContactInfo />
             <ContactForm isContactPage={true} />
         </>

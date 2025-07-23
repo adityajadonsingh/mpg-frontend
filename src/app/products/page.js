@@ -35,8 +35,7 @@ export default async function AllProductsDefaultPage() {
   const pageIndex = 1;
   const perPage = 15;
 
-  const allProducts = await getAllProducts("all", "all"); 
-  console.log(allProducts)
+  const allProducts = await getAllProducts("all", "all");
   if (!allProducts || allProducts.length === 0) return notFound();
 
   const totalPages = Math.ceil(allProducts.length / perPage);

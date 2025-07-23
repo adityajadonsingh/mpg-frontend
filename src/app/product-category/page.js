@@ -34,7 +34,7 @@ import { getPageMetaData } from "@/lib/api/pagesMetaData";
 export default function AllCategoriesPage() {
     return (
         <>
-            <MiniBanner bg_img={"/media/all-category.png"} pageName={"Product Category"} />
+            <MiniBanner bg_img={"/media/product_category_banner.webp"} pageName={"Product Category"} />
             <CategoriesGrid/>
             
         </>
