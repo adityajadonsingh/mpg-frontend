@@ -59,7 +59,7 @@ export default async function aboutUsPage() {
 
   return (
     <>
-      <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"About Us"} />
+      <MiniBanner bg_img={"/media/about_us_banner.webp"} pageName={"About Us"} />
       <AboutUs title={data.title} description={{des1: data.description1, des2 : data.description2}} image={data.image_url} />
       <AboutUsMid cardData={data.sections} />
       <RelatedProducts relatedProducts={randomProducts} isAboutUsPage={true} />
