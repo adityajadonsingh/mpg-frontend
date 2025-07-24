@@ -45,7 +45,7 @@ export default function AllProductsClientPage({
       )}
       <MiniBanner
         bg_img={
-          "/media/products_banner.webp"
+          "/media/products_banner.webp "
         }
         pageName={"Products"}
       />
