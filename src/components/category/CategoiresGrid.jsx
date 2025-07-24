@@ -11,7 +11,7 @@ export default function CategoriesGrid() {
 
   return (
     <section className="category-grid my-10 ">
-      <div className="wrapper grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-6">
+      <div className="wrapper grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-x-6 gap-y-10">
         {categories.map((catObj, index) => {
           return (
             <Link href={`/product-category/${catObj.category_name.replace(/ /g, "-").toLowerCase()}`}>
