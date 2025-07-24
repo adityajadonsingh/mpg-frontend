@@ -885,6 +885,14 @@ h2.heading {
   a:hover span {
     color: #ff782f !important;
   }
+  a {
+    color: #f36c23 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+  }
+  a:hover {
+    color: #ff782f !important;
+  }
   ol,
   ul {
     margin-left: 20px;
