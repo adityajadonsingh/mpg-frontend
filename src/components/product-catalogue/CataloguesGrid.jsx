@@ -16,7 +16,7 @@ export default function CataloguesGrid({ catalogues }) {
                       src={catalogue.thumbnail}
                       alt=""
                       fill
-                      className="object-cover md:h-60 sm:h-52 h-36"
+                      className="object-contain md:h-60 sm:h-52 h-36"
                     />
                   </div>
                   <h2 className="md:text-lg text-base mt-3 text-center font-semibold group-hover:text-[#f36c23]">{catalogue.name}</h2>
