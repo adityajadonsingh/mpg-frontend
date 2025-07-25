@@ -23,7 +23,7 @@ export default async function BlogSinglePage({ params }) {
     const allBlogs = await getAllBlogs();
     const pageSlug = await params.slug;
     const blog = allBlogs.blogs.find((b) => b.slug === pageSlug);
-    const latestBlogs = allBlogs.blogs.filter(b => b.slug !== blog.slug).slice(0, 3);
+    const latestBlogs = allBlogs.blogs.filter(b => b.slug !== blog.slug).slice(0, 10);
     const prevPost = allBlogs.blogs.filter(b => b.id === blog.id - 1);
     const nextPost = allBlogs.blogs.filter(b => b.id === blog.id + 1);
     if (!blog) return notFound();
