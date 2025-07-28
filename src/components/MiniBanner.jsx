@@ -10,12 +10,12 @@ export default function MiniBanner({ bg_img, pageName }){
                     <h1>{pageName}</h1>
                     <div className="bread">
                         <ul className="flex">
-                            <li className="hover:text-[#f36c23]">
+                            <li className="text-[#f36c23]">
                                 <Link href={"/"}>
                                     Home
                                 </Link>
                             </li>
-                            <li className="text-[#f36c23]">
+                            <li className="text-[#fff]">
                                 {pageName}
                             </li>
                         </ul>
