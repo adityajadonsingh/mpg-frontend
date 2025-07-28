@@ -789,7 +789,7 @@ h2.heading {
   display: flex;
 }
 .single-blog .related-post {
-  border: 1px solid #f36c23;
+  border: 1px solid #000;
   margin: 20px 0;
   border-left: 0;
   border-right: 0;
