@@ -1173,3 +1173,59 @@ h2.heading {
     transform: rotate(360deg);
   }
 }
+.prose{
+  h2 {
+    font-size: 16pt;
+  }
+  h3 {
+    font-size: 14pt;
+  }
+  h4 {
+    font-size: 12pt;
+  }
+  h2,
+  h3,
+  h4 {
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  h3,
+  h4 {
+    color: #434343;
+  }
+  p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 12pt;
+  }
+  a span {
+    color: #f36c23 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+  }
+  a:hover span {
+    color: #ff782f !important;
+  }
+  a {
+    color: #f36c23 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+  }
+  a:hover {
+    color: #ff782f !important;
+  }
+  ol,
+  ul {
+    margin-left: 20px;
+  }
+  ol,
+  ol li {
+    list-style: decimal !important;
+    /* margin-left: 15px; */
+  }
+  ul,
+  ul li {
+    list-style: disc !important;
+    /* margin-left: 15px; */
+  }
+}
