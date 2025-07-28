@@ -29,7 +29,7 @@ export default async function BlogSinglePage({ params }) {
     if (!blog) return notFound();
     const slugPath = [
         { slug_name: "Blogs", slug: "/blogs" },
-        { slug_name: blog.title, slug: `/blogs/${blog.slug}` },
+        { slug_name: blog.breadcrumb, slug: `/blogs/${blog.slug}` },
     ];
 
     return (
