@@ -12,7 +12,7 @@ export default function Breadcrum({ path_arr }) {
                             return (
                                 <li className="capitalize" key={`bread-${idx}`}>
                                     {isLast ? (
-                                        <span>{path.slug_name}</span>
+                                        <span className="text-[#f36c23]">{path.slug_name}</span>
                                     ) : (
                                         <Link href={path.slug}>{path.slug_name}</Link>
                                     )}
