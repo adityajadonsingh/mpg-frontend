@@ -794,6 +794,10 @@ h2.heading {
   border-left: 0;
   border-right: 0;
   padding: 10px 0;
+  font-weight: 600;
+  a{
+    font-weight: 500 !important;
+  }
 }
 .single-blog .blog-content {
   h2 span {
