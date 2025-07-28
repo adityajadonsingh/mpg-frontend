@@ -806,6 +806,19 @@ h2.heading {
     font-size: 18px !important;
   }
   .prose {
+    p {
+      text-align: justify;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    a {
+      color: #da4c00;
+      text-decoration: none !important;
+      font-weight: 700 !important;
+    }
+    a:hover {
+      color: #ff6714;
+    }
     a span {
       color: #da4c00;
       text-decoration: none !important;
@@ -814,6 +827,10 @@ h2.heading {
     a:hover span {
       color: #ff6714;
     }
+    h2,
+    h3,
+    h4,
+    h5,
     h2 span,
     h3 span,
     h4 span,
@@ -899,12 +916,12 @@ h2.heading {
   }
   h3,
   h4 {
-color: #434343;
+    color: #434343;
   }
-  p{
+  p {
     margin-top: 16px;
-  margin-bottom: 16px;
-  font-size: 12pt;
+    margin-bottom: 16px;
+    font-size: 12pt;
   }
   a span {
     color: #f36c23 !important;
