@@ -52,7 +52,6 @@ export default function SearchBar({ categories }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  console.log(results)
   return (
     <div className="md:relative w-full" ref={dropdownRef}>
       <input
