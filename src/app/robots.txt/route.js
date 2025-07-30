@@ -11,10 +11,6 @@ Disallow: /*?page=
 Disallow: /admin/
 
 Sitemap: ${siteUrl}/sitemap.xml
-Sitemap: ${siteUrl}/page-sitemap.xml
-Sitemap: ${siteUrl}/blogs-sitemap.xml
-Sitemap: ${siteUrl}/product-sitemap.xml
-Sitemap: ${siteUrl}/product_category-sitemap.xml
   `.trim();
 
     return new NextResponse(content, {

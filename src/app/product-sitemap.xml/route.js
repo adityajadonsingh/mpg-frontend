@@ -15,7 +15,7 @@ export async function GET() {
             .map(
                 (product) => `
       <url>
-        <loc>${baseUrl}/product-category/${product.category.replace(/ /g, "-").toLowerCase()}/</loc>
+        <loc>${baseUrl}/product-category/${product.category.replace(/ /g, "-").toLowerCase()}/${product.slug}/</loc>
         <lastmod>${new Date(product.updated_at.replace(' ', 'T')).toISOString()}</lastmod>
       </url>
     `

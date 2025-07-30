@@ -29,7 +29,7 @@ export default function Blogs({ blogs }) {
             },
           }}
         >
-          {blogs.map((blog, idx) => (
+          {blogs.slice(0, 5).map((blog, idx) => (
             <SwiperSlide key={idx}>
               <Link href={`/blogs/${blog.slug}`} className="block">
                 <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
