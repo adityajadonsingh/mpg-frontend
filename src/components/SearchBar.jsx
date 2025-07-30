@@ -52,7 +52,7 @@ export default function SearchBar({ categories }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
+  console.log(results)
   return (
     <div className="md:relative w-full" ref={dropdownRef}>
       <input
@@ -80,7 +80,7 @@ export default function SearchBar({ categories }) {
                             href={
                               group.type === "category"
                                 ? `/product-category/${item.slug}`
-                                : `/product-category/product/${item.slug}`
+                                : `/product-category/${item.category_slug}/${item.slug}`
                             }
                             onClick={() => setIsOpen(false)}
                             className="block py-1 hover:bg-gray-100 px-2 rounded capitalize"
