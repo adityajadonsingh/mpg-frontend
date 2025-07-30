@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllBlogs } from "@/lib/api/blogs";
+import { getAllBlogs, getBlogsCategory } from "@/lib/api/blogs";
 import Breadcrum from "@/components/Breadcrum";
 import CopyUrlButton from "@/components/blog/CopyUrlButton";
 import FacebookShareButton from "@/components/blog/FacebookShareButton";
@@ -21,9 +21,11 @@ export async function generateStaticParams() {
 
 export default async function BlogSinglePage({ params }) {
     const allBlogs = await getAllBlogs();
+    const blogCategories = await getBlogsCategory();
+    console.log(blogCategories)
     const pageSlug = await params.slug;
     const blog = allBlogs.blogs.find((b) => b.slug === pageSlug);
-    const latestBlogs = allBlogs.blogs.filter(b => b.slug !== blog.slug).slice(0, 10);
+    const latestBlogs = allBlogs.blogs.filter(b => b.slug !== blog.slug).slice(0, 5);
     const prevPost = allBlogs.blogs.filter(b => b.id === blog.id - 1);
     const nextPost = allBlogs.blogs.filter(b => b.id === blog.id + 1);
     if (!blog) return notFound();
@@ -61,7 +63,7 @@ export default async function BlogSinglePage({ params }) {
                     ></div>
                     <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#777a80]">
                         <h5 className="sm:text-xl text-lg font-semibold text-[#f36c23]">About The Author</h5>
-                        <hr className="my-3"/>
+                        <hr className="my-3" />
                         <p className="sm:text-base text-sm">
                             <strong>Jaya Tripathi</strong> is a seasoned content writer and editor with over a decade of experience in the stone and real estate industries. As a leading voice at MPG Stone, she shares insights on installment processes, project insights, design guides, and much more
                         </p>
@@ -90,29 +92,48 @@ export default async function BlogSinglePage({ params }) {
 
 
                 </div>
-                <div className="latest-blogs xl:w-3/12 lg:w-4/12 w-full">
-                    <h2 className="text-center">Latest Blogs</h2>
-                    <ul className="latest-list grid lg:grid-cols-1 grid-cols-2 md:gap-5 gap-3 mt-4">
-                        {latestBlogs.map((item, idx) => (
-                            <Link key={idx} href={`/blogs/${item.slug}`} className="block">
-                                <div className="bg-gray-100 p-4 recent-card h-full  rounded shadow hover:shadow-lg transition-all">
-                                    <div className="relative img-box h-full">
-                                        <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover z-10 h-full w-full bg-[#ebedf0] rounded"
-                                            placeholder="blur"
-                                            blurDataURL="/media/placeholder.jpg"
-                                        />
+                <div className=" xl:w-3/12 lg:w-4/12 w-full relative">
+                    <div className="sticky top-28">
+                        <div className="latest-blogs mb-5">
+                        <h2 className="text-center">Blog Categories</h2>
+                        <ul className="mt-3">
+                            {
+                                blogCategories.map((item, idx) => (
+                                    <li key={idx+"-blog-category"} className=" mb-3">
+                                        <Link className="flex px-3 justify-between" href={`/blog-category/${item.category_slug}/`}>
+                                            <span>{item.category_name}</span>
+                                            <span>{item.blog_count}</span>
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    <div className="latest-blogs">
+                        <h2 className="text-center">Latest Blogs</h2>
+                        <ul className="latest-list grid lg:grid-cols-1 grid-cols-2 md:gap-5 gap-3 mt-4">
+                            {latestBlogs.map((item, idx) => (
+                                <Link key={idx} href={`/blogs/${item.slug}`} className="block">
+                                    <div className="bg-gray-100 p-4 recent-card h-full  rounded shadow hover:shadow-lg transition-all">
+                                        <div className="relative img-box h-full">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover z-10 h-full w-full bg-[#ebedf0] rounded"
+                                                placeholder="blur"
+                                                blurDataURL="/media/placeholder.jpg"
+                                            />
+                                        </div>
+                                        <div className="text-side">
+                                            <h3 className="font-semibold lg:text-md sm:text-sm text-xs">{item.title}</h3>
+                                        </div>
                                     </div>
-                                    <div className="text-side">
-                                        <h3 className="font-semibold lg:text-md sm:text-sm text-xs">{item.title}</h3>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </ul>
+                                </Link>
+                            ))}
+                        </ul>
+                    </div>
+                    </div>
                 </div>
             </section>
 
@@ -125,27 +146,27 @@ export async function generateMetadata({ params }) {
     const pageSlug = await params.slug;
     const blog = allBlogs.blogs.find((b) => b.slug === pageSlug);
 
-      return {
+    return {
         title: blog.meta_title,
         description: blog.meta_description,
         keywords: blog.meta_keywords,
         openGraph: {
-          title: blog.og_title || blog.meta_title,
-          description: blog.og_descriptions || blog.meta_description,
-          url: blog.canonical_url,
-          images: blog.meta_image,
-          type: "website",
-          locale: "en_US",
-          siteName: "MPG Stone"
+            title: blog.og_title || blog.meta_title,
+            description: blog.og_descriptions || blog.meta_description,
+            url: blog.canonical_url,
+            images: blog.meta_image,
+            type: "website",
+            locale: "en_US",
+            siteName: "MPG Stone"
         },
         twitter: {
-          title: blog.twitter_title || blog.meta_title,
-          description: blog.twitter_description || blog.meta_description,
-          images: blog.meta_image
+            title: blog.twitter_title || blog.meta_title,
+            description: blog.twitter_description || blog.meta_description,
+            images: blog.meta_image
         },
         alternates: {
-          canonical: blog.canonical_url || "",
+            canonical: blog.canonical_url || "",
         },
         robots: blog.robots_tag,
-      };
+    };
 }

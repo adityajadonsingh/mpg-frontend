@@ -34,7 +34,7 @@ export async function generateMetadata() {
 export default async function privacyPolicyPage() {
     const content = await getExtraPageContent("privacy");
     return (<>
-        <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Privacy Policy"} />
+        <MiniBanner bg_img={"/media/Privecy-Policy.webp"} pageName={"Privacy Policy"} />
         <ExtraPages content={content} />
 
     </>)

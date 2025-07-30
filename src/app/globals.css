@@ -849,7 +849,7 @@ h2.heading {
     p img,
     span img {
       height: 470px;
-      width: 880px;
+      width: 100%;
       object-fit: cover;
     }
   }

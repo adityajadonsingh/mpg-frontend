@@ -34,7 +34,7 @@ export async function generateMetadata() {
 export default async function termsConditionPage() {
     const content = await getExtraPageContent("terms");
     return (<>
-        <MiniBanner bg_img={"https://html.kodesolution.com/2024/tilepro-html/images/background/page-title-bg.png"} pageName={"Terms & Conditions"} />
+        <MiniBanner bg_img={"/media/Terms-Condition.webp"} pageName={"Terms & Conditions"} />
         <ExtraPages content={content} />
 
     </>)
