@@ -2,11 +2,13 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const siteUrl = "https://mpgstone.com";
+    const siteUrl = "https://mpgstone.com";
 
-  const content = `
+    const content = `
 User-agent: *
-Disallow:
+Disallow: /blog-category/
+Disallow: /*?page=
+Disallow: /admin/
 
 Sitemap: ${siteUrl}/sitemap.xml
 Sitemap: ${siteUrl}/page-sitemap.xml
@@ -15,9 +17,9 @@ Sitemap: ${siteUrl}/product-sitemap.xml
 Sitemap: ${siteUrl}/product_category-sitemap.xml
   `.trim();
 
-  return new NextResponse(content, {
-    headers: {
-      "Content-Type": "text/plain",
-    },
-  });
+    return new NextResponse(content, {
+        headers: {
+            "Content-Type": "text/plain",
+        },
+    });
 }

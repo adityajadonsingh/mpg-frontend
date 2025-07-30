@@ -28,7 +28,7 @@ export async function generateMetadata() {
             images: pageMetaData.meta_image
         },
         alternates: {
-            canonical: pageMetaData.canonical_url || "",
+            canonical: "https://mpgstone.com/author/jaya_tripathi/"
         },
         robots: pageMetaData.robots_tag,
     };

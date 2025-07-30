@@ -5,7 +5,7 @@ const siteUrl = "https://mpgstone.com";
 
 export async function GET() {
   const staticPages = [
-    "",
+    "/",
     "/about-us/",
     "/contact-us/",
     "/blogs/",
