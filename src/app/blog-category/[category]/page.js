@@ -30,11 +30,12 @@ export async function generateStaticParams() {
 // }
 
 export default async function BlogCategoryPage({ params }) {
-  const { category } = params;
+  const { category } = await params;
   const pageIndex = 1;
   const perPage = 9;
 
   const allBlogs = await getAllBlogs();
+  
   const categoryBlogs = allBlogs.blogs.filter(
     (blog) => blog.category?.slug === category
   );

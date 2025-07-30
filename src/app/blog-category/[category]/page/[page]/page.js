@@ -20,17 +20,17 @@ import { notFound } from "next/navigation";
 // }
 
 export default async function BlogCategoryPage({ params }) {
-  const { category, page } = params;
+  const { category, page } = await params;
   const pageIndex = parseInt(page);
   const perPage = 9;
 
   if (isNaN(pageIndex) || pageIndex < 2) return notFound();
 
   const allBlogs = await getAllBlogs();
+ 
   const categoryBlogs = allBlogs.blogs.filter(
     (blog) => blog.category?.slug === category
   );
-  console.log(categoryBlogs)
   if (categoryBlogs.length === 0) return notFound();
 
   const totalPages = Math.ceil(categoryBlogs.length / perPage);

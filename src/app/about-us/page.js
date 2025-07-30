@@ -55,7 +55,6 @@ export default async function aboutUsPage() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 15);
   const data = await getAboutPage();
-  console.log(data)
 
   return (
     <>

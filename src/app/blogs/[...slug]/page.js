@@ -6,6 +6,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata() {
+
+  return {
+
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+}
+
 export default async function BlogPaginatedPage({ params }) {
   const slug = await params.slug;
 
@@ -28,7 +39,7 @@ export default async function BlogPaginatedPage({ params }) {
   const end = start + perPage;
   const paginatedBlogs = allBlogs.blogs.slice(start, end);
 
- 
+
 
   return (
     <>
@@ -37,42 +48,42 @@ export default async function BlogPaginatedPage({ params }) {
       <section className="blog-page">
         <div className="wrapper">
           <div className="grid lg:grid-cols-3 gap-5">
-                        {
-                            paginatedBlogs.map((blog, idx) => {
-                                return <Link key={`blog-${idx}`} href={`/blogs/${blog.slug}`} className="block">
-                                    <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
-                                        <div className="img-box relative">
-                                            <Image
-                                                src={blog.image}
-                                                alt={blog.title}
-                                                fill
-                                                style={{ objectFit: "cover" }}
-                                                className="z-10 h-full w-full bg-[#ebedf0]"
-                                                placeholder="blur"
-                                                blurDataURL="/media/placeholder.jpg"
-                                            />
-                                        </div>
-                                        <div className="p-4 flex flex-col text-center">
-                                            <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
-                                            <p className="text-orange-600 text-sm mb-2">
-                                                Jaya Tripathi |{" "}
-                                                <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })}</span>
-                                            </p>
-                                            <p className="text-sm text-gray-600 line-clamp-3">
-                                                {blog.description.length > 100
-                                                    ? `${blog.description.slice(0, 100)} ...`
-                                                    : blog.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            })
-                        }
+            {
+              paginatedBlogs.map((blog, idx) => {
+                return <Link key={`blog-${idx}`} href={`/blogs/${blog.slug}`} className="block">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
+                    <div className="img-box relative">
+                      <Image
+                        src={blog.image}
+                        alt={blog.title}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        className="z-10 h-full w-full bg-[#ebedf0]"
+                        placeholder="blur"
+                        blurDataURL="/media/placeholder.jpg"
+                      />
                     </div>
+                    <div className="p-4 flex flex-col text-center">
+                      <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
+                      <p className="text-orange-600 text-sm mb-2">
+                        Jaya Tripathi |{" "}
+                        <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}</span>
+                      </p>
+                      <p className="text-sm text-gray-600 line-clamp-3">
+                        {blog.description.length > 100
+                          ? `${blog.description.slice(0, 100)} ...`
+                          : blog.description}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              })
+            }
+          </div>
         </div>
       </section>
 
@@ -86,11 +97,10 @@ export default async function BlogPaginatedPage({ params }) {
                   ? `/blogs`
                   : `/blogs/page/${idx + 1}`
               }
-              className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${
-                pageIndex === idx + 1
+              className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${pageIndex === idx + 1
                   ? "bg-[#DC5100] text-white"
                   : "bg-[#E9E9ED] text-[#8a8a8c]"
-              }`}
+                }`}
             >
               {idx + 1}
             </Link>

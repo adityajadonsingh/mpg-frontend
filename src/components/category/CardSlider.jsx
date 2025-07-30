@@ -12,9 +12,8 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 
 export default function CardSlider({products}) {
-  const swiperRef = useRef(null); // to hold swiper instance
-  const containerRef = useRef(null); // to observe container
-    console.log(products)
+  const swiperRef = useRef(null);
+  const containerRef = useRef(null);
   const slides = [
     {
       id: 1,

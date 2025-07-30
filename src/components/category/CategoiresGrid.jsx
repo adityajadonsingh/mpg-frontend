@@ -7,7 +7,6 @@ import Link from "next/link";
 
 export default function CategoriesGrid() {
   const categories = useCategories();
-  console.log(categories);
 
   return (
     <section className="category-grid my-10 ">

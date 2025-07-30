@@ -22,7 +22,6 @@ export async function generateStaticParams() {
 export default async function BlogSinglePage({ params }) {
     const allBlogs = await getAllBlogs();
     const blogCategories = await getBlogsCategory();
-    console.log(blogCategories)
     const pageSlug = await params.slug;
     const blog = allBlogs.blogs.find((b) => b.slug === pageSlug);
     const latestBlogs = allBlogs.blogs.filter(b => b.slug !== blog.slug).slice(0, 5);

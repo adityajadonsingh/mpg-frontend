@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function CataloguesGrid({ catalogues }) {
-  console.log(catalogues);
   return (
     <>
       <section className="catalogues py-10">

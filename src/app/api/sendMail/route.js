@@ -4,7 +4,6 @@ export async function POST(request) {
   try {
     const { type, name, email, phone_number, message, product_name, blog_name } = await request.json();
 
-    console.log("Request JSON:", { type, name, email, phone_number, message, product_name, blog_name });
 
 
     if (
@@ -74,10 +73,8 @@ export async function POST(request) {
     // Send both emails
     await transporter.sendMail(adminMailOptions);
     await transporter.sendMail(userMailOptions);
-    console.log(userMailOptions, adminMailOptions)
     return new Response(JSON.stringify({ message: "Emails sent successfully" }), { status: 200 });
   } catch (error) {
-    console.error("EMAIL ERROR:", error);
     return new Response(
       JSON.stringify({ message: "Failed to send email", error: error.message }),
       { status: 500 }
