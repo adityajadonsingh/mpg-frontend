@@ -1,10 +1,12 @@
 
 import MiniBanner from "@/components/MiniBanner";
 import CategoriesGrid from "@/components/category/CategoiresGrid";
-import { getPageMetaData } from "@/lib/api/pagesMetaData";
 
 export async function generateMetadata() {
       return {
+        alternates: {
+            canonical: "https://mpgstone.com/product-category/",
+        },
         robots: "index, follow",
       };
 }
