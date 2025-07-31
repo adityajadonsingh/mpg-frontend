@@ -36,7 +36,7 @@ export default function RelatedProducts({ relatedProducts, isAboutUsPage = false
                   >
                     <Link
                       className="block w-full h-full"
-                      href={`/product-category/${product.category.replace(" ","-").toLowerCase()}/${product.slug}/`}
+                      href={`/product-category/${product.category.replace(/ /g,"-").toLowerCase()}/${product.slug}/`}
                     >
                       <div className="card-wrap w-full h-full relative">
                         <div className="read-more">
