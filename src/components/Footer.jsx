@@ -77,7 +77,7 @@ export default function Footer({ socialLinks, contactDetails }) {
               <div className="logo-box">
                 <Link href="/">
                   <img
-                    src="https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
+                    src="/media/logo.svg"
                     alt="logo"
                   />
                 </Link>

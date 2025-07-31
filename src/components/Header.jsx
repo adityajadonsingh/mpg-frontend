@@ -54,7 +54,7 @@ export default function Header({ contactDetails }) {
               <Image
                 width={800}
                 height={500}
-                src="https://mpgstone.com/wp-content/uploads/2023/09/logo-5.svg"
+                src="/media/logo.svg"
                 alt="Logo"
               />
             </Link>
