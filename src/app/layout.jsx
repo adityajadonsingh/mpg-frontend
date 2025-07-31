@@ -1,7 +1,5 @@
 import "./globals.css";
 import "./responsive.css";
-// import { SpeedInsights } from "@vercel/speed-insights/next";
-// import { Analytics } from "@vercel/analytics/react";
 import { Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -36,6 +34,20 @@ export default async function RootLayout({ children }) {
     <html lang="en-US">
       <head>
         <ExtraMetaTags publisher={" "} />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
         <Script
           id="tawk-to"
           strategy="afterInteractive"
