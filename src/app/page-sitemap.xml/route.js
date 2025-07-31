@@ -16,15 +16,17 @@ export async function GET() {
     "/terms-and-conditions/",
   ];
 
-  const urls = staticPages.map(path => {
+  const urls = staticPages.map((path) => {
     return `<url>
   <loc>${siteUrl}${path}</loc>
   <lastmod>${new Date().toISOString()}</lastmod>
+  <priority>1.00</priority>
 </url>`;
   });
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml-stylesheet type="text/xsl" href="/url-sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${urls.join("\n")}
 </urlset>`;
 
