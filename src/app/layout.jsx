@@ -23,7 +23,7 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "MPG Stone",
   description: "Informative website for stone products",
-  robots: "noindex, nofollow",
+  robots: "index, follow",
   authors: [{ name: "mpgstone.com" }],
 };
 
