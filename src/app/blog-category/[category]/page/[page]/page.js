@@ -6,18 +6,11 @@ import { notFound } from "next/navigation";
 
 
 
-// export async function generateMetadata({ params }) {
-//   const { category, page } = params;
-//   const categories = await getBlogsCategory();
-//   const cat = categories.find((c) => c.category_slug === category);
-//   if (!cat) return notFound();
-
-//   return {
-//     title: `${cat.category_name} Blogs - Page ${page} | MPG Stone`,
-//     description: `Explore blogs under the category ${cat.category_name}, page ${page}.`,
-
-//   };
-// }
+export async function generateMetadata() {
+  return {
+    robots: "noindex, nofollow",
+  };
+}
 
 export default async function BlogCategoryPage({ params }) {
   const { category, page } = await params;
