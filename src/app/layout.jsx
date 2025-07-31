@@ -11,6 +11,7 @@ import { getSocialLinks } from "@/lib/api/socialLinks";
 import { getContactDetails } from "@/lib/api/contactDetails";
 import ProgressBar from "@/components/ProgressBar";
 import { Suspense } from 'react';
+import Script from "next/script";
 import ExtraMetaTags from "@/components/ExtraMetaTags";
 
 const montserrat = Montserrat({
@@ -34,6 +35,23 @@ export default async function RootLayout({ children }) {
     <html lang="en-US">
       <head>
         <ExtraMetaTags publisher={" "}/>
+        <Script
+          id="tawk-to"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+              (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='https://embed.tawk.to/677ba3f2af5bfec1dbe741e3/1igtfgrm4';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         className={`${montserrat.className} flex flex-col min-h-screen relative`}

@@ -76,14 +76,14 @@ export default function Footer({ socialLinks, contactDetails }) {
             <div className="foot-logo">
               <div className="logo-box">
                 <Link href="/">
-                  <img
-                    src="/media/logo.svg"
-                    alt="logo"
-                  />
+                  <img src="/media/logo.svg" alt="logo" />
                 </Link>
               </div>
               <p className="mt-5">
-                Leading natural stones manufacturer and supplier in the USA and worldwide since 1984. With a proven experience of 38+ years, MPG Stone has evolved as one of the fastest-growing natural stones and floor tiles offering brands in a short time.
+                Leading natural stones manufacturer and supplier in the USA and
+                worldwide since 1984. With a proven experience of 38+ years, MPG
+                Stone has evolved as one of the fastest-growing natural stones
+                and floor tiles offering brands in a short time.
               </p>
             </div>
             <div className="link-box">
@@ -168,7 +168,9 @@ export default function Footer({ socialLinks, contactDetails }) {
             <div className="link-box">
               <h4>Subscribe</h4>
               <p>
-                Stay informed about the latest trends and developments, ensuring you’re always one step ahead. Join us on this journey to explore what’s next in the fascinating world of stones.
+                Stay informed about the latest trends and developments, ensuring
+                you’re always one step ahead. Join us on this journey to explore
+                what’s next in the fascinating world of stones.
               </p>
               <input
                 type="email"
@@ -227,6 +229,13 @@ export default function Footer({ socialLinks, contactDetails }) {
           </div>
         </div>
       </footer>
+      <div className="whatsapp-float">
+        <a href="https://wa.me/+13215419137" target="_blank">
+          <div className="icn">
+            <i className="bi bi-whatsapp"></i>
+          </div>
+        </a>
+      </div>
     </>
   );
 }

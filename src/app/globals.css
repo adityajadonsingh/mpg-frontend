@@ -1241,3 +1241,19 @@ h2.heading {
     }
   }
 }
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 122px;
+  right: 26px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #fff;
+  background-color: #06be06;
+  z-index: 999999;
+  border-radius: 100%;
+}
