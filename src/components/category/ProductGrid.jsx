@@ -42,7 +42,7 @@ export default function ProductGrid({
                   className="block w-full h-full"
                   href={`/product-category/${
                     categorySlug === "all"
-                      ? product.category.replace(" ", "-").toLowerCase()
+                      ? product.category.replace(/ /g, "-").toLowerCase()
                       : categorySlug
                   }/${product.slug}/`}
                 >

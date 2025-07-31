@@ -17,13 +17,13 @@ export default function ProductClientPage({ product, relatedProducts }) {
       slug_name: product.category,
       slug: `/product-category/${product.category
         .toLowerCase()
-        .replace(" ", "-")}`,
+        .replace(/ /g, "-")}`,
     },
     {
       slug_name: product.name,
       slug: `/product-category/${product.category
         .toLowerCase()
-        .replace(" ", "-")}/${product.slug}/`,
+        .replace(/ /g, "-")}/${product.slug}/`,
     },
   ];
   return (

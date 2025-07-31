@@ -110,7 +110,7 @@ export default function BestMPG() {
 
                 return (
                   <SwiperSlide key={index}>
-                    <Link href={`/product-category/${product.category.replace(" ", "-").toLowerCase()}/${product.slug}/`}>
+                    <Link href={`/product-category/${product.category.replace(/ /g, "-").toLowerCase()}/${product.slug}/`}>
                       <div className="text-center">
                         <div className="img-box overflow-hidden rounded-sm shadow-md hover:shadow-sm relative w-full aspect-[4/3]">
                           <Image
