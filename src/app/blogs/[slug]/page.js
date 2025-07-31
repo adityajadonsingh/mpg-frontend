@@ -22,12 +22,13 @@ export async function generateStaticParams() {
 export default async function BlogSinglePage({ params }) {
     const allBlogs = await getAllBlogs();
     const blogCategories = await getBlogsCategory();
-    const pageSlug = await params.slug;
+    const pageParams = await params;
+    const pageSlug = pageParams.slug;
     const blog = allBlogs.blogs.find((b) => b.slug === pageSlug);
+    if (!blog) return notFound();
     const latestBlogs = allBlogs.blogs.filter(b => b.slug !== blog.slug).slice(0, 5);
     const prevPost = allBlogs.blogs.filter(b => b.id === blog.id - 1);
     const nextPost = allBlogs.blogs.filter(b => b.id === blog.id + 1);
-    if (!blog) return notFound();
     const slugPath = [
         { slug_name: "Blogs", slug: "/blogs" },
         { slug_name: blog.breadcrumb, slug: `/blogs/${blog.slug}` },

@@ -10,7 +10,7 @@ import { getAllCategories } from "@/lib/api/categories";
 import { getSocialLinks } from "@/lib/api/socialLinks";
 import { getContactDetails } from "@/lib/api/contactDetails";
 import ProgressBar from "@/components/ProgressBar";
-import { Suspense } from 'react';
+import { Suspense } from "react";
 import Script from "next/script";
 import ExtraMetaTags from "@/components/ExtraMetaTags";
 
@@ -23,7 +23,8 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "MPG Stone",
   description: "Informative website for stone products",
-  robots: "index, follow",
+  robots:
+    "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   authors: [{ name: "mpgstone.com" }],
 };
 
@@ -34,7 +35,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en-US">
       <head>
-        <ExtraMetaTags publisher={" "}/>
+        <ExtraMetaTags publisher={" "} />
         <Script
           id="tawk-to"
           strategy="afterInteractive"
@@ -58,8 +59,8 @@ export default async function RootLayout({ children }) {
       >
         <CategoryProvider categories={categories}>
           <Suspense fallback={null}>
-          <ProgressBar />
-        </Suspense>
+            <ProgressBar />
+          </Suspense>
           <Header contactDetails={contactDetails} />
           <main>{children}</main>
           <Footer

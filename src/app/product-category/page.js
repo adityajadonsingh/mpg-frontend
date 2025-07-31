@@ -7,7 +7,7 @@ export async function generateMetadata() {
         alternates: {
             canonical: "https://mpgstone.com/product-category/",
         },
-        robots: "index, follow",
+        robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       };
 }
 
