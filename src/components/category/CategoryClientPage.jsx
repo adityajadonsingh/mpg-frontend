@@ -18,7 +18,7 @@ export default function CategoryClientPage({
   breadcrum,
   currentPage,
   totalPages,
-  isPaginatedPage
+  isPaginatedPage,
 }) {
   const categories = useCategories();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,7 +40,6 @@ export default function CategoryClientPage({
   );
 
   const showPagination = totalPages > 1 && searchTerm === "";
-  console.log(categoryDetails.schema_markup)
   return (
     <>
       {popupMessage && (
@@ -137,7 +136,10 @@ export default function CategoryClientPage({
       )}
 
       {currentPage === 1 && (
-        <PageDescription content={categoryDetails.descriptions} />
+        <>
+          <PageDescription content={categoryDetails.descriptions} />
+          <SchemaInjector schemas={categoryDetails.schemas} />
+        </>
       )}
 
       <ContactPopupForm
@@ -146,7 +148,6 @@ export default function CategoryClientPage({
         productName={categoryDetails.category_name}
         setPopupMessage={setPopupMessage}
       />
-      <SchemaInjector schemas={categoryDetails.schema_markup} />
     </>
   );
 }

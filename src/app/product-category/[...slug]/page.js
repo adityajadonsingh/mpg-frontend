@@ -30,7 +30,6 @@ export const revalidate = 60;
 export default async function CategoryPage({ params }) {
   const parmasArray = await params;
   const slugArray = parmasArray.slug;
-
   if (!slugArray || slugArray.length === 0) {
     return notFound();
   }
@@ -84,6 +83,8 @@ export default async function CategoryPage({ params }) {
     { slug_name: "Product Category", slug: "/product-category/" },
     { slug_name: category.replace(/-/g, " "), slug: `/product-category/${category}` },
   ];
+  const allCategories = await getAllCategories();
+
   return (
     <>
       <CategoryClientPage
@@ -102,7 +103,8 @@ export default async function CategoryPage({ params }) {
 
 
 export async function generateMetadata({ params }) {
-  const slugArray = await params.slug;
+  const sparams = await params;
+  const slugArray = sparams.slug;
 
   const categorySlug = slugArray[0];
   const isPaginatedPage = slugArray.length === 3 && slugArray[1] === "page";
