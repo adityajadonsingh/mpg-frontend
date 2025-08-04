@@ -10,22 +10,21 @@ export async function generateMetadata() {
     const pageMetaData = await getPageMetaData("blogs");
 
     return {
-        title: pageMetaData.meta_title,
-        description: pageMetaData.meta_description,
+        title: "Jaya Tripathi, Author at Mpgstone",
+        description: "Jaya Tripathi, Author and Content Writer at Mpgstone",
         keywords: pageMetaData.meta_keywords,
         openGraph: {
-            title: pageMetaData.og_title || pageMetaData.meta_title,
-            description: pageMetaData.og_descriptions || pageMetaData.meta_description,
-            url: pageMetaData.canonical_url,
+            title: "Jaya Tripathi, Author at Mpgstone",
+            description: "Jaya Tripathi, Author and Content Writer at Mpgstone",
+            url: "https://mpgstone.com/author/jaya_tripathi/",
             images: pageMetaData.meta_image,
             type: "website",
             locale: "en_US",
             siteName: "MPG Stone"
         },
         twitter: {
-            title: pageMetaData.twitter_title || pageMetaData.meta_title,
-            description: pageMetaData.twitter_description || pageMetaData.meta_description,
-            images: pageMetaData.meta_image
+            title: "Jaya Tripathi, Author at Mpgstone",
+            description: "Jaya Tripathi, Author and Content Writer at Mpgstone",
         },
         alternates: {
             canonical: "https://mpgstone.com/author/jaya_tripathi/"

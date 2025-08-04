@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import ContactPopupForm from "@/components/ContactPopupForm";
 import Popup from "@/components/Popup";
 import PageDescription from "@/components/PageDescription";
+import SchemaInjector from "../SchemaInjector";
 
 export default function CategoryClientPage({
   categorySlug,
@@ -39,7 +40,7 @@ export default function CategoryClientPage({
   );
 
   const showPagination = totalPages > 1 && searchTerm === "";
-
+  console.log(categoryDetails.schema_markup)
   return (
     <>
       {popupMessage && (
@@ -145,6 +146,7 @@ export default function CategoryClientPage({
         productName={categoryDetails.category_name}
         setPopupMessage={setPopupMessage}
       />
+      <SchemaInjector schemas={categoryDetails.schema_markup} />
     </>
   );
 }

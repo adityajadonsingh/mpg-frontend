@@ -24,11 +24,12 @@ export async function generateStaticParams() {
 }
 
 export const revalidate = 60;
-  
+
 
 
 export default async function CategoryPage({ params }) {
-  const slugArray = await params.slug;
+  const parmasArray = await params;
+  const slugArray = parmasArray.slug;
 
   if (!slugArray || slugArray.length === 0) {
     return notFound();
@@ -80,19 +81,22 @@ export default async function CategoryPage({ params }) {
   const paginatedProducts = allProducts.slice(start, end);
 
   const slugPath = [
-    { slug_name: "Product Category", slug: "/product-category" },
+    { slug_name: "Product Category", slug: "/product-category/" },
     { slug_name: category.replace(/-/g, " "), slug: `/product-category/${category}` },
   ];
   return (
-    <CategoryClientPage
-      categorySlug={category}
-      paginatedProducts={paginatedProducts}
-      allProducts={allProducts}
-      breadcrum={slugPath}
-      currentPage={pageIndex}
-      totalPages={totalPages}
-      isPaginatedPage={pageIndex === 1}
-    />
+    <>
+      <CategoryClientPage
+        categorySlug={category}
+        paginatedProducts={paginatedProducts}
+        allProducts={allProducts}
+        breadcrum={slugPath}
+        currentPage={pageIndex}
+        totalPages={totalPages}
+        isPaginatedPage={pageIndex === 1}
+      />
+
+    </>
   );
 }
 
@@ -129,7 +133,6 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: categoryData.canonical_url || "",
     },
-    // 👇 Add robots conditionally
     robots: isPaginatedPage ? "noindex, follow" : categoryData.robots_tag,
   };
 }

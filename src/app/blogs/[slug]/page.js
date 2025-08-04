@@ -10,6 +10,7 @@ import FacebookShareButton from "@/components/blog/FacebookShareButton";
 import XShareButton from "@/components/blog/XShareButton";
 import LinkedInShareButton from "@/components/blog/LinkedInShareButton";
 import CommentSection from "@/components/blog/CommentSection";
+import SchemaInjector from "@/components/SchemaInjector";
 
 export async function generateStaticParams() {
     const allBlogs = await getAllBlogs();
@@ -136,6 +137,7 @@ export default async function BlogSinglePage({ params }) {
                     </div>
                 </div>
             </section>
+                                  <SchemaInjector schemas={blog.schema_markup} />
 
         </>
     );

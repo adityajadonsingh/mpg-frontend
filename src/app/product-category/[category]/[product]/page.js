@@ -1,4 +1,5 @@
 import ProductClientPage from "@/components/product/ProductClientPage";
+import SchemaInjector from "@/components/SchemaInjector";
 import { getAllProducts } from "@/lib/api/products";
 import { notFound } from "next/navigation";
 
@@ -46,11 +47,16 @@ export default async function ProductDetail({ params }) {
     (prod) => prod.name !== productData.name
   );
 
+
   return (
-    <ProductClientPage
-      product={productData}
-      relatedProducts={relatedProducts}
-    />
+    <>
+      <ProductClientPage
+        product={productData}
+        relatedProducts={relatedProducts}
+      />
+      <SchemaInjector schemas={productData.schema_markup} />
+    </>
+
   );
 }
 
