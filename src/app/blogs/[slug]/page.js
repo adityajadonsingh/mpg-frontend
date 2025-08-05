@@ -59,11 +59,43 @@ export default async function BlogSinglePage({ params }) {
         },
         "datePublished": new Date(blog.date_posted).toISOString()
     };
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://mpgstone.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blogs",
+                "item": "https://mpgstone.com/blogs/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": blog.title,
+                "item": `https://mpgstone.com/blogs/${blog.slug}/`
+            }
+        ]
+    };
+
     const normalizeSchema = (schema) =>
         schema?.schema_json ? schema : { schema_json: schema };
 
-    const rawSchemas = [commonSchema, ...(Array.isArray(blog.schema_markup) ? blog.schema_markup : [])];
+    // collect everything (breadcrumb first if you like)
+    const rawSchemas = [
+        breadcrumbSchema,
+        commonSchema,
+        ...(Array.isArray(blog.schema_markup) ? blog.schema_markup : [])
+    ];
 
+    // dedupe by JSON string and wrap as `{ schema_json: ... }`
     const safeSchemas = Array.from(
         new Map(
             rawSchemas.map((schema) => {
@@ -73,7 +105,6 @@ export default async function BlogSinglePage({ params }) {
         ).values()
     );
 
-    console.log(safeSchemas)
 
     return (
         <>
