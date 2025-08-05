@@ -60,7 +60,6 @@ export default async function BlogSinglePage({ params }) {
         "datePublished": new Date(blog.date_posted).toISOString()
     };
     const safeSchemas = [commonSchema, ...(Array.isArray(blog.schema_markup) ? blog.schema_markup : [])];
-    console.log(safeSchemas)
 
 
     return (
