@@ -83,7 +83,6 @@ export default async function CategoryPage({ params }) {
     { slug_name: "Product Category", slug: "/product-category/" },
     { slug_name: category.replace(/-/g, " "), slug: `/product-category/${category}` },
   ];
-  const allCategories = await getAllCategories();
 
   return (
     <>

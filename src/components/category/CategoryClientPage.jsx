@@ -39,6 +39,47 @@ export default function CategoryClientPage({
     (cat) => cat.slug.toLowerCase() === categorySlug.toLowerCase()
   );
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mpgstone.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Product Category",
+        item: "https://mpgstone.com/product-category/",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: categoryDetails.category_name,
+        item:  `https://mpgstone.com/product-category/${categoryDetails.slug}/`,
+      },
+    ],
+  };
+
+  
+    const normalizeSchema = (schema) =>
+        schema?.schema_json ? schema : { schema_json: schema };
+    const rawSchemas = [
+        breadcrumbSchema,
+        ...(Array.isArray(categoryDetails.schemas) ? categoryDetails.schemas : [])
+    ];
+
+    const safeSchemas = Array.from(
+        new Map(
+            rawSchemas.map((schema) => {
+                const normalized = normalizeSchema(schema);
+                return [JSON.stringify(normalized.schema_json), normalized];
+            })
+        ).values()
+    );
   const showPagination = totalPages > 1 && searchTerm === "";
   return (
     <>
@@ -138,7 +179,7 @@ export default function CategoryClientPage({
       {currentPage === 1 && (
         <>
           <PageDescription content={categoryDetails.descriptions} />
-          <SchemaInjector schemas={categoryDetails.schemas} />
+          <SchemaInjector schemas={safeSchemas} />
         </>
       )}
 
