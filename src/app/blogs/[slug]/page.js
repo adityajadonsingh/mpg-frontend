@@ -34,6 +34,34 @@ export default async function BlogSinglePage({ params }) {
         { slug_name: "Blogs", slug: "/blogs" },
         { slug_name: blog.breadcrumb, slug: `/blogs/${blog.slug}` },
     ];
+    const commonSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://mpgstone.com/blogs/${blog.slug}/`
+        },
+        "headline": blog.title,
+        "description": blog.meta_description,
+        "image": blog.meta_image,
+        "author": {
+            "@type": "Person",
+            "name": "Jaya Tripathi",
+            "url": "https://mpgstone.com/author/jaya_tripathi/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "MPG Stone",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://mpgstone.com/media/logo.svg"
+            }
+        },
+        "datePublished": new Date(blog.date_posted).toISOString()
+    };
+    const safeSchemas = [commonSchema, ...(Array.isArray(blog.schema_markup) ? blog.schema_markup : [])];
+    console.log(safeSchemas)
+
 
     return (
         <>
@@ -96,48 +124,48 @@ export default async function BlogSinglePage({ params }) {
                 <div className=" xl:w-3/12 lg:w-4/12 w-full relative">
                     <div className="sticky top-28">
                         <div className="latest-blogs mb-5">
-                        <h2 className="text-center">Blog Categories</h2>
-                        <ul className="mt-3">
-                            {
-                                blogCategories.map((item, idx) => (
-                                    <li key={idx+"-blog-category"} className=" mb-3">
-                                        <Link className="flex px-3 justify-between" href={`/blog-category/${item.category_slug}/`}>
-                                            <span>{item.category_name}</span>
-                                            <span>{item.blog_count}</span>
-                                        </Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                    <div className="latest-blogs">
-                        <h2 className="text-center">Latest Blogs</h2>
-                        <ul className="latest-list grid lg:grid-cols-1 grid-cols-2 md:gap-5 gap-3 mt-4">
-                            {latestBlogs.map((item, idx) => (
-                                <Link key={idx} href={`/blogs/${item.slug}`} className="block">
-                                    <div className="bg-gray-100 p-4 recent-card h-full  rounded shadow hover:shadow-lg transition-all">
-                                        <div className="relative img-box h-full">
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                fill
-                                                className="object-cover z-10 h-full w-full bg-[#ebedf0] rounded"
-                                                placeholder="blur"
-                                                blurDataURL="/media/placeholder.jpg"
-                                            />
+                            <h2 className="text-center">Blog Categories</h2>
+                            <ul className="mt-3">
+                                {
+                                    blogCategories.map((item, idx) => (
+                                        <li key={idx + "-blog-category"} className=" mb-3">
+                                            <Link className="flex px-3 justify-between" href={`/blog-category/${item.category_slug}/`}>
+                                                <span>{item.category_name}</span>
+                                                <span>{item.blog_count}</span>
+                                            </Link>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="latest-blogs">
+                            <h2 className="text-center">Latest Blogs</h2>
+                            <ul className="latest-list grid lg:grid-cols-1 grid-cols-2 md:gap-5 gap-3 mt-4">
+                                {latestBlogs.map((item, idx) => (
+                                    <Link key={idx} href={`/blogs/${item.slug}`} className="block">
+                                        <div className="bg-gray-100 p-4 recent-card h-full  rounded shadow hover:shadow-lg transition-all">
+                                            <div className="relative img-box h-full">
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    fill
+                                                    className="object-cover z-10 h-full w-full bg-[#ebedf0] rounded"
+                                                    placeholder="blur"
+                                                    blurDataURL="/media/placeholder.jpg"
+                                                />
+                                            </div>
+                                            <div className="text-side">
+                                                <h3 className="font-semibold lg:text-md sm:text-sm text-xs">{item.title}</h3>
+                                            </div>
                                         </div>
-                                        <div className="text-side">
-                                            <h3 className="font-semibold lg:text-md sm:text-sm text-xs">{item.title}</h3>
-                                        </div>
-                                    </div>
-                                </Link>
-                            ))}
-                        </ul>
-                    </div>
+                                    </Link>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
-                                  <SchemaInjector schemas={blog.schema_markup} />
+            <SchemaInjector schemas={safeSchemas} />
 
         </>
     );

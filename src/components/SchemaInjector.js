@@ -5,7 +5,7 @@ export default function SchemaInjector({ schemas }) {
   return (
     <>
       {schemas.map((schema, idx) =>
-        schema.schema_json ? (
+        schema?.schema_json ? (
           <script
             key={idx}
             type="application/ld+json"
