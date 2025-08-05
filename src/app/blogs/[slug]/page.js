@@ -59,8 +59,21 @@ export default async function BlogSinglePage({ params }) {
         },
         "datePublished": new Date(blog.date_posted).toISOString()
     };
-    const safeSchemas = [commonSchema, ...(Array.isArray(blog.schema_markup) ? blog.schema_markup : [])];
+    const normalizeSchema = (schema) =>
+        schema?.schema_json ? schema : { schema_json: schema };
 
+    const rawSchemas = [commonSchema, ...(Array.isArray(blog.schema_markup) ? blog.schema_markup : [])];
+
+    const safeSchemas = Array.from(
+        new Map(
+            rawSchemas.map((schema) => {
+                const normalized = normalizeSchema(schema);
+                return [JSON.stringify(normalized.schema_json), normalized];
+            })
+        ).values()
+    );
+
+    console.log(safeSchemas)
 
     return (
         <>
