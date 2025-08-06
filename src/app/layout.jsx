@@ -80,6 +80,23 @@ export default async function RootLayout({ children }) {
             contactDetails={contactDetails}
           />
         </CategoryProvider>
+        {/* Google Analytics Script */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-E1JP28VMB4"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-E1JP28VMB4');
+          `,
+          }}
+        />
       </body>
     </html>
   );
