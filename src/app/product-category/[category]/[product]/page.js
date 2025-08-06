@@ -21,32 +21,83 @@ export const revalidate = 60;
 
 // ✅ Product Detail Page Component
 export default async function ProductDetail({ params }) {
-  const { category, product } = params;
+  const { category, product } = await params;
 
-  // 1. Fetch product detail using slug
   const productDetails = await getAllProducts(product, null);
 
-  // 2. If not found => 404
   if (!productDetails || productDetails.length === 0) {
     return notFound();
   }
 
   const productData = productDetails[0];
 
-  // 3. Normalize actual category slug from product data
   const actualCategorySlug = productData.category.replace(/ /g, "-").toLowerCase();
 
-  // 4. If URL category doesn't match actual category => 404
   if (category !== actualCategorySlug) {
     return notFound();
   }
 
-  // 5. Fetch related products from same category
   const fetchRelatedProducts = await getAllProducts("10", productData.category);
   const relatedProducts = fetchRelatedProducts.filter(
     (prod) => prod.name !== productData.name
   );
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://mpgstone.com/"
+    }, {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Product Category",
+      "item": "https://mpgstone.com/product-category/"
+    }, {
+      "@type": "ListItem",
+      "position": 3,
+      "name": productData.category,
+      "item": `https://mpgstone.com/product-category/${productData.category.replace(/ /g, "-").toLowerCase()}/`
+    }, {
+      "@type": "ListItem",
+      "position": 4,
+      "name": productData.name,
+      "item": `https://mpgstone.com/product-category/${productData.category.replace(/ /g, "-").toLowerCase()}/${productData.slug}/`
+    }]
+  }
+  const reviewsSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": productData.name,
+    "image": productData.image,
+    "description": productData.meta_description,
+    "brand": {
+      "@type": "Brand",
+      "name": "MPG Stone"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "10"
+    }
+  }
+  const normalizeSchema = (schema) =>
+    schema?.schema_json ? schema : { schema_json: schema };
+  const rawSchemas = [
+    breadcrumbSchema,
+    reviewsSchema,
+    ...(Array.isArray(productData.schema_markup) ? productData.schema_markup : [])
+  ];
 
+  const safeSchemas = Array.from(
+    new Map(
+      rawSchemas.map((schema) => {
+        const normalized = normalizeSchema(schema);
+        return [JSON.stringify(normalized.schema_json), normalized];
+      })
+    ).values()
+  );
 
   return (
     <>
@@ -54,15 +105,14 @@ export default async function ProductDetail({ params }) {
         product={productData}
         relatedProducts={relatedProducts}
       />
-      <SchemaInjector schemas={productData.schema_markup} />
+      <SchemaInjector schemas={safeSchemas} />
     </>
 
   );
 }
 
-// ✅ Metadata generation for SEO
 export async function generateMetadata({ params }) {
-  const { category, product } = params;
+  const { category, product } = await params;
   const [productDetails] = await getAllProducts(product, null);
 
   // ❗ If product not found, return minimal metadata
