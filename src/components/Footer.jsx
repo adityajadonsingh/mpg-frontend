@@ -230,7 +230,7 @@ export default function Footer({ socialLinks, contactDetails }) {
         </div>
       </footer>
       <div className="whatsapp-float">
-        <a href="https://wa.me/+13212370025" target="_blank">
+        <a href="https://wa.me/+13215419137" target="_blank">
           <div className="icn">
             <i className="bi bi-whatsapp"></i>
           </div>
