@@ -24,7 +24,7 @@ export default function HeroClient({ banners }) {
                 height={500}
                 src={banner.image}
                 alt={banner.title}
-                loading="lazy"
+                priority
                 className="z-10 h-full w-full bg-[#ebedf0]"
                 placeholder="blur"
                 blurDataURL="/media/placeholder.jpg"
