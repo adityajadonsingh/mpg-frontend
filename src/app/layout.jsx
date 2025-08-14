@@ -65,22 +65,7 @@ export default async function RootLayout({ children }) {
             `,
           }}
         />
-      </head>
-      <body
-        className={`${montserrat.className} flex flex-col min-h-screen relative`}
-      >
-        <CategoryProvider categories={categories}>
-          <Suspense fallback={null}>
-            <ProgressBar />
-          </Suspense>
-          <Header contactDetails={contactDetails} />
-          <main>{children}</main>
-          <Footer
-            socialLinks={socialLinks.social_media_links}
-            contactDetails={contactDetails}
-          />
-        </CategoryProvider>
-        {/* Google Analytics Script */}
+{/* Google Analytics Script */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-E1JP28VMB4"
@@ -97,6 +82,22 @@ export default async function RootLayout({ children }) {
           `,
           }}
         />
+      </head>
+      <body
+        className={`${montserrat.className} flex flex-col min-h-screen relative`}
+      >
+        <CategoryProvider categories={categories}>
+          <Suspense fallback={null}>
+            <ProgressBar />
+          </Suspense>
+          <Header contactDetails={contactDetails} />
+          <main>{children}</main>
+          <Footer
+            socialLinks={socialLinks.social_media_links}
+            contactDetails={contactDetails}
+          />
+        </CategoryProvider>
+        
       </body>
     </html>
   );
