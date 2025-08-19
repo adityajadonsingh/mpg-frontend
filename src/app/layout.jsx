@@ -65,7 +65,7 @@ export default async function RootLayout({ children }) {
             `,
           }}
         />
-{/* Google Analytics Script */}
+        {/* Google Analytics Script */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-E1JP28VMB4"
@@ -97,7 +97,6 @@ export default async function RootLayout({ children }) {
             contactDetails={contactDetails}
           />
         </CategoryProvider>
-        
       </body>
     </html>
   );
