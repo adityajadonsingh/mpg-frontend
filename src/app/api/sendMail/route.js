@@ -63,7 +63,7 @@ export async function POST(request) {
         </p>
       `;
     } else if (type === "contact") {
-      subject = "New Contact Form Submission";
+      subject = "New Contact Form Submission on mpgstone.com";
       htmlContent = `
         <table cellpadding="8" cellspacing="0" border="0" style="width:100%; max-width:600px; font-family:Arial, sans-serif; border:1px solid #e0e0e0; background:#ffffff;">
           <tr>
@@ -90,7 +90,7 @@ export async function POST(request) {
         </table>
       `;
     } else if (type === "blog") {
-      subject = `New blog comment on ${blog_name}`;
+      subject = `New blog comment on ${blog_name} in mpgstone.com`;
       htmlContent = `
         <table cellpadding="8" cellspacing="0" border="0" style="width:100%; max-width:600px; font-family:Arial, sans-serif; border:1px solid #e0e0e0; background:#ffffff;">
           <tr>
