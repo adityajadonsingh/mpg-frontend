@@ -35,9 +35,6 @@ export default function Testimonials({testimonials}) {
                   ))}
                 </div>
 
-                {/* Title */}
-                <h3 className="font-semibold text-lg mb-2">{single.title}</h3>
-
                 {/* Testimonial Text */}
                 <p className="text-gray-600 text-sm mb-4">{single.testimonial}</p>
 
