@@ -7,7 +7,7 @@ export default function HomePopup() {
 
   useEffect(() => {
     if (window.location.pathname === "/") {
-      const timer = setTimeout(() => setIsVisible(true), 3000);
+      const timer = setTimeout(() => setIsVisible(true), 2000);
       return () => clearTimeout(timer);
     }
   }, []);
