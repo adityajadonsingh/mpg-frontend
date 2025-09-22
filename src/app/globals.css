@@ -1080,7 +1080,7 @@ h2.heading {
   font-weight: 600;
 }
 .thank-you-page {
-  background-image: url("https://slateblue-loris-683625.hostingersite.com/wp-content/uploads/2025/04/thank-you-page-banner.webp");
+  background-image: url("/media/thank-you.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

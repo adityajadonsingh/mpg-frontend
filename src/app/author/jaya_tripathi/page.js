@@ -39,10 +39,17 @@ export default async function BlogsDefaultPage() {
 
     const allBlogs = await getAllBlogs();
 
-    const totalPages = Math.ceil(allBlogs.blogs.length / perPage);
-    const start = (pageIndex - 1) * perPage;
-    const end = start + perPage;
-    const paginatedBlogs = allBlogs.blogs.slice(start, end);
+ // Sort blogs by date
+  const sortedBlogs = [...allBlogs.blogs].sort(
+    (a, b) => new Date(b.date_posted) - new Date(a.date_posted)
+  );
+
+  const totalPages = Math.ceil(sortedBlogs.length / perPage);
+  if (pageIndex > totalPages || pageIndex < 1) return notFound();
+
+  const start = (pageIndex - 1) * perPage;
+  const end = start + perPage;
+  const paginatedBlogs = sortedBlogs.slice(start, end);
 
     return (
         <>

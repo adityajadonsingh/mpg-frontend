@@ -11,6 +11,7 @@ import { getAllTestimonials } from "@/lib/api/testimonials";
 import PageDescription from "@/components/PageDescription";
 import { getHomepageContent } from "@/lib/api/homepageContent";
 import SchemaInjector from "@/components/SchemaInjector";
+import HomePopup from "./HomePopup";
 
 export async function generateMetadata() {
   const content = await getHomepageContent();
@@ -55,6 +56,7 @@ export default async function Home() {
       <ContactForm />
       <PageDescription content={homePageContent.content} />
       <SchemaInjector schemas={homePageContent.schemas} />
+      <HomePopup/>
     </>
   );
 }
