@@ -52,7 +52,7 @@ export default function HomeCategories() {
                     blurDataURL="/media/placeholder.jpg"
                   />
                   <div className="text-box">
-                    <h2>{category.category_name}</h2>
+                    <span>{category.category_name}</span>
                   </div>
                 </div>
               </Link>

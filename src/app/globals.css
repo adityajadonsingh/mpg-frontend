@@ -217,14 +217,13 @@ main {
   text-align: center;
   line-height: 1.2;
 }
-.home-category .wrap .text-box:hover {
-  background-color: transparent;
-}
-.home-category .wrap .text-box h2 {
+
+.home-category .wrap .text-box span {
   font-size: 22px;
   font-weight: 600;
   text-transform: capitalize;
   color: #fff;
+  display: block;
 }
 .home-category .swiper-button-prev,
 .home-category .swiper-button-next,

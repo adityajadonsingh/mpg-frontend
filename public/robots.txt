@@ -9,6 +9,7 @@ Disallow: /_next/
 Disallow: /static/
 Disallow: /server/
 Disallow: /media/
+Disallow: /thank-you
 
 Sitemap: https://mpgstone.com/sitemap.xml
 

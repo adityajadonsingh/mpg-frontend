@@ -7,9 +7,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
-
   return {
-
     robots: {
       index: false,
       follow: true,
@@ -32,14 +30,17 @@ export default async function BlogPaginatedPage({ params }) {
 
   if (!allBlogs || !allBlogs.blogs.length) return notFound();
 
-  const totalPages = Math.ceil(allBlogs.blogs.length / perPage);
+  // Sort blogs by date
+  const sortedBlogs = [...allBlogs.blogs].sort(
+    (a, b) => new Date(b.date_posted) - new Date(a.date_posted)
+  );
+
+  const totalPages = Math.ceil(sortedBlogs.length / perPage);
   if (pageIndex > totalPages || pageIndex < 1) return notFound();
 
   const start = (pageIndex - 1) * perPage;
   const end = start + perPage;
-  const paginatedBlogs = allBlogs.blogs.slice(start, end);
-
-
+  const paginatedBlogs = sortedBlogs.slice(start, end);
 
   return (
     <>
@@ -48,9 +49,13 @@ export default async function BlogPaginatedPage({ params }) {
       <section className="blog-page">
         <div className="wrapper">
           <div className="grid lg:grid-cols-3 gap-5">
-            {
-              paginatedBlogs.map((blog, idx) => {
-                return <Link key={`blog-${idx}`} href={`/blogs/${blog.slug}`} className="block">
+            {paginatedBlogs.map((blog, idx) => {
+              return (
+                <Link
+                  key={`blog-${idx}`}
+                  href={`/blogs/${blog.slug}`}
+                  className="block"
+                >
                   <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
                     <div className="img-box relative">
                       <Image
@@ -64,14 +69,21 @@ export default async function BlogPaginatedPage({ params }) {
                       />
                     </div>
                     <div className="p-4 flex flex-col text-center">
-                      <h3 className="lg:text-lg text-md font-semibold mb-2">{blog.title}</h3>
+                      <h3 className="lg:text-lg text-md font-semibold mb-2">
+                        {blog.title}
+                      </h3>
                       <p className="text-orange-600 text-sm mb-2">
                         Jaya Tripathi |{" "}
-                        <span className="text-gray-600">{new Date(blog.date_posted).toLocaleDateString("en-GB", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}</span>
+                        <span className="text-gray-600">
+                          {new Date(blog.date_posted).toLocaleDateString(
+                            "en-GB",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          )}
+                        </span>
                       </p>
                       <p className="text-sm text-gray-600 line-clamp-3">
                         {blog.description.length > 100
@@ -81,8 +93,8 @@ export default async function BlogPaginatedPage({ params }) {
                     </div>
                   </div>
                 </Link>
-              })
-            }
+              );
+            })}
           </div>
         </div>
       </section>
@@ -92,15 +104,12 @@ export default async function BlogPaginatedPage({ params }) {
           {Array.from({ length: totalPages }, (_, idx) => (
             <Link
               key={idx}
-              href={
-                idx === 0
-                  ? `/blogs`
-                  : `/blogs/page/${idx + 1}`
-              }
-              className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${pageIndex === idx + 1
+              href={idx === 0 ? `/blogs` : `/blogs/page/${idx + 1}`}
+              className={`px-6 py-4 font-semibold rounded hover:bg-[#DC5100] hover:text-white ${
+                pageIndex === idx + 1
                   ? "bg-[#DC5100] text-white"
                   : "bg-[#E9E9ED] text-[#8a8a8c]"
-                }`}
+              }`}
             >
               {idx + 1}
             </Link>

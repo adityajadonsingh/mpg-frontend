@@ -105,7 +105,6 @@ export default async function BlogSinglePage({ params }) {
         ).values()
     );
 
-
     return (
         <>
             <section className="single-blog lg:w-full md:w-11/12 w-full mx-auto wrapper md:my-8 my-5 gap-y-6 lg:flex-nowrap justify-center flex-wrap">
@@ -114,13 +113,13 @@ export default async function BlogSinglePage({ params }) {
                         <Breadcrum path_arr={slugPath} />
                     </div>
                     <h1 className="xl:text-4xl lg:text-3xl text-2xl font-bold xl:mb-4 mb-3">{blog.title}</h1>
-                    <p className="md:text-sm text-xs  text-gray-600 mb-6">
-                        Posted on {new Date(blog.date_posted).toLocaleDateString("en-GB", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })} | Author: <Link className="text-[#da4c00] font-semibold" href={"/author/jaya_tripathi"}>Jaya Tripathi</Link>
-                    </p>
+                    <ul className="md:text-sm text-xs  text-gray-600 mb-6 flex flex-wrap gap-x-2 justify-start items-center">
+                        <li className="inline-block"><i className="bi bi-calendar3 mr-1 text-[#f36c23]"></i> {new Date(blog.date_posted).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}</li>
+                        <li>|</li>
+                        <li className="inline-block"><i className="bi bi-person-circle mr-1 text-[#f36c23]"></i> Jaya Tripathi</li>
+                        <li>|</li>
+                        <li><span className="text-[#f36c23] font-medium">Category</span> : <Link className="hover:text-[#f36c23]" href={`/blog-category/${blog.category.slug}`}>{blog.category.name}</Link></li>
+                    </ul>
                     <div className="relative blog-main-img w-full xl:h-[500px] lg:h-[450px] md:h-[420px] sm:h-[350px] h-[280px] mb-6">
                         <Image
                             src={blog.image}

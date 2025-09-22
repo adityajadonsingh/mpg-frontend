@@ -1,5 +1,10 @@
 import Link from "next/link"
 
+export const metadata = {
+  robots:
+    "NOINDEX, NOFOLLOW"
+};
+
 export default function thankYouPage() {
     return (
         <>

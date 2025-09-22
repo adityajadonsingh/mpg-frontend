@@ -333,7 +333,7 @@
   .home-category .swiper-button-next {
     display: none;
   }
-  .home-category .wrap .text-box h2 {
+  .home-category .wrap .text-box span {
     font-size: 18px;
   }
   .home-category .wrap {
