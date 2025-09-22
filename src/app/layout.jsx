@@ -51,7 +51,7 @@ export default async function RootLayout({ children }) {
         <link href="https://mpgstone.com/" hreflang="x-default" rel="alternate" />
         <Script
           id="tawk-to"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -68,12 +68,12 @@ export default async function RootLayout({ children }) {
         />
         {/* Google Analytics Script */}
         <Script
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtag/js?id=G-E1JP28VMB4"
         />
         <Script
           id="google-analytics"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
       window.dataLayer = window.dataLayer || [];
