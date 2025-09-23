@@ -9,6 +9,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Blogs({ blogs }) {
+  const sortedBlogs = blogs
+    .slice()
+    .sort((a, b) => new Date(b.date_posted) - new Date(a.date_posted));
+
   return (
     <section className="home-blog">
       <div className="wrapper">
@@ -29,7 +33,7 @@ export default function Blogs({ blogs }) {
             },
           }}
         >
-          {blogs.slice(0, 5).map((blog, idx) => (
+          {sortedBlogs.slice(0, 5).map((blog, idx) => (
             <SwiperSlide key={idx}>
               <Link href={`/blogs/${blog.slug}`} className="block">
                 <div className="bg-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all h-full">
@@ -50,14 +54,11 @@ export default function Blogs({ blogs }) {
                     <p className="text-orange-600 text-sm mb-2">
                       Jaya Tripathi |{" "}
                       <span className="text-gray-600">
-                        {new Date(blog.date_posted).toLocaleDateString(
-                          "en-GB",
-                          {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          }
-                        )}
+                        {new Date(blog.date_posted).toLocaleDateString("en-GB", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
                       </span>
                     </p>
                     <p className="text-sm text-gray-600 line-clamp-3">
