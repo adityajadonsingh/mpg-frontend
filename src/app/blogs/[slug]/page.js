@@ -11,6 +11,7 @@ import XShareButton from "@/components/blog/XShareButton";
 import LinkedInShareButton from "@/components/blog/LinkedInShareButton";
 import CommentSection from "@/components/blog/CommentSection";
 import SchemaInjector from "@/components/SchemaInjector";
+import TableOfContents from "@/components/blog/TableOfContents";
 
 export async function generateStaticParams() {
   const allBlogs = await getAllBlogs();
@@ -155,8 +156,9 @@ export default async function BlogSinglePage({ params }) {
               blurDataURL="/media/placeholder.jpg"
             />
           </div>
+          <TableOfContents content={blog.content} />
           <div
-            className="prose max-w-none"
+            className="prose max-w-none blog-html"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           ></div>
           <div className="sm:mt-4 mt-2 sm:p-8 p-4 border-1 rounded-md border-[#777a80]">
