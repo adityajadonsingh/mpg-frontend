@@ -12,3 +12,33 @@ export const getAllCategories = async () => {
 
   return res.json();
 };
+
+export const getHomeCategoriesOnly = async () => {
+  const rawCategories = await getAllCategories();
+
+  const allowedCategories = [
+    "Cobblestone paving",
+    "Granite Slabs",
+    "Quartz Slabs",
+    "Porcelain Slabs",
+    "Outdoor Porcelain Tiles",
+  ];
+
+  return rawCategories
+    .filter((cat) =>
+      allowedCategories.some(
+        (allowed) =>
+          allowed.toLowerCase().trim() ===
+          (cat.category_name || "").toLowerCase().trim()
+      )
+    )
+    .map((cat) => ({
+      category_name: cat.category_name,
+      slug: cat.slug,
+      alt_text: cat.alt_text || cat.category_name,
+      image:
+        typeof cat.image === "string"
+          ? cat.image
+          : cat.image?.url || "/media/placeholder.jpg",
+    }));
+};

@@ -1,0 +1,75 @@
+/* Prevent layout shift before Swiper JS loads */
+.swiper-wrapper-skeleton {
+  /* Optional: give container a min-height to avoid vertical shift */
+  min-height: 240px; /* 200px height + padding/margin */
+}
+
+.swiper-slide-skeleton {
+  /* Force slide to have correct aspect ratio BEFORE Swiper initializes */
+  height: 200px ;
+  min-width: calc(50% - 5px); /* for mobile: 2 slides = ~50% each, minus spacing */
+  max-width: calc(50% - 5px);
+  box-sizing: border-box;
+}
+.swiper-slide-skeleton {
+  height: 200px !important;
+  min-width: calc(50% - 5px); /* (100% / 2) - half of spacing */
+  max-width: calc(50% - 5px);
+  box-sizing: border-box;
+  margin-right: 10px; /* 👈 ADD THIS — matches Swiper's spaceBetween */
+}
+
+.swiper-slide-skeleton:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+      .swiper-slide-skeleton {
+    height: 100%;}
+}
+@media (min-width: 768px) {
+  .swiper-slide-skeleton {
+    height: 100%;
+    min-width: calc(33.333% - 7px);
+    max-width: calc(33.333% - 7px);
+  }
+}
+
+@media (min-width: 991px) {
+  .swiper-slide-skeleton {
+    min-width: calc(25% - 8px);
+    max-width: calc(25% - 8px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .swiper-slide-skeleton {
+    min-width: calc(20% - 8px);
+    max-width: calc(20% - 8px);
+  }
+}
+
+/* Optional: add subtle background so skeleton isn't blank */
+.swiper-slide-skeleton {
+  background: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Ensure image container doesn't stretch */
+.wrap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.text-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 8px;
+  text-align: center;
+}

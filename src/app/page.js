@@ -12,6 +12,7 @@ import PageDescription from "@/components/PageDescription";
 import { getHomepageContent } from "@/lib/api/homepageContent";
 import SchemaInjector from "@/components/SchemaInjector";
 import HomePopup from "./HomePopup";
+import { getHomeCategoriesOnly } from "@/lib/api/categories";
 
 export async function generateMetadata() {
   const content = await getHomepageContent();
@@ -26,12 +27,12 @@ export async function generateMetadata() {
       images: content.meta_image,
       type: "website",
       locale: "en_US",
-      siteName: "MPG Stone"
+      siteName: "MPG Stone",
     },
     twitter: {
       title: content.twitter_title || content.meta_title,
       description: content.twitter_description || content.meta_description,
-      images: content.meta_image
+      images: content.meta_image,
     },
     alternates: {
       canonical: content.canonical_url || "",
@@ -41,14 +42,18 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const banners = await getAllBanners();
-  const blogs = await getAllBlogs();
-  const testimonials = await getAllTestimonials();
-  const homePageContent = await getHomepageContent();
+  const [banners, blogs, testimonials, homePageContent, categories] = await Promise.all([
+    getAllBanners(),
+    getAllBlogs(),
+    getAllTestimonials(),
+    getHomepageContent(),
+    getHomeCategoriesOnly()
+  ]);
+
   return (
     <>
       <HeroClient banners={banners} />
-      <HomeCategories />
+      <HomeCategories categories={categories} />
       <BestMPG />
       <MessageBox />
       <Testimonials testimonials={testimonials.testimonials} />
@@ -56,7 +61,7 @@ export default async function Home() {
       <ContactForm />
       <PageDescription content={homePageContent.content} />
       <SchemaInjector schemas={homePageContent.schemas} />
-      <HomePopup/>
+      <HomePopup />
     </>
   );
 }

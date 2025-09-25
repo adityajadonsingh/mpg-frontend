@@ -100,7 +100,7 @@ main {
   align-items: center;
 }
 .header .nav .nav-item {
-  color: #757575;
+color: #484848;
   font-weight: 600;
   font-size: 17px;
   text-transform: capitalize;
@@ -185,7 +185,7 @@ main {
   background-color: #ed5b06;
 }
 .home-category {
-  padding: 50px 0 30px;
+  padding: 36px 0 40px;
 }
 .home-category .wrap {
   width: 100%;

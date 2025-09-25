@@ -6,10 +6,10 @@ import Image from "next/image";
 import { getAllProducts } from "@/lib/api/products";
 
 const categories = [
-  "Cobblestone paving",
   "Granite Slabs",
-  "Kerb Stone",
+  "Statuario Porcelain Tiles",
   "Porcelain Slabs",
+  "Outdoor Porcelain Tiles",
 ];
 
 export default function BestMPG() {
@@ -106,15 +106,11 @@ export default function BestMPG() {
                         src={product.image || "/media/placeholder.jpg"}
                         alt={product.name}
                         style={{ objectFit: "cover" }}
-                        className="object-cover mb-2 transition-all duration-300 hover:scale-105 z-10 h-full w-full bg-[#ebedf0]"
+                        className="object-cover object-center mb-2 transition-all duration-300 hover:scale-105 z-10 h-full w-full bg-[#ebedf0]"
                         placeholder="blur"
                         blurDataURL="/media/placeholder.jpg"
                       />
-                      <div className="cta absolute bottom-0 left-0 right-0 z-10">
-                        <button className="bg-white px-3 py-2 font-medium text-sm w-full">
-                          ENQUIRE NOW
-                        </button>
-                      </div>
+                      
                     </div>
                     <div className="font-semibold md:text-lg text-md mt-3 capitalize">
                       {product.name}
