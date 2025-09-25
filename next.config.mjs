@@ -18,7 +18,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ["swiper"],
-    reactCompiler: true,
   },
 
   async redirects() {
