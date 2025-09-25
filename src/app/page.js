@@ -1,10 +1,10 @@
+import dynamic from "next/dynamic";
+
 import BestMPG from "@/components/home/BestMPG";
-import Blogs from "@/components/home/Blogs";
 import HeroClient from "@/components/home/HeroClient";
 import HomeCategories from "@/components/home/HomeCategories";
 import MessageBox from "@/components/home/MessageBox";
-import Testimonials from "@/components/home/Testimonials";
-import ContactForm from "@/components/home/ContactForm";
+
 import { getAllBanners } from "@/lib/api/homeBanner";
 import { getAllBlogs } from "@/lib/api/blogs";
 import { getAllTestimonials } from "@/lib/api/testimonials";
@@ -13,6 +13,14 @@ import { getHomepageContent } from "@/lib/api/homepageContent";
 import SchemaInjector from "@/components/SchemaInjector";
 import HomePopup from "./HomePopup";
 import { getHomeCategoriesOnly } from "@/lib/api/categories";
+import LazyTestimonials from "@/components/home/LazyTestimonials";
+import ContactForm from "@/components/home/ContactForm";
+
+const Blogs = dynamic(() => import("@/components/home/Blogs"), {
+  ssr: true, 
+  loading: () => <div className="h-40 bg-gray-100 animate-pulse rounded-md" />,
+});
+
 
 export async function generateMetadata() {
   const content = await getHomepageContent();
@@ -56,7 +64,7 @@ export default async function Home() {
       <HomeCategories categories={categories} />
       <BestMPG />
       <MessageBox />
-      <Testimonials testimonials={testimonials.testimonials} />
+      <LazyTestimonials testimonials={testimonials.testimonials} />
       <Blogs blogs={blogs.blogs} />
       <ContactForm />
       <PageDescription content={homePageContent.content} />

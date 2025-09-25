@@ -9,8 +9,6 @@ import { Navigation, Thumbs } from "swiper/modules";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 
-import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";

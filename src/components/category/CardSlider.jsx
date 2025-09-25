@@ -4,10 +4,6 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCards, Autoplay, Pagination } from "swiper/modules";
 
-import "swiper/css";
-import "swiper/css/effect-cards";
-import "swiper/css/pagination";
-
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 

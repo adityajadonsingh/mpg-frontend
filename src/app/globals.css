@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "bootstrap-icons/font/bootstrap-icons.css";
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
+
 @layer utilities {
   .animate-slide-in {
     animation: slideIn 0.5s ease forwards;

@@ -33,6 +33,11 @@ const nextConfig = {
     ],
   },
 
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ["swiper"],
+  },
+
   async redirects() {
     return [
       {
