@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCategories } from "@/context/CategoryContext";
-import axios from "axios";
 
 import Popup from "@/components/Popup";
 
@@ -16,14 +15,21 @@ export default function Footer({ socialLinks, contactDetails }) {
   useEffect(() => {
     const fetchSubscribers = async () => {
       try {
-        const res = await axios.get(
-          "https://backend.mpgstone.com/api/subscribe/"
-        );
-        setSubscribers(res.data.subscribers || []);
+        const res = await fetch("https://backend.mpgstone.com/api/subscribe/", {
+          method: "GET",
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setSubscribers(data.subscribers || []);
       } catch (error) {
         console.error("Error fetching subscribers", error);
       }
     };
+
     fetchSubscribers();
   }, []);
 
@@ -38,11 +44,22 @@ export default function Footer({ socialLinks, contactDetails }) {
         setPopupMessage("You are already subscribed.");
       } else {
         try {
-          // Save subscriber
-          await axios.post("https://backend.mpgstone.com/api/subscribe/", {
-            email,
-            type: "newsletter",
-          });
+          // Save subscriber (POST request)
+          const res = await fetch(
+            "https://backend.mpgstone.com/api/subscribe/",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email,
+                type: "newsletter",
+              }),
+            }
+          );
+
+          if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          }
 
           // Send thank-you email
           await fetch("/api/sendMail", {

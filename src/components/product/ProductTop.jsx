@@ -12,7 +12,6 @@ import Captions from "yet-another-react-lightbox/plugins/captions";
 import "swiper/css/thumbs";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 import ContactPopupForm from "@/components/ContactPopupForm";
 import Popup from "@/components/Popup";
