@@ -31,7 +31,9 @@ export default async function ProductDetail({ params }) {
 
   const productData = productDetails[0];
 
-  const actualCategorySlug = productData.category.replace(/ /g, "-").toLowerCase();
+  const actualCategorySlug = productData.category
+    .replace(/ /g, "-")
+    .toLowerCase();
 
   if (category !== actualCategorySlug) {
     return notFound();
@@ -44,50 +46,61 @@ export default async function ProductDetail({ params }) {
   const breadcrumbSchema = {
     "@context": "https://schema.org/",
     "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://mpgstone.com/"
-    }, {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Product Category",
-      "item": "https://mpgstone.com/product-category/"
-    }, {
-      "@type": "ListItem",
-      "position": 3,
-      "name": productData.category,
-      "item": `https://mpgstone.com/product-category/${productData.category.replace(/ /g, "-").toLowerCase()}/`
-    }, {
-      "@type": "ListItem",
-      "position": 4,
-      "name": productData.name,
-      "item": `https://mpgstone.com/product-category/${productData.category.replace(/ /g, "-").toLowerCase()}/${productData.slug}/`
-    }]
-  }
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://mpgstone.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Product Category",
+        item: "https://mpgstone.com/product-category/",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: productData.category,
+        item: `https://mpgstone.com/product-category/${productData.category
+          .replace(/ /g, "-")
+          .toLowerCase()}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: productData.name,
+        item: `https://mpgstone.com/product-category/${productData.category
+          .replace(/ /g, "-")
+          .toLowerCase()}/${productData.slug}/`,
+      },
+    ],
+  };
   const reviewsSchema = {
     "@context": "https://schema.org/",
     "@type": "Product",
-    "name": productData.name,
-    "image": productData.image,
-    "description": productData.meta_description,
-    "brand": {
+    name: productData.name,
+    image: productData.image,
+    description: productData.meta_description,
+    brand: {
       "@type": "Brand",
-      "name": "MPG Stone"
+      name: "MPG Stone",
     },
-    "aggregateRating": {
+    aggregateRating: {
       "@type": "AggregateRating",
-      "ratingValue": "5",
-      "ratingCount": "10"
-    }
-  }
+      ratingValue: "5",
+      ratingCount: "10",
+    },
+  };
   const normalizeSchema = (schema) =>
     schema?.schema_json ? schema : { schema_json: schema };
   const rawSchemas = [
     breadcrumbSchema,
     reviewsSchema,
-    ...(Array.isArray(productData.schema_markup) ? productData.schema_markup : [])
+    ...(Array.isArray(productData.schema_markup)
+      ? productData.schema_markup
+      : []),
   ];
 
   const safeSchemas = Array.from(
@@ -107,7 +120,6 @@ export default async function ProductDetail({ params }) {
       />
       <SchemaInjector schemas={safeSchemas} />
     </>
-
   );
 }
 
@@ -128,7 +140,8 @@ export async function generateMetadata({ params }) {
     keywords: productDetails.meta_keywords,
     openGraph: {
       title: productDetails.og_title || productDetails.meta_title,
-      description: productDetails.og_descriptions || productDetails.meta_description,
+      description:
+        productDetails.og_descriptions || productDetails.meta_description,
       url: productDetails.canonical_url,
       images: productDetails.meta_image,
       type: "website",
@@ -137,12 +150,21 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       title: productDetails.twitter_title || productDetails.meta_title,
-      description: productDetails.twitter_description || productDetails.meta_description,
+      description:
+        productDetails.twitter_description || productDetails.meta_description,
       images: productDetails.meta_image,
     },
     alternates: {
       canonical: productDetails.canonical_url || "",
     },
-    robots: productDetails.robots_tag,
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
   };
 }
