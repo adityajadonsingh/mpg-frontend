@@ -2,8 +2,17 @@ import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
+    // Get IP (handle Cloudflare + fallback)
+    const ip =
+      request.headers.get("cf-connecting-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
+
+    // Parse JSON body
     const { type, name, email, phone_number, message, product_name, blog_name } = await request.json();
 
+    // Basic validation
     if (
       !email ||
       (type === "contact" && (!name || !message)) ||
@@ -13,18 +22,17 @@ export async function POST(request) {
       return new Response(JSON.stringify({ message: "Missing required fields" }), { status: 400 });
     }
 
+    console.log("📨 New submission from IP:", ip);
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: "digital@mpgstone.com",
         pass: "aoakrnsezvcfhjig",
       },
-      tls: {
-        rejectUnauthorized: false,
-      },
+      tls: { rejectUnauthorized: false },
     });
 
-    // HTML Email for admin
     let htmlContent = "";
     let subject = "";
 
@@ -37,30 +45,13 @@ export async function POST(request) {
               📩 New Product Enquiry Received
             </th>
           </tr>
-          <tr style="background:#f9f9f9;">
-            <td style="width:160px; font-weight:bold; border-bottom:1px solid #ddd;">Product Name:</td>
-            <td style="border-bottom:1px solid #ddd;">${product_name}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Customer Name:</td>
-            <td style="border-bottom:1px solid #ddd;">${name}</td>
-          </tr>
-          <tr style="background:#f9f9f9;">
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Customer Email-Id:</td>
-            <td style="border-bottom:1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Phone:</td>
-            <td style="border-bottom:1px solid #ddd;">${phone_number || "N/A"}</td>
-          </tr>
-          <tr style="background:#f9f9f9;">
-            <td style="font-weight:bold; vertical-align:top;">Message:</td>
-            <td>${message}</td>
-          </tr>
+          <tr><td style="font-weight:bold;">Product Name:</td><td>${product_name}</td></tr>
+          <tr><td style="font-weight:bold;">Customer Name:</td><td>${name}</td></tr>
+          <tr><td style="font-weight:bold;">Customer Email:</td><td>${email}</td></tr>
+          <tr><td style="font-weight:bold;">Phone:</td><td>${phone_number || "N/A"}</td></tr>
+          <tr><td style="font-weight:bold;">Message:</td><td>${message}</td></tr>
+          <tr><td style="font-weight:bold;">IP Address:</td><td>${ip}</td></tr>
         </table>
-        <p style="font-size:12px; color:#666; font-family:Arial, sans-serif; margin-top:15px;">
-          This is an automated notification from <strong>MPG Stone</strong> – <a href="https://mpgstone.com" target="_blank" style="color:#4CAF50;">https://mpgstone.com</a>
-        </p>
       `;
     } else if (type === "contact") {
       subject = "New Contact Form Submission on mpgstone.com";
@@ -71,22 +62,11 @@ export async function POST(request) {
               📬 New Contact Form Submission
             </th>
           </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Name:</td>
-            <td style="border-bottom:1px solid #ddd;">${name}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Email:</td>
-            <td style="border-bottom:1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Phone:</td>
-            <td style="border-bottom:1px solid #ddd;">${phone_number || "N/A"}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; vertical-align:top;">Message:</td>
-            <td>${message}</td>
-          </tr>
+          <tr><td style="font-weight:bold;">Name:</td><td>${name}</td></tr>
+          <tr><td style="font-weight:bold;">Email:</td><td>${email}</td></tr>
+          <tr><td style="font-weight:bold;">Phone:</td><td>${phone_number || "N/A"}</td></tr>
+          <tr><td style="font-weight:bold;">Message:</td><td>${message}</td></tr>
+          <tr><td style="font-weight:bold;">IP Address:</td><td>${ip}</td></tr>
         </table>
       `;
     } else if (type === "blog") {
@@ -98,35 +78,25 @@ export async function POST(request) {
               📝 New Blog Comment
             </th>
           </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Blog Title:</td>
-            <td style="border-bottom:1px solid #ddd;">${blog_name}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Name:</td>
-            <td style="border-bottom:1px solid #ddd;">${name}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; border-bottom:1px solid #ddd;">Email:</td>
-            <td style="border-bottom:1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="font-weight:bold; vertical-align:top;">Comment:</td>
-            <td>${message}</td>
-          </tr>
+          <tr><td style="font-weight:bold;">Blog Title:</td><td>${blog_name}</td></tr>
+          <tr><td style="font-weight:bold;">Name:</td><td>${name}</td></tr>
+          <tr><td style="font-weight:bold;">Email:</td><td>${email}</td></tr>
+          <tr><td style="font-weight:bold;">Comment:</td><td>${message}</td></tr>
+          <tr><td style="font-weight:bold;">IP Address:</td><td>${ip}</td></tr>
         </table>
       `;
     } else {
       subject = "New Newsletter Subscription";
       htmlContent = `
         <p style="font-family:Arial, sans-serif;">New subscriber: <strong>${email}</strong></p>
+        <p style="font-family:Arial, sans-serif;">IP Address: ${ip}</p>
       `;
     }
 
     const adminMailOptions = {
       from: "digital@mpgstone.com",
       to: "digital@mpgstone.com",
-      subject: subject,
+      subject,
       html: htmlContent,
     };
 
@@ -148,14 +118,15 @@ export async function POST(request) {
           ? `Hi ${name},\n\nThank you for your interest in our product: ${product_name}.\nWe’ve received your enquiry and will contact you shortly.\n\nBest regards,\nMPG Stone Team`
           : type === "blog"
           ? `Hi ${name},\n\nThank you for commenting on our blog: "${blog_name}".\nWe appreciate your feedback and will review it soon.\n\nBest regards,\nMPG Stone Team`
-          : `Hi,\n\nThank you for subscribing to our newsletter! You'll now receive updates and offers from us.\n\nBest regards,\nMPG Stone Team`,
+          : `Hi,\n\nThank you for subscribing to our newsletter!\n\nBest regards,\nMPG Stone Team`,
     };
 
     await transporter.sendMail(adminMailOptions);
     await transporter.sendMail(userMailOptions);
 
-    return new Response(JSON.stringify({ message: "Emails sent successfully" }), { status: 200 });
+    return new Response(JSON.stringify({ message: "Emails sent successfully", ip }), { status: 200 });
   } catch (error) {
+    console.error("❌ Email send failed:", error);
     return new Response(
       JSON.stringify({ message: "Failed to send email", error: error.message }),
       { status: 500 }
