@@ -133,7 +133,12 @@ export default async function BlogSinglePage({ params }) {
             <li>|</li>
             <li className="inline-block">
               <i className="bi bi-person-circle mr-1 text-[#f36c23]"></i>{" "}
-              <Link className="hover:text-[#f36c23]" href={"/author/jaya_tripathi/"}>Jaya Tripathi</Link>
+              <Link
+                className="hover:text-[#f36c23]"
+                href={"/author/jaya_tripathi/"}
+              >
+                Jaya Tripathi
+              </Link>
             </li>
             <li>|</li>
             <li>
@@ -296,6 +301,14 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: blog.canonical_url || "",
     },
-    robots: blog.robots_tag,
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
   };
 }
