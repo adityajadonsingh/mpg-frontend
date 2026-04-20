@@ -28,7 +28,7 @@ export async function POST(request) {
       service: "gmail",
       auth: {
         user: "digital@mpgstone.com",
-        pass: "aoakrnsezvcfhjig",
+        pass: "wnxwipaqflhwlxfm",
       },
       tls: { rejectUnauthorized: false },
     });
@@ -96,6 +96,7 @@ export async function POST(request) {
     const adminMailOptions = {
       from: "digital@mpgstone.com",
       to: "digital@mpgstone.com",
+      cc: ["kaushik@mpgstones.com", "umang@mpgstone.co.uk","frontend@mpgstone.com"],
       subject,
       html: htmlContent,
     };
